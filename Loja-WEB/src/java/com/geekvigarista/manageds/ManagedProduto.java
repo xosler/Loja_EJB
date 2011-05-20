@@ -9,6 +9,7 @@ import com.geekvigarista.services.ProdutoServiceLocal;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -18,8 +19,8 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedProduto implements Serializable {
-    
+public class ManagedProduto extends ManagedCadastro implements Serializable {
+
     private Produto produto = new Produto();
     
     @EJB
@@ -32,34 +33,32 @@ public class ManagedProduto implements Serializable {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-    
-    
+
     public ManagedProduto() {
-        
     }
-    
-    public void salvar()
-    {
-        try
-        {
+
+    public void salvar() {
+        try {
+            System.out.println("AQUI");
             produto.setDataCadastro(new Date());
             servico.create(produto);
-
-            System.out.println("Salvei essa merda");
+            super.showMessage(new FacesMessage("Salvo", "Produto " + produto.getNome() + " salvo com sucesso."));
             
-            for(Produto p : servico.findAll())
-            {
-                System.out.println(p);
-            }
-            
-            produto = new Produto();
-                 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
+    public void novo() {
+        produto = new Produto();
+    }
+
+    public void excluir() {
+        try {
+            servico.delete(produto);
+            produto = new Produto();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
