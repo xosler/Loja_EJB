@@ -50,7 +50,25 @@ public class Produto implements Serializable {
     
     @Column(nullable=false)
     private String descricao;
+    
+    private String caminhoImg;
 
+    public String getCaminhoImg() {
+        return caminhoImg;
+    }
+
+    public void setCaminhoImg(String caminhoImg) {
+        this.caminhoImg = caminhoImg;
+    }
+
+    public List<Carrinho> getCarrinhos() {
+        return carrinhos;
+    }
+
+    public void setCarrinhos(List<Carrinho> carrinhos) {
+        this.carrinhos = carrinhos;
+    }
+    
     public Date getDataCadastro() {
         return dataCadastro;
     }
