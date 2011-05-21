@@ -7,7 +7,9 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.ProdutoServiceLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,6 +24,8 @@ import javax.faces.bean.SessionScoped;
 public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     private Produto produto = new Produto();
+    private List<Produto> produtos = new ArrayList<Produto>();
+    private String filtro = "";
     
     @EJB
     private ProdutoServiceLocal servico;
@@ -34,7 +38,25 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         this.produto = produto;
     }
 
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+    
+    
     public ManagedProduto() {
+        
     }
 
     public void salvar() {
@@ -42,10 +64,11 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             System.out.println("AQUI");
             produto.setDataCadastro(new Date());
             servico.create(produto);
-            super.showMessage(new FacesMessage("Salvo", "Produto " + produto.getNome() + " salvo com sucesso."));
+            super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
             
         } catch (Exception e) {
             e.printStackTrace();
+            super.showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() + ". Causa: " + e.getCause()));
         }
     }
 
@@ -56,9 +79,25 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public void excluir() {
         try {
             servico.delete(produto);
+            super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " excluído com sucesso."));
             produto = new Produto();
         } catch (Exception e) {
             e.printStackTrace();
+            super.showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getCause()));
         }
     }
+    
+    
+    public void buscar()
+    {
+        if(filtro.equals(""))
+        {
+            produtos = servico.findAll();
+        }
+        else
+        {
+            produtos = servico.findAll(); // TODO PESQUISA MANOLO
+        }
+    }
+    
 }

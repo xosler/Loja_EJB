@@ -15,3 +15,10 @@ root {
     display: block;
 }
 
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Ubuntu'), url('./resources/Ubuntu-Regular.woff') format('woff');
+}

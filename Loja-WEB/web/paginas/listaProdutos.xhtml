@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./cumun.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <h:form id="lista">
+            <p:growl id="mensagens" showDetail="true" sticky="false" />
+            <p:commandButton value="vus" action="#{managedProduto.buscar}" update=":lista" />
+            <p:dataGrid value="#{managedProduto.produtos}" var="produto">
+                
+                <p:panel header="#{produto.nome}">
+                    
+                    <p:effect event="mouseover" for="botoes-#{produto.id}" type="Pulsate" />
+                    
+                    <p:lightBox>
+                        <h:outputLink value="#" title="Aumentar">  
+                            <img src="./../resources/images/camiseta.png" width="200" height="200" />  
+                        </h:outputLink>  
+                        <f:facet name="inline">  
+                            <img src="./../resources/images/camiseta.png" />   
+                        </f:facet>  
+                    </p:lightBox>
+                    
+                    <h:panelGroup id="botoes-#{produto.id}" style="display: none">
+                        <p:commandButton value="Adicionar ao carrinho..." />
+                    </h:panelGroup>
+                    
+                </p:panel>
+                
+            </p:dataGrid>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
