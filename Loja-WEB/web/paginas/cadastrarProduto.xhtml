@@ -10,13 +10,15 @@
                 <p:growl id="mensagens" showDetail="true" sticky="false" />
                 <h:panelGrid columns="2">
                     <h:outputText value="Nome"/> 
-                    <p:inputText value="#{managedProduto.produto.nome}" label="Teste" />
+                    <p:inputText value="#{managedProduto.produto.nome}" label="Nome" />
                     <h:outputText value="Descrição"/> 
-                    <p:inputText value="#{managedProduto.produto.descricao}" />
+                    <p:inputText value="#{managedProduto.produto.descricao}" label="Descrição" />
                     <h:outputText value="Preço"/> 
-                    <p:inputText value="#{managedProduto.produto.preco}" />
+                    <p:inputText value="#{managedProduto.produto.preco}" label="Preço" />
                     <h:outputText value="Quantidade em estoque"/> 
-                    <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}"/>
+                    <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque"/>
+                    <h:outputText value="Data vencimento oferta"/> 
+                    <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" />
                 </h:panelGrid>
                 <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
             </h:form>

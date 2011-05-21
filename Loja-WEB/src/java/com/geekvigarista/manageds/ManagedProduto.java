@@ -63,7 +63,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         try {
             System.out.println("AQUI");
             produto.setDataCadastro(new Date());
-            servico.create(produto);
+            servico.edit(produto);
             super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
             
         } catch (Exception e) {

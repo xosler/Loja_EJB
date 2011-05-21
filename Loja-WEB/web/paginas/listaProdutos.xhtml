@@ -9,30 +9,44 @@
     <ui:define name="content">
         <h:form id="lista">
             <p:growl id="mensagens" showDetail="true" sticky="false" />
-            <p:commandButton value="vus" action="#{managedProduto.buscar}" update=":lista" />
-            <p:dataGrid value="#{managedProduto.produtos}" var="produto">
-                
-                <p:panel header="#{produto.nome}">
-                    
-                    <p:effect event="mouseover" for="botoes-#{produto.id}" type="Pulsate" />
-                    
-                    <p:lightBox>
+            
+            <p:inputText value="#{managedProduto.filtro}"/>
+            <p:commandButton value="Buscar" action="#{managedProduto.buscar}" update=":lista" />
+            <br/>
+            <p:commandButton value="Novo" action="#{managedProduto.novo}" oncomplete="document.location = 'cadastrarProduto.xhtml'" />
+            
+            <p:dataTable value="#{managedProduto.produtos}" var="produto">
+                <p:column>
+                    <f:facet name="header">
+                    </f:facet>
+                     <p:lightBox>
                         <h:outputLink value="#" title="Aumentar">  
-                            <img src="./../resources/images/camiseta.png" width="200" height="200" />  
+                            <img src="./../resources/images/camiseta.png" width="100px" height="100px" />  
                         </h:outputLink>  
                         <f:facet name="inline">  
                             <img src="./../resources/images/camiseta.png" />   
                         </f:facet>  
                     </p:lightBox>
-                    
-                    <h:panelGroup id="botoes-#{produto.id}" style="display: none">
-                        <p:commandButton value="Adicionar ao carrinho..." />
-                    </h:panelGroup>
-                    
-                </p:panel>
-                
-            </p:dataGrid>
-
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Produto
+                    </f:facet>
+                    <h:outputText value="#{produto.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Descrição
+                    </f:facet>
+                    <h:outputText value="#{produto.descricao}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Válido até
+                    </f:facet>
+                    <h:outputText value="#{produto.dataVencimentoOferta}" />
+                </p:column>    
+            </p:dataTable>
         </h:form>
     </ui:define>
 
