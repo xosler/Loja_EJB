@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./cumun.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="content">
+          <h:form id="cadastro">
+                <p:growl id="mensagens" showDetail="true" sticky="false" />
+                <h:panelGrid columns="2">
+                    <h:outputText value="Nome"/> 
+                    <p:inputText value="#{managedProduto.produto.nome}" label="Teste" />
+                    <h:outputText value="Descrição"/> 
+                    <p:inputText value="#{managedProduto.produto.descricao}" />
+                    <h:outputText value="Preço"/> 
+                    <p:inputText value="#{managedProduto.produto.preco}" />
+                    <h:outputText value="Quantidade em estoque"/> 
+                    <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}"/>
+                </h:panelGrid>
+                <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
+            </h:form>
+    </ui:define>
+
+</ui:composition>
