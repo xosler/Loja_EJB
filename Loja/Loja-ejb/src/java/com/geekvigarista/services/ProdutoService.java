@@ -20,6 +20,7 @@ public class ProdutoService implements ProdutoServiceLocal {
     @EJB
     private ProdutoFacadeLocal dao;
 
+    @Override
     public void create(Produto p) {
         dao.create(p);
     }

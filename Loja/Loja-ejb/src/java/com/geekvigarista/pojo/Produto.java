@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -28,7 +29,7 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable=false)
@@ -51,7 +52,18 @@ public class Produto implements Serializable {
     @Column(nullable=false)
     private String descricao;
     
+    @ManyToMany
+    private Categoria categoria;
+    
     private String caminhoImg;
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public String getCaminhoImg() {
         return caminhoImg;

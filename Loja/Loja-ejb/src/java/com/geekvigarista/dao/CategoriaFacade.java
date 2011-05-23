@@ -4,7 +4,7 @@
  */
 package com.geekvigarista.dao;
 
-import com.geekvigarista.pojo.Produto;
+import com.geekvigarista.pojo.Categoria;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author carlos
  */
 @Stateless
-public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFacadeLocal {
-
+public class CategoriaFacade extends AbstractFacade<Categoria> implements CategoriaFacadeLocal {
     @PersistenceContext(unitName = "Loja-ejbPU")
     private EntityManager em;
 
@@ -23,8 +22,8 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
         return em;
     }
 
-    public ProdutoFacade() {
-        super(Produto.class);
+    public CategoriaFacade() {
+        super(Categoria.class);
     }
-
+    
 }

@@ -6,7 +6,6 @@ package com.geekvigarista.dao;
 
 import com.geekvigarista.pojo.Produto;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Local;
 
 /**
