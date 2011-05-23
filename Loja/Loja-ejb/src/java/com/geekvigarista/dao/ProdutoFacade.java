@@ -5,9 +5,13 @@
 package com.geekvigarista.dao;
 
 import com.geekvigarista.pojo.Produto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
@@ -15,6 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFacadeLocal {
+
     @PersistenceContext(unitName = "Loja-ejbPU")
     private EntityManager em;
 
@@ -25,5 +30,5 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
     public ProdutoFacade() {
         super(Produto.class);
     }
-    
+
 }
