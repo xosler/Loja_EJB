@@ -29,6 +29,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     
     @EJB
     private ProdutoServiceLocal servico;
+    
 
     public Produto getProduto() {
         return produto;
