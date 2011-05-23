@@ -90,13 +90,23 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     
     public void buscar()
     {
-        if(filtro.equals(""))
+        // TODO To fazendo gambiarra aqui, arrumar algum dia.
+        List<Produto> produtosEncontrados = servico.findAll();
+        produtos = new ArrayList<Produto>();
+        if(!filtro.equals(""))
         {
-            produtos = servico.findAll();
+           for(Produto p : produtosEncontrados)
+           {
+               if(p.getNome().toLowerCase().contains(filtro.toLowerCase())
+                       || p.getDescricao().toLowerCase().contains(filtro.toLowerCase()))
+               {
+                   produtos.add(p); 
+               }
+           }
         }
         else
         {
-            produtos = servico.findAll(); // TODO PESQUISA MANOLO
+            produtos = produtosEncontrados; 
         }
     }
     

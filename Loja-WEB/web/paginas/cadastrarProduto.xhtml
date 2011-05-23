@@ -21,6 +21,7 @@
                     <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" />
                 </h:panelGrid>
                 <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
+                <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />
             </h:form>
     </ui:define>
 
