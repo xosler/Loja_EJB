@@ -18,3 +18,20 @@ root {
   font-weight: normal;
   src: local('Ubuntu'), url('./resources/Ubuntu-Regular.woff') format('woff');
 }
+
+.campo {
+    width: 200px;
+}
+
+.campo-data input {
+    width: 200px;
+}
+
+.campo-spinner input {
+    width: 185px;
+}
+
+.campo-many-menu {
+    width: 200px;
+    height: 200px;
+}

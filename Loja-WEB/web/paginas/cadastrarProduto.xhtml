@@ -3,22 +3,27 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./cumun.xhtml"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
           <h:form id="cadastro">
-                <p:growl id="mensagens" showDetail="true" sticky="false" />
+                <p:growl id="mensagens" showDetail="true" sticky="false"  />
                 <h:panelGrid columns="2">
                     <h:outputText value="Nome"/> 
-                    <p:inputText value="#{managedProduto.produto.nome}" label="Nome" />
+                    <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
                     <h:outputText value="Descrição"/> 
-                    <p:inputText value="#{managedProduto.produto.descricao}" label="Descrição" />
+                    <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" />
                     <h:outputText value="Preço"/> 
-                    <p:inputText value="#{managedProduto.produto.preco}" label="Preço" />
+                    <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
                     <h:outputText value="Quantidade em estoque"/> 
-                    <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque"/>
+                    <p:spinner value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo-spinner" />
                     <h:outputText value="Data vencimento oferta"/> 
-                    <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" />
+                    <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
+                    <h:outputText value="Categorias" />
+                    <p:selectManyMenu value="#{managedProduto.produto.categoria}" label="Categorias" styleClass="campo-many-menu" >
+                        <f:selectItems value="#{managedProduto.categorias}" />
+                    </p:selectManyMenu>
                 </h:panelGrid>
                 <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
                 <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />

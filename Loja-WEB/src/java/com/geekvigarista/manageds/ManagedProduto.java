@@ -4,6 +4,7 @@
  */
 package com.geekvigarista.manageds;
 
+import com.geekvigarista.enums.Categoria;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.ProdutoServiceLocal;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -26,10 +28,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<Produto>();
     private String filtro = "";
-    
     @EJB
     private ProdutoServiceLocal servico;
-    
 
     public Produto getProduto() {
         return produto;
@@ -54,19 +54,37 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-    
-    
+
     public ManagedProduto() {
-        
+    }
+    
+    /**
+     * Gera o array de SelectItens de categorias :)
+     * @return SelectItem[]
+     * @author Carlos
+     */
+    public SelectItem[] getCategorias() {
+        SelectItem[] items = new SelectItem[(Categoria.values().length)];
+        int i = 0;
+        for (Categoria c : Categoria.values()) {
+            items[i++] = new SelectItem(c, c.getNome());
+        }
+        return items;
     }
 
     public void salvar() {
         try {
-            System.out.println("AQUI");
-            produto.setDataCadastro(new Date());
-            servico.edit(produto);
+            if(produto != null && produto.getId() == null)
+            {
+                produto.setDataCadastro(new Date());
+                servico.create(produto);
+            }
+            else
+            {
+                servico.edit(produto);
+            }
             super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             super.showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() + ". Causa: " + e.getCause()));
@@ -87,28 +105,20 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             super.showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getCause()));
         }
     }
-    
-    
-    public void buscar()
-    {
+
+    public void buscar() {
         // TODO To fazendo gambiarra aqui, arrumar algum dia.
         List<Produto> produtosEncontrados = servico.findAll();
         produtos = new ArrayList<Produto>();
-        if(!filtro.equals(""))
-        {
-           for(Produto p : produtosEncontrados)
-           {
-               if(p.getNome().toLowerCase().contains(filtro.toLowerCase())
-                       || p.getDescricao().toLowerCase().contains(filtro.toLowerCase()))
-               {
-                   produtos.add(p); 
-               }
-           }
-        }
-        else
-        {
-            produtos = produtosEncontrados; 
+        if (!filtro.equals("")) {
+            for (Produto p : produtosEncontrados) {
+                if (p.getNome().toLowerCase().contains(filtro.toLowerCase())
+                        || p.getDescricao().toLowerCase().contains(filtro.toLowerCase())) {
+                    produtos.add(p);
+                }
+            }
+        } else {
+            produtos = produtosEncontrados;
         }
     }
-    
 }
