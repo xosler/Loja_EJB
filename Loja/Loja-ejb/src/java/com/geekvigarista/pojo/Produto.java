@@ -4,16 +4,17 @@
  */
 package com.geekvigarista.pojo;
 
+import com.geekvigarista.enums.Categoria;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -52,16 +53,17 @@ public class Produto implements Serializable {
     @Column(nullable=false)
     private String descricao;
     
-    @ManyToMany
-    private Categoria categoria;
+    @Column(nullable=false)
+    @Enumerated
+    private List<Categoria> categoria;
     
     private String caminhoImg;
 
-    public Categoria getCategoria() {
+    public List<Categoria> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(List<Categoria> categoria) {
         this.categoria = categoria;
     }
 
