@@ -3,7 +3,6 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.enums.Categoria;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.ProdutoServiceLocal;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import org.primefaces.event.FileUploadEvent;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedProduto implements Serializable {
+public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<Produto>();
@@ -136,33 +135,33 @@ public class ManagedProduto implements Serializable {
         }
     }
 
-    public void handleFileUpload(FileUploadEvent event) {
-        System.out.println();
-        System.out.println("aqui");
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-
-        String nomeArquivo = event.getFile().getFileName();
-        
-        System.out.println(nomeArquivo);
-        
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();
-        String arquivo = scontext.getRealPath("/resources/images/" + nomeArquivo);
-        System.out.println(arquivo);
-
-        try {
-            FileOutputStream out = new FileOutputStream(arquivo);
-            int copy = org.apache.commons.io.CopyUtils.copy(event.getFile().getInputstream(), out);
-            System.out.println("Copy status: " + copy);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void showMessage(FacesMessage mensagem) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, mensagem);
-    }
+//    public void handleFileUpload(FileUploadEvent event) {
+//        System.out.println();
+//        System.out.println("aqui");
+//        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+//
+//        String nomeArquivo = event.getFile().getFileName();
+//        
+//        System.out.println(nomeArquivo);
+//        
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+//        ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();
+//        String arquivo = scontext.getRealPath("/resources/images/" + nomeArquivo);
+//        System.out.println(arquivo);
+//
+//        try {
+//            FileOutputStream out = new FileOutputStream(arquivo);
+//            int copy = org.apache.commons.io.CopyUtils.copy(event.getFile().getInputstream(), out);
+//            System.out.println("Copy status: " + copy);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        FacesContext.getCurrentInstance().addMessage(null, msg);
+//    }
+//    
+//    public void showMessage(FacesMessage mensagem) {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        context.addMessage(null, mensagem);
+//    }
 }

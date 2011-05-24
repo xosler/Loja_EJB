@@ -6,10 +6,6 @@
             <name>Loja-WEB</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
-                <library dirs="100">
-                    <file>${reference.Loja-ejb.dist}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
                 <library dirs="200">
                     <file>${file.reference.NetBeansProjects-Loja-WEB}</file>
                     <path-in-war>WEB-INF/classes</path-in-war>
@@ -20,6 +16,10 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.primefaces-3.0.M1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="100">
+                    <file>${reference.Loja-ejb.dist}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
