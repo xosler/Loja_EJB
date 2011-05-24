@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.geekvigarista.manageds;
 
 import com.geekvigarista.enums.Categoria;
@@ -28,9 +24,19 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<Produto>();
     private String filtro = "";
+    private Long idSelecionado = null;
+    
     @EJB
     private ProdutoServiceLocal servico;
 
+    public Long getIdSelecionado() {
+        return idSelecionado;
+    }
+
+    public void setIdSelecionado(Long idSelecionado) {
+        this.idSelecionado = idSelecionado;
+    }
+    
     public Produto getProduto() {
         return produto;
     }
@@ -57,7 +63,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     public ManagedProduto() {
     }
-    
+
     /**
      * Gera o array de SelectItens de categorias :)
      * @return SelectItem[]
@@ -74,13 +80,10 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     public void salvar() {
         try {
-            if(produto != null && produto.getId() == null)
-            {
+            if (produto != null && produto.getId() == null) {
                 produto.setDataCadastro(new Date());
                 servico.create(produto);
-            }
-            else
-            {
+            } else {
                 servico.edit(produto);
             }
             super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
@@ -107,7 +110,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     }
 
     public void buscar() {
-        // TODO To fazendo gambiarra aqui, arrumar algum dia.
+        // TODO To fazendo gambiarra aqui, arrumar algum dia. by Xosler (XGH HAHAH). (ou nao)
         List<Produto> produtosEncontrados = servico.findAll();
         produtos = new ArrayList<Produto>();
         if (!filtro.equals("")) {
@@ -119,6 +122,14 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             }
         } else {
             produtos = produtosEncontrados;
+        }
+    }
+    
+    public void load()
+    {
+        if(idSelecionado != null)
+        {
+            produto = servico.find(idSelecionado);
         }
     }
 }
