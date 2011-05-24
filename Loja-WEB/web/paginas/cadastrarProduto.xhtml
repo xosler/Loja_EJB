@@ -24,6 +24,8 @@
                     <p:selectManyMenu value="#{managedProduto.produto.categoria}" label="Categorias" styleClass="campo-many-menu" >
                         <f:selectItems value="#{managedProduto.categorias}" />
                     </p:selectManyMenu>
+                    <h:outputText value="Imagem"/>
+                    <p:fileUpload fileUploadListener="#{managedProduto.handleFileUpload(event)}" multiple="false" />
                 </h:panelGrid>
                 <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
                 <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />

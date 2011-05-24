@@ -3,6 +3,8 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.enums.Categoria;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.ProdutoServiceLocal;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +13,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -19,7 +24,7 @@ import javax.faces.model.SelectItem;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedProduto extends ManagedCadastro implements Serializable {
+public class ManagedProduto implements Serializable {
 
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<Produto>();
@@ -36,7 +41,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public void setIdSelecionado(Long idSelecionado) {
         this.idSelecionado = idSelecionado;
     }
-    
+
     public Produto getProduto() {
         return produto;
     }
@@ -86,11 +91,11 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             } else {
                 servico.edit(produto);
             }
-            super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
+            showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
 
         } catch (Exception e) {
             e.printStackTrace();
-            super.showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() + ". Causa: " + e.getCause()));
+            showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() + ". Causa: " + e.getCause()));
         }
     }
 
@@ -101,11 +106,11 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public void excluir() {
         try {
             servico.delete(produto);
-            super.showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " excluído com sucesso."));
+            showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " excluído com sucesso."));
             produto = new Produto();
         } catch (Exception e) {
             e.printStackTrace();
-            super.showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getCause()));
+            showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getCause()));
         }
     }
 
@@ -124,12 +129,40 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             produtos = produtosEncontrados;
         }
     }
-    
-    public void load()
-    {
-        if(idSelecionado != null)
-        {
+
+    public void load() {
+        if (idSelecionado != null) {
             produto = servico.find(idSelecionado);
         }
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        System.out.println();
+        System.out.println("aqui");
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+
+        String nomeArquivo = event.getFile().getFileName();
+        
+        System.out.println(nomeArquivo);
+        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();
+        String arquivo = scontext.getRealPath("/resources/images/" + nomeArquivo);
+        System.out.println(arquivo);
+
+        try {
+            FileOutputStream out = new FileOutputStream(arquivo);
+            int copy = org.apache.commons.io.CopyUtils.copy(event.getFile().getInputstream(), out);
+            System.out.println("Copy status: " + copy);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void showMessage(FacesMessage mensagem) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, mensagem);
     }
 }
