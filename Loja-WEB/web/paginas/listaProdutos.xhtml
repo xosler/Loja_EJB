@@ -4,7 +4,8 @@
                 template="./comun.xhtml"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="content">
         <h:form id="lista">
@@ -14,30 +15,30 @@
             <p:commandButton value="Buscar" action="#{managedProduto.buscar}" update=":lista" />
 
             <p:commandButton value="Novo" action="#{managedProduto.novo}" oncomplete="document.location = 'cadastrarProduto.xhtml'" />
-            <br />    
 
-            <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px">
+            <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px; width: 100%">
                 <p:commandLink value="Remover Filtro" styleClass="primary  _button" />
                 <p:spacer width="3px" />
-                <p:commandLink value="Adornos" styleClass="left _button" />
-                <p:commandLink value="Camisetas" styleClass="middle _button" />
-                <p:commandLink value="Camisas" styleClass="middle _button" />
-                <p:commandLink value="Calças" styleClass="middle _button" />
-                <p:commandLink value="Casacos" styleClass="middle _button" />
-                <p:commandLink value="Jaquetas" styleClass="middle _button" />
-                <p:commandLink value="Outros" styleClass="right _button" />
+                <c:forEach items="#{managedProduto.categorias}" var="c">
+                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update=":lista"
+                                   oncomplete="Loja.configuraFiltros();" action="#{managedProduto.filtrarPorCategoria}">
+                        <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
+                    </p:commandLink>
+                </c:forEach>
+                
+                
             </h:panelGroup>
-            
+
             <p:dataTable value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
                 <p:column>
                     <f:facet name="header">
                     </f:facet>
                     <p:lightBox>
                         <h:outputLink value="#" title="Aumentar">  
-                            <img src="./../resources/images/camiseta.png" width="100px" height="100px" />  
+<!--                            <img src="./../resources/images/camiseta.png" width="100px" height="100px" />  -->
                         </h:outputLink>  
                         <f:facet name="inline">  
-                            <img src="./../resources/images/camiseta.png" />   
+<!--                            <img src="./../resources/images/camiseta.png" />   -->
                         </f:facet>  
                     </p:lightBox>
                 </p:column>

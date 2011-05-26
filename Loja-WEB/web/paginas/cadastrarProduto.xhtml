@@ -21,8 +21,8 @@
                     <h:outputText value="Data vencimento oferta"/> 
                     <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
                     <h:outputText value="Categorias" />
-                    <p:selectManyMenu value="#{managedProduto.produto.categoria}" label="Categorias" styleClass="campo-many-menu" >
-                        <f:selectItems value="#{managedProduto.categorias}" />
+                    <p:selectManyMenu value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
+                        <f:selectItems value="#{managedProduto.categoriasItems}" />
                     </p:selectManyMenu>
                 </h:panelGrid>
                 <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />

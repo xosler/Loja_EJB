@@ -1,23 +1,37 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+// objeto Loja :)
+var Loja = {};
+
+
+/**
+ * funcao maliciosa que configura os filtros da lista de produtos.
+ * 
+ * @author Carlos
  */
-
-
-function configuraFiltros()
+Loja.configuraFiltros = function()
 {
-    jQuery('[id*=panelFiltros] a').click( 
+    jQuery('.botao-filtro').click( 
         function(j)
         {
-            jQuery('[id*=panelFiltros] a').removeClass('selecionado');
+            jQuery('.botao-filtro').removeClass('selecionado');
             var e = jQuery(j.target); 
             jQuery(e).addClass('selecionado'); 
-        } 
-        );
+        });
+        
+     jQuery('.botao-filtro:first').removeClass('middle');   
+     jQuery('.botao-filtro:first').addClass('left');
+     jQuery('.botao-filtro:last').removeClass('middle');   
+     jQuery('.botao-filtro:last').addClass('right');
 }
 
+/**
+ * Evento ready da pagina. 
+ * As funcoes daqui são executadas quando a pagina estiver pronta.
+ * 
+ * @author Carlos
+ */
 jQuery(document).ready(
-    function(){
-        configuraFiltros();
+    function()
+    {
+        Loja.configuraFiltros();
     }
     );
