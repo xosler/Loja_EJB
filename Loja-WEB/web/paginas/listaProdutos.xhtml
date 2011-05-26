@@ -9,17 +9,30 @@
     <ui:define name="content">
         <h:form id="lista">
             <p:growl id="mensagens" showDetail="true" sticky="false" />
-            
+
             <p:inputText value="#{managedProduto.filtro}"/>
             <p:commandButton value="Buscar" action="#{managedProduto.buscar}" update=":lista" />
-            <br/>
+
             <p:commandButton value="Novo" action="#{managedProduto.novo}" oncomplete="document.location = 'cadastrarProduto.xhtml'" />
+            <br />    
+
+            <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px">
+                <p:commandLink value="Remover Filtro" styleClass="primary  _button" />
+                <p:spacer width="3px" />
+                <p:commandLink value="Adornos" styleClass="left _button" />
+                <p:commandLink value="Camisetas" styleClass="middle _button" />
+                <p:commandLink value="Camisas" styleClass="middle _button" />
+                <p:commandLink value="Calças" styleClass="middle _button" />
+                <p:commandLink value="Casacos" styleClass="middle _button" />
+                <p:commandLink value="Jaquetas" styleClass="middle _button" />
+                <p:commandLink value="Outros" styleClass="right _button" />
+            </h:panelGroup>
             
-            <p:dataTable value="#{managedProduto.produtos}" var="produto">
+            <p:dataTable value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
                 <p:column>
                     <f:facet name="header">
                     </f:facet>
-                     <p:lightBox>
+                    <p:lightBox>
                         <h:outputLink value="#" title="Aumentar">  
                             <img src="./../resources/images/camiseta.png" width="100px" height="100px" />  
                         </h:outputLink>  

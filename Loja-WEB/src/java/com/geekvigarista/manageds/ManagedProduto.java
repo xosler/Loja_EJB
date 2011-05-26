@@ -3,7 +3,6 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.enums.Categoria;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.ProdutoServiceLocal;
-import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,10 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.servlet.ServletContext;
-import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -133,6 +129,13 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         if (idSelecionado != null) {
             produto = servico.find(idSelecionado);
         }
+    }
+    
+    private int categoria = 9;
+    
+    public void filtrarPorCategoria()
+    {
+        
     }
 
 //    public void handleFileUpload(FileUploadEvent event) {

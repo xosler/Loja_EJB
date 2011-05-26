@@ -1,0 +1,87 @@
+a._button, _button { display: inline-block; padding: 5px; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif; font-size: 12px; color: #3C3C3D; text-shadow: 1px 1px 0 #FFFFFF; background: #ECECEC url('../images/css3_buttons_backgrounds.png') 0 0 no-repeat; white-space: nowrap; overflow: visible; cursor: pointer; text-decoration: none; border: 1px solid #CACACA; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; outline: none; position: relative; zoom: 1; line-height: 1.11; *display: inline; *vertical-align: middle; }
+_button { margin-left: 0; margin-right: 0; *padding: 5px 5px 3px 5px; }
+a._button { -moz-user-select: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none;}
+_button::-moz-focus-inner { border: 0; padding:0px; }
+a._button.primary, _button.primary { font-weight: bold }
+_button:focus,a._button:hover, 
+_button:hover { color: #FFFFFF; border-color: #388AD4; text-decoration: none; text-shadow: -1px -1px 0 rgba(0,0,0,0.3); background-position: 0 -40px; background-color: #2D7DC5; }
+a._button:active, _button:active,
+a._button.active, _button.active { background-position: 0 -81px; border-color: #347BBA; background-color: #0F5EA2; color: #FFFFFF; text-shadow: none; }
+a._button:active, _button:active { top: 1px }
+a._button.negative:hover, _button.negative:hover { color: #FFFFFF; background-position: 0 -121px; background-color: #D84743; border-color: #911D1B; }
+a._button.negative:active, _button.negative:active,
+a._button.negative.active, _button.negative.active { background-position: 0 -161px; background-color: #A5211E; border-color: #911D1B; }
+a._button.positive:hover, _button.positive:hover { background-position: 0 -280px; background-color: #96ED89; border-color: #45BF55; }
+a._button.positive:active, _button.positive:active,
+a._button.positive.active, _button.positive.active { background-position: 0 -320px; background-color: #45BF55; }
+a._button.pill, _button.pill { -webkit-border-radius: 19px; -moz-border-radius: 19px; border-radius: 19px; padding: 5px 10px 4px 10px; *padding: 4px 10px; }
+a._button.left, _button.left { -webkit-border-bottom-right-radius: 0px; -webkit-border-top-right-radius: 0px; -moz-border-radius-bottomright: 0px; -moz-border-radius-topright: 0px; border-bottom-right-radius: 0px; border-top-right-radius: 0px; margin-right: 0px; border-right: none; }
+a._button.middle, _button.middle { margin-right: 0px; margin-left: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; border-right: none; }
+a._button.right, _button.right { -webkit-border-bottom-left-radius: 0px; -webkit-border-top-left-radius: 0px; -moz-border-radius-bottomleft: 0px; -moz-border-radius-topleft: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; margin-left: 0px; }
+a._button.left:active, _button.left:active,
+a._button.middle:active, _button.middle:active,
+a._button.right:active, _button.right:active { top: 0px }
+a._button.big, _button.big { font-size: 16px; padding-left: 14px; padding-right: 17px; }
+_button.big { *padding: 4px 17px 2px 17px; }
+a._button span.icon, _button span.icon { display: inline-block; width: 14px; height: 12px; margin: auto 7px auto auto; position: relative; top: 0; *top: 0px; background-image: url('../images/css3_buttons_icons.png'); background-repeat: no-repeat; }
+a.big._button span.icon, _button.big span.icon { top: 0px }
+a._button span.icon.book, _button span.icon.book { background-position: 0 0 }
+a._button:hover span.icon.book, _button:hover span.icon.book { background-position: 0 -15px }
+a._button span.icon.calendar, _button span.icon.calendar { background-position: 0 -30px }
+a._button:hover span.icon.calendar, _button:hover span.icon.calendar { background-position: 0 -45px }
+a._button span.icon.chat, _button span.icon.chat { background-position: 0 -60px }
+a._button:hover span.icon.chat, _button:hover span.icon.chat { background-position: 0 -75px }
+a._button span.icon.check, _button span.icon.check { background-position: 0 -90px }
+a._button:hover span.icon.check, _button:hover span.icon.check { background-position: 0 -103px }
+a._button span.icon.clock, _button span.icon.clock { background-position: 0 -116px }
+a._button:hover span.icon.clock, _button:hover span.icon.clock { background-position: 0 -131px }
+a._button span.icon.cog, _button span.icon.cog { background-position: 0 -146px }
+a._button:hover span.icon.cog, _button:hover span.icon.cog { background-position: 0 -161px }
+a._button span.icon.comment, _button span.icon.comment { background-position: 0 -176px }
+a._button:hover span.icon.comment, _button:hover span.icon.comment { background-position: 0 -190px }
+a._button span.icon.cross, _button span.icon.cross { background-position: 0 -204px }
+a._button:hover span.icon.cross, _button:hover span.icon.cross { background-position: 0 -219px }
+a._button span.icon.downarrow, _button span.icon.downarrow { background-position: 0 -234px }
+a._button:hover span.icon.downarrow, _button:hover span.icon.downarrow { background-position: 0 -249px }
+a._button span.icon.fork, _button span.icon.fork { background-position: 0 -264px }
+a._button:hover span.icon.fork, _button:hover span.icon.fork { background-position: 0 -279px }
+a._button span.icon.heart, _button span.icon.heart { background-position: 0 -294px }
+a._button:hover span.icon.heart, _button:hover span.icon.heart { background-position: 0 -308px }
+a._button span.icon.home, _button span.icon.home { background-position: 0 -322px }
+a._button:hover span.icon.home, _button:hover span.icon.home { background-position: 0 -337px }
+a._button span.icon.key, _button span.icon.key { background-position: 0 -352px }
+a._button:hover span.icon.key, _button:hover span.icon.key { background-position: 0 -367px }
+a._button span.icon.leftarrow, _button span.icon.leftarrow { background-position: 0 -382px }
+a._button:hover span.icon.leftarrow, _button:hover span.icon.leftarrow { background-position: 0 -397px }
+a._button span.icon.lock, _button span.icon.lock { background-position: 0 -412px }
+a._button:hover span.icon.lock, _button:hover span.icon.lock { background-position: 0 -427px }
+a._button span.icon.loop, _button span.icon.loop { background-position: 0 -442px }
+a._button:hover span.icon.loop, _button:hover span.icon.loop { background-position: 0 -457px }
+a._button span.icon.magnifier, _button span.icon.magnifier { background-position: 0 -472px }
+a._button:hover span.icon.magnifier, _button:hover span.icon.magnifier { background-position: 0 -487px }
+a._button span.icon.mail, _button span.icon.mail { background-position: 0 -502px }
+a._button:hover span.icon.mail, _button:hover span.icon.mail { background-position: 0 -514px }
+a._button span.icon.move, _button span.icon.move { background-position: 0 -526px }
+a._button:hover span.icon.move, _button:hover span.icon.move { background-position: 0 -541px }
+a._button span.icon.pen, _button span.icon.pen { background-position: 0 -556px }
+a._button:hover span.icon.pen, _button:hover span.icon.pen { background-position: 0 -571px }
+a._button span.icon.pin, _button span.icon.pin { background-position: 0 -586px }
+a._button:hover span.icon.pin, _button:hover span.icon.pin { background-position: 0 -601px }
+a._button span.icon.plus, _button span.icon.plus { background-position: 0 -616px }
+a._button:hover span.icon.plus, _button:hover span.icon.plus { background-position: 0 -631px }
+a._button span.icon.reload, _button span.icon.reload { background-position: 0 -646px }
+a._button:hover span.icon.reload, _button:hover span.icon.reload { background-position: 0 -660px }
+a._button span.icon.rightarrow, _button span.icon.rightarrow { background-position: 0 -674px }
+a._button:hover span.icon.rightarrow, _button:hover span.icon.rightarrow { background-position: 0 -689px }
+a._button span.icon.rss, _button span.icon.rss { background-position: 0 -704px }
+a._button:hover span.icon.rss, _button:hover span.icon.rss { background-position: 0 -719px }
+a._button span.icon.tag, _button span.icon.tag { background-position: 0 -734px }
+a._button:hover span.icon.tag, _button:hover span.icon.tag { background-position: 0 -749px }
+a._button span.icon.trash, _button span.icon.trash { background-position: 0 -764px }
+a._button:hover span.icon.trash, _button:hover span.icon.trash { background-position: 0 -779px }
+a._button span.icon.unlock, _button span.icon.unlock { background-position: 0 -794px }
+a._button:hover span.icon.unlock, _button:hover span.icon.unlock { background-position: 0 -809px }
+a._button span.icon.uparrow, _button span.icon.uparrow { background-position: 0 -824px }
+a._button:hover span.icon.uparrow, _button:hover span.icon.uparrow { background-position: 0 -839px }
+a._button span.icon.user, _button span.icon.user { background-position: 0 -854px }
+a._button:hover span.icon.user, _button:hover span.icon.user { background-position: 0 -869px }

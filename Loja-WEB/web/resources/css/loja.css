@@ -13,10 +13,10 @@ root {
 
 
 @font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Ubuntu'), url('./resources/Ubuntu-Regular.woff') format('woff');
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ubuntu'), url('./resources/Ubuntu-Regular.woff') format('woff');
 }
 
 .campo {
@@ -34,4 +34,13 @@ root {
 .campo-many-menu {
     width: 200px;
     height: 170px;
+}
+
+.selecionado {
+    color: white !important;
+    border-color: #388AD4 !important;
+    text-decoration: none !important;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3) !important;
+    background-position: 0 -40px !important;
+    background-color: #2D7DC5 !important;
 }
