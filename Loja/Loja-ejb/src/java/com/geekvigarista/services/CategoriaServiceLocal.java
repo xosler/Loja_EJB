@@ -21,7 +21,7 @@ public interface CategoriaServiceLocal {
 
     void edit(Categoria c);
 
-    Categoria find(Long id);
+    Categoria find(Object id);
 
     List<Categoria> findAll();
 }

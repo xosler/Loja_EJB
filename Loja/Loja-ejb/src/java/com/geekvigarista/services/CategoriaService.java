@@ -36,7 +36,7 @@ public class CategoriaService implements CategoriaServiceLocal {
     }
 
     @Override
-    public Categoria find(Long id) {
+    public Categoria find(Object id) {
         return dao.find(id);
     }
 
