@@ -4,6 +4,10 @@ import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.services.CategoriaServiceLocal;
 import com.geekvigarista.services.ProdutoServiceLocal;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +16,9 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -31,6 +38,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private ProdutoServiceLocal servico;
     @EJB
     private CategoriaServiceLocal servicoCategoria;
+    private static final int BUFFER_SIZE = 6124;
+    private String folderToUpload;
 
     public Long getIdCategoriaSelecionada() {
         return idCategoriaSelecionada;
@@ -79,9 +88,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public List<Categoria> getCategorias() {
         return servicoCategoria.findAll();
     }
-    
-    public void removerFiltro()
-    {
+
+    public void removerFiltro() {
         idCategoriaSelecionada = null;
         buscar();
     }
@@ -121,12 +129,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
                 if (produto.getDataCadastro() == null) {
                     produto.setDataCadastro(new Date());
                 }
-                
-                if(produto.getDataVencimentoOferta().before(new Date()))
-                {
-                    showMessage(new FacesMessage("Atenção", "Data de vencimento da oferta é inferior ou igual a data atual."));
-                }
-                
+
                 if (produto.getId() == null) {
                     servico.create(produto);
                 } else {
@@ -165,7 +168,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             produto = servico.find(idSelecionado);
         }
     }
-    
+
     /**
      * @author Alexandre
      * @return 
@@ -173,5 +176,50 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public List<Produto> getListaProdutos() {
         buscar();
         return produtos;
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext();
+
+        File pasta = new File(extContext.getRealPath("//files//"));
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+
+        File result = new File(extContext.getRealPath("//files//"
+                + event.getFile().getFileName()));
+
+
+//System.out.println(extContext.getRealPath("//WEB-INF//files//" +
+//      event.getFile().getFileName()));
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(result);
+
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int bulk;
+            InputStream inputStream = event.getFile().getInputstream();
+            while (true) {
+                bulk = inputStream.read(buffer);
+                if (bulk < 0) {
+                    break;
+                }
+                fileOutputStream.write(buffer, 0, bulk);
+                fileOutputStream.flush();
+            }
+            fileOutputStream.close();
+            inputStream.close();
+            FacesMessage msg = new FacesMessage("Sucesso", event.getFile().getFileName()
+                    + " enviado com sucesso.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+            produto.setImagens("/files/" + event.getFile().getFileName());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            FacesMessage error = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Falha ao fazer o upload!", "");
+            FacesContext.getCurrentInstance().addMessage(null, error);
+        }
+
     }
 }

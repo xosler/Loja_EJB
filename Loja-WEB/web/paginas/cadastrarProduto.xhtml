@@ -10,23 +10,29 @@
         <h:form id="cadastro">
             <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true" />
             <h:panelGrid columns="2">
+
                 <h:outputText value="Nome"/> 
                 <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
+
                 <h:outputText value="Descrição"/> 
                 <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" />
+
                 <h:outputText value="Preço"/> 
                 <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
+
                 <h:outputText value="Quantidade em estoque"/> 
-                <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo" />
+                <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" 
+                             styleClass="campo" />
+
                 <h:outputText value="Data vencimento oferta"/> 
-                <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
+                <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" 
+                            styleClass="campo-data" />
+
                 <h:outputText value="Categorias" />
                 <h:panelGroup>
-                    
                     <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
                               showEffect="explode" hideEffect="explode" height="150"
                               modal="true" onCloseUpdate=":cadastro">
-                        
                         <h:panelGrid columns="2" id="dialogCategoria">
                             <h:outputText value="Nome" />
                             <p:inputText value="#{managedCategoria.categoria.descricao}" />
@@ -35,7 +41,7 @@
                         <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" update="dialogCategoria" image="ui-icon-disk" />
                         <p:commandButton value="Novo" action="#{managedCategoria.novo}" update="dialogCategoria" image="ui-icon-new" />
                     </p:dialog>
-                    
+
                     <p:selectManyMenu value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
                         <f:converter converterId="categoriaConverter" />
                         <f:selectItems value="#{managedProduto.categorias}" 
@@ -43,7 +49,23 @@
                     </p:selectManyMenu>
                     <p:commandLink value="Nova categoria" oncomplete="dlgCategoria.show();" />
                 </h:panelGroup>
+
+                <h:outputText value="Imagem: " />
+                <h:panelGroup id="panelUpload">
+                    <h:panelGrid columns="2">
+                        <p:fileUpload fileUploadListener="#{managedProduto.handleFileUpload}"  
+                                      update="panelUpload"
+                                      auto="true"
+                                      multiple="false"
+                                      allowTypes="png,gif,jpg" />
+                        <h:graphicImage width="150" height="150"
+                                        value="#{managedProduto.produto.imagem}" rendered="#{not empty managedProduto.produto.imagem}" />
+                    </h:panelGrid>
+                </h:panelGroup>
+
+
             </h:panelGrid>
+
             <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
             <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />
         </h:form>
