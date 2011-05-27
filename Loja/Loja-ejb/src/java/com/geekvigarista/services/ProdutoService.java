@@ -44,4 +44,9 @@ public class ProdutoService implements ProdutoServiceLocal {
     public List<Produto> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    public List<Produto> findByText(String t) {
+        return dao.findByText(t);
+    }
 }

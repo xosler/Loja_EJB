@@ -25,4 +25,6 @@ public interface ProdutoServiceLocal {
 
     List<Produto> findAll();
     
+    List<Produto> findByText(String t);
+    
 }

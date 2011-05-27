@@ -5,6 +5,7 @@
 package com.geekvigarista.dao;
 
 import com.geekvigarista.pojo.Categoria;
+import com.geekvigarista.pojo.Produto;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,4 @@ public interface CategoriaFacadeLocal {
     List<Categoria> findRange(int[] range);
 
     int count();
-    
 }
