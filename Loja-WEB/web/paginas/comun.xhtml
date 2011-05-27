@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.prime.com.tr/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -31,6 +32,13 @@
 
     <h:body>
 
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide(); Loja.configuraInicio();"/>  
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
+                  draggable="false" closable="false">  
+            <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />  
+        </p:dialog>  
+
         <header id="top">
             <hgroup>
                 <h1>SR-Malhas</h1>
@@ -43,6 +51,9 @@
                 <nav>
 
                     <h:form id="carrinho">
+                        
+                        <p:growl id="mensagensCarrinho" showDetail="true" sticky="false" autoUpdate="true" showSummary="true" />
+                        
                         <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
                         <h:panelGrid columns="1">
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
@@ -51,14 +62,30 @@
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
                         </h:panelGrid>
-                        
+
                         <p:spacer height="20px" />
-                        
+
                         <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
-                        
-                        <p:dataList value="#{managedCarrinho.carrinho.produtos}" var="p">
-                            <h:outputText value="#{p.nome}" />
-                        </p:dataList>
+
+                        <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
+                                    rows="12" effect="true"  
+                                    paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
+
+                            <p:column>  
+                                <p:panel header="#{produto.nome}" style="text-align:center">  
+                                    <h:panelGrid columns="1" style="width:100%">  
+
+                                        <h:outputText value="#{produto.descricao}" />  
+
+                                        <p:commandLink update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" value="Remover">  
+                                            <f:setPropertyActionListener value="#{produto.id}"   
+                                                                         target="#{managedCarrinho.idProdutoSelecionado}" />  
+                                        </p:commandLink>  
+                                    </h:panelGrid>  
+                                </p:panel>  
+                            </p:column>  
+
+                        </p:dataGrid>  
                     </h:form>
                 </nav>
             </div>

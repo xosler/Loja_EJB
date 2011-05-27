@@ -54,6 +54,20 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
         idProdutoSelecionado = null;
     }
     
+     public void removerDoCarrinho()
+    {
+        if(idProdutoSelecionado == null)
+        {
+            showMessage(new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", "Selecione um produto!"));
+            return;
+        }
+        
+        Produto p = servicoProduto.find(idProdutoSelecionado);
+        carrinho.getProdutos().remove(p);
+        showMessage(new FacesMessage("Removido.", "Produto removido do carrinho com sucesso!"));
+        idProdutoSelecionado = null;
+    }
+    
     public ManagedCarrinho() {
     }
 }

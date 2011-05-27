@@ -165,4 +165,13 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             produto = servico.find(idSelecionado);
         }
     }
+    
+    /**
+     * @author Alexandre
+     * @return 
+     */
+    public List<Produto> getListaProdutos() {
+        buscar();
+        return produtos;
+    }
 }

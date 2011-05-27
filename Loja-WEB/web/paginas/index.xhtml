@@ -2,11 +2,22 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./comun.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    
+
     <ui:define name="content">
-        content
+        <p:carousel value="#{managedProduto.listaProdutos}" var="prod"
+                    autoPlayInterval="5000"  style="width: 99%"
+                    rows="4" effect="easeInStrong" circular="true" >
+
+            <h:panelGrid columns="1" style="height: 300px;" cellpadding="4  ">
+
+                <h:outputText value="Nome:  #{prod.nome}" />
+                <h:outputText value="Descrição: #{prod.descricao}" />                    
+
+            </h:panelGrid>
+        </p:carousel>
     </ui:define>
 
 </ui:composition>
