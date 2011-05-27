@@ -42,7 +42,8 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
         if (!(t == null || t.trim().isEmpty())) {
             query.where(
                     qb.like(produto.<String>get("nome"), "%" + t + "%"),
-                    qb.or(qb.like(produto.<String>get("descricao"), "%" + t + "%")));
+                    qb.or(qb.like(produto.<String>get("descricao"), "%" + t + "%"))
+                    );
         }
         List<Produto> result = em.createQuery(query).getResultList();
 
