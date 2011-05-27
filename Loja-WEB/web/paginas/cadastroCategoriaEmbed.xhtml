@@ -7,13 +7,16 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:panelGroup id="cadastroCategoria">
+        <h:form id="cadastroCategoria">
             <p:growl />
-            <h:outputText value="Nome" />
-            <p:inputText value="#{managedCategoria.categoria.descricao}" />
-            <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" update="cadastroCategoria" />
-            <p:commandButton value="Novo" action="#{managedCategoria.novo}" update="cadastroCategoria" />
-        </h:panelGroup>
+            <h:panelGrid columns="2">
+                <h:outputText value="Nome" />
+                <p:inputText value="#{managedCategoria.categoria.descricao}" />
+            </h:panelGrid>
+            <p:spacer height="10px" />
+            <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" update=":cadastroCategoria" />
+            <p:commandButton value="Novo" action="#{managedCategoria.novo}" update=":cadastroCategoria" />
+        </h:form>
     </h:body>
 </html>
 
