@@ -58,6 +58,10 @@
                                      action="#{managedCarrinho.adicionarAoCarrinho}">
                         <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
                     </p:commandButton>
+                    <p:commandButton value="Editar" update=":carrinho" oncomplete="document.location = 'cadastrarProduto.xhtml'"
+                                      action="#{managedProduto.load}">
+                         <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
+                    </p:commandButton>
                 </p:column>
                 
                 
