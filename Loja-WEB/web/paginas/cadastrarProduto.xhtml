@@ -7,27 +7,38 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
-          <h:form id="cadastro">
-                <p:growl id="mensagens" showDetail="true" sticky="false"  />
-                <h:panelGrid columns="2">
-                    <h:outputText value="Nome"/> 
-                    <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
-                    <h:outputText value="Descrição"/> 
-                    <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" />
-                    <h:outputText value="Preço"/> 
-                    <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
-                    <h:outputText value="Quantidade em estoque"/> 
-                    <p:spinner value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo-spinner" />
-                    <h:outputText value="Data vencimento oferta"/> 
-                    <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
-                    <h:outputText value="Categorias" />
+        <h:form id="cadastro">
+            <p:growl id="mensagens" showDetail="true" sticky="false"  />
+            <h:panelGrid columns="2">
+                <h:outputText value="Nome"/> 
+                <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
+                <h:outputText value="Descrição"/> 
+                <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" />
+                <h:outputText value="Preço"/> 
+                <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
+                <h:outputText value="Quantidade em estoque"/> 
+                <p:spinner value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo-spinner" />
+                <h:outputText value="Data vencimento oferta"/> 
+                <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
+                <h:outputText value="Categorias" />
+                <h:panelGroup>
+                    <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
+                              showEffect="explode" hideEffect="explode" height="150"
+                              modal="true" onCloseUpdate=":cadastro">
+
+                        <ui:include src="./cadastroCategoriaEmbed.xhtml" /> 
+                    </p:dialog>
                     <p:selectManyMenu value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
-                        <f:selectItems value="#{managedProduto.categoriasItems}" />
-                    </p:selectManyMenu>
-                </h:panelGrid>
-                <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
-                <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />
-            </h:form>
-    </ui:define>
+                        <f:converter converterId="categoriaConverter" />
+                        <f:selectItems value="#{managedProduto.categorias}" 
+                                       var="item" itemLabel="#{item.descricao}" itemValue="#{item}"/>
+                </p:selectManyMenu>
+                <p:commandLink value="Nova categoria" oncomplete="dlgCategoria.show();" />
+            </h:panelGroup>
+        </h:panelGrid>
+        <p:commandButton action="#{managedProduto.salvar}" update=":cadastro" value="Salvar" image="ui-icon-disk" />
+        <p:commandButton action="#{managedProduto.novo}" update=":cadastro" value="Novo" image="ui-icon-new" />
+    </h:form>
+</ui:define>
 
 </ui:composition>

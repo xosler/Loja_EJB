@@ -27,15 +27,16 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private String filtro = "";
     private Long idSelecionado = null;
     private Long idCategoriaSelecionada = null;
+    private List<Categoria> categorias = new ArrayList<Categoria>();
     @EJB
     private ProdutoServiceLocal servico;
     @EJB
     private CategoriaServiceLocal servicoCategoria;
 
+    
     public Long getIdCategoriaSelecionada() {
         return idCategoriaSelecionada;
     }
-
     public void setIdCategoriaSelecionada(Long idCategoriaSelecionada) {
         System.out.println(idCategoriaSelecionada);
         this.idCategoriaSelecionada = idCategoriaSelecionada;
@@ -88,7 +89,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         SelectItem[] items = new SelectItem[(categorias.size())];
         int i = 0;
         for (Categoria c : categorias) {
-            items[i++] = new SelectItem(c.getId(), c.getDescricao());
+            items[i++] = new SelectItem(c, c.getDescricao());
         }
         return items;
     }
@@ -125,20 +126,32 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
                 break;
             }
         }
-        
-        for(Produto p : produtos)
-        {
-            if(p.getCategorias().contains(c))
-            {
+
+        for (Produto p : produtos) {
+            if (p.getCategorias().contains(c)) {
                 produtos_.add(p);
             }
         }
-        
+
         produtos = produtos_;
     }
 
     public void salvar() {
         try {
+
+            System.out.println("cats" + produto.getCategorias().toString());
+
+            List<Categoria> categorias_ = produto.getCategorias();
+            produto.setCategorias(new ArrayList<Categoria>());
+            
+            for (Object si : categorias_) {
+                System.out.println(si);
+                System.out.println(si.getClass());
+//                Categoria c = servicoCategoria.find(si.getId());
+//                System.out.println(c.toString());
+//                produto.getCategorias().add(c);
+            }
+            
             if (produto != null && produto.getId() == null) {
                 produto.setDataCadastro(new Date());
                 produto.setImagens(new ArrayList<String>());
