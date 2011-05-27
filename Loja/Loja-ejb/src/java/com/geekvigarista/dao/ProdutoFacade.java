@@ -34,15 +34,16 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
 
     @Override
     public List<Produto> findByText(String t) {
+
         CriteriaBuilder qb = em.getCriteriaBuilder();
         CriteriaQuery<Produto> query = qb.createQuery(Produto.class);
         Root<Produto> produto = query.from(Produto.class);
-        Predicate p = qb.or(qb.like(produto.<String>get("descricao"), t));
-        query.where(
-                qb.like(produto.<String>get("nome"), "%"+t+"%"),
-                qb.or(qb.like(produto.<String>get("descricao"), "%"+t+"%"))
-                );
-        
+
+        if (!(t == null || t.trim().isEmpty())) {
+            query.where(
+                    qb.like(produto.<String>get("nome"), "%" + t + "%"),
+                    qb.or(qb.like(produto.<String>get("descricao"), "%" + t + "%")));
+        }
         List<Produto> result = em.createQuery(query).getResultList();
 
         return result;

@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -55,7 +56,7 @@ public class Produto implements Serializable {
     @ManyToMany
     private List<Categoria> categorias;
     
-    private List<String> imagens;
+    private String imagem;
 
     public List<Categoria> getCategorias() {
         return categorias;
@@ -65,12 +66,12 @@ public class Produto implements Serializable {
         this.categorias = categorias;
     }
 
-    public List<String> getImagens() {
-        return imagens;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setImagens(List<String> imagens) {
-        this.imagens = imagens;
+    public void setImagens(String imagem) {
+        this.imagem = imagem;
     }
 
     public List<Carrinho> getCarrinhos() {
@@ -161,6 +162,4 @@ public class Produto implements Serializable {
     public String toString() {
         return id + ", " + nome;
     }
-    
-    
 }
