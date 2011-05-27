@@ -24,7 +24,6 @@ Loja.configuraFiltros = function()
 }
 
 Loja.configuraInicio = function(){
-    console.log('passando aqui...');
     var alturaMenu = $('#left').height();
     var alturaContent = $('.left_content').height();
     if(alturaMenu > alturaContent){ 
