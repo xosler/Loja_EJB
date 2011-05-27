@@ -27,45 +27,44 @@
                         <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
                     </p:commandLink>
                 </c:forEach>
-                
-                
+
+
             </h:panelGroup>
 
-            <p:dataTable id="tabelaProdutos" value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
+
+            <p:dataGrid id="tabelaProdutos" value="#{managedProduto.produtos}" var="produto" style="margin-top: 100px;"
+                        columns="3"  
+                        rows="10" paginator="true" effect="true"  
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="5,10,15,20,50"> 
                 <p:column>
-                    <f:facet name="header">
-                        Produto
-                    </f:facet>
-                    <h:outputText value="#{produto.nome}" />
+
+                    <p:panel header="#{produto.nome}" style="text-align: center">
+                        <h:panelGrid columns="1" style="width: 100%">
+                            <p:lightBox>  
+                                <h:outputLink title="#{produto.nome}"> 
+                                    <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" height="150px" />
+                                </h:outputLink>
+                                <f:facet name="inline">  
+                                    <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" height="500px" />
+                                </f:facet>  
+                            </p:lightBox>  
+                            <h:outputText value="#{produto.descricao}" />
+                        </h:panelGrid>
+                        <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho"
+                                         action="#{managedCarrinho.adicionarAoCarrinho}">
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
+                        </p:commandButton>
+                        <p:commandButton image="ui-icon ui-icon-pencil" update=":carrinho" oncomplete="document.location = 'cadastrarProduto.xhtml'"
+                                         action="#{managedProduto.load}">
+                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
+                        </p:commandButton>
+                    </p:panel>    
                 </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        Descrição
-                    </f:facet>
-                    <h:outputText value="#{produto.descricao}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        Válido até
-                    </f:facet>
-                    <h:outputText value="#{produto.dataVencimentoOferta}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        
-                    </f:facet>
-                    <p:commandButton value="Adicionar ao carrinho" update=":carrinho"
-                                     action="#{managedCarrinho.adicionarAoCarrinho}">
-                        <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
-                    </p:commandButton>
-                    <p:commandButton value="Editar" update=":carrinho" oncomplete="document.location = 'cadastrarProduto.xhtml'"
-                                      action="#{managedProduto.load}">
-                         <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
-                    </p:commandButton>
-                </p:column>
-                
-                
-            </p:dataTable>
+
+
+            </p:dataGrid>
+
         </h:form>
     </ui:define>
 
