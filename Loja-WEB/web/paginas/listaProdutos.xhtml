@@ -34,18 +34,6 @@
             <p:dataTable id="tabelaProdutos" value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
                 <p:column>
                     <f:facet name="header">
-                    </f:facet>
-                    <p:lightBox>
-                        <h:outputLink value="#" title="Aumentar">  
-<!--                            <img src="./../resources/images/camiseta.png" width="100px" height="100px" />  -->
-                        </h:outputLink>  
-                        <f:facet name="inline">  
-<!--                            <img src="./../resources/images/camiseta.png" />   -->
-                        </f:facet>  
-                    </p:lightBox>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
                         Produto
                     </f:facet>
                     <h:outputText value="#{produto.nome}" />
@@ -61,7 +49,18 @@
                         Válido até
                     </f:facet>
                     <h:outputText value="#{produto.dataVencimentoOferta}" />
-                </p:column>    
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        
+                    </f:facet>
+                    <p:commandButton value="Adicionar ao carrinho" update=":carrinho"
+                                     action="#{managedCarrinho.adicionarAoCarrinho}">
+                        <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
+                    </p:commandButton>
+                </p:column>
+                
+                
             </p:dataTable>
         </h:form>
     </ui:define>

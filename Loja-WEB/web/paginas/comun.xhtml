@@ -41,8 +41,9 @@
         <div>
             <div id="left">
                 <nav>
-                    <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
-                    <h:form>
+
+                    <h:form id="carrinho">
+                        <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
                         <h:panelGrid columns="1">
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
@@ -50,7 +51,14 @@
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
                             <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
                         </h:panelGrid>
-
+                        
+                        <p:spacer height="20px" />
+                        
+                        <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
+                        
+                        <p:dataList value="#{managedCarrinho.carrinho.produtos}" var="p">
+                            <h:outputText value="#{p.nome}" />
+                        </p:dataList>
                     </h:form>
                 </nav>
             </div>

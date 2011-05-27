@@ -45,10 +45,10 @@ public class ManagedCategoria extends ManagedCadastro {
             }else{
                 servico.edit(categoria);
             }
-            showMessage(new FacesMessage("Salvo", "Categoria salva " + categoria.getDescricao() + " com sucesso!"));
+            showMensagemSalvar(categoria.getDescricao());
         }catch(Exception e)
         {
-            showMessage(new FacesMessage("Erro", "Falha ao excluri categoria " + categoria.getDescricao() + ". Motivo: " + e.getCause()));
+            showMensagemErroSalvar(categoria.getDescricao(), e.getMessage());
         }
     }
     
