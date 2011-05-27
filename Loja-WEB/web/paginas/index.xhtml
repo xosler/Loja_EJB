@@ -8,13 +8,13 @@
 
     <ui:define name="content">
         <p:carousel value="#{managedProduto.listaProdutos}" var="prod"
-                    autoPlayInterval="5000"  style="width: 99%"
+                    autoPlayInterval="2500"  style="width: 99%"
                     rows="4" effect="easeInStrong" circular="true" >
 
-            <h:panelGrid columns="1" style="height: 300px;" cellpadding="4  ">
+            <h:panelGrid columns="1" style="height: 300px; width: 100%" cellpadding="4  ">
 
                 <h:outputText value="Nome:  #{prod.nome}" />
-                <h:graphicImage value="#{prod.imagem}" width="200" height="200" />         
+                <p:graphicImage value="#{empty prod.imagem ? '/resources/images/sem-foto.gif' : prod.imagem }" width="200px" height="200px" />         
 
             </h:panelGrid>
         </p:carousel>

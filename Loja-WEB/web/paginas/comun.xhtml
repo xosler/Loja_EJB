@@ -73,12 +73,12 @@
                                 <p:panel header="#{produto.nome}" style="text-align:center">  
                                     <h:panelGrid columns="1" style="width:100%">  
 
-                                        <h:graphicImage value="#{produto.imagem}" width="100" height="100" />    
+                                        <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" width="80px" height="80px" />         
 
-                                        <p:commandLink update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" value="Remover">  
+                                        <p:commandButton update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
                                             <f:setPropertyActionListener value="#{produto.id}"   
                                                                          target="#{managedCarrinho.idProdutoSelecionado}" />  
-                                        </p:commandLink>  
+                                        </p:commandButton>  
                                     </h:panelGrid>  
                                 </p:panel>  
                             </p:column>  
