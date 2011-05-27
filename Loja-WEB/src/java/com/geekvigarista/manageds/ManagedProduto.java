@@ -12,7 +12,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 /**
  *
@@ -33,10 +32,10 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     @EJB
     private CategoriaServiceLocal servicoCategoria;
 
-    
     public Long getIdCategoriaSelecionada() {
         return idCategoriaSelecionada;
     }
+
     public void setIdCategoriaSelecionada(Long idCategoriaSelecionada) {
         System.out.println(idCategoriaSelecionada);
         this.idCategoriaSelecionada = idCategoriaSelecionada;
@@ -77,28 +76,18 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public ManagedProduto() {
     }
 
-    /**
-     * Gera o array de SelectItens de categorias :)
-     * @return SelectItem[]
-     * @author Carlos
-     */
-    public SelectItem[] getCategoriasItems() {
-
-        List<Categoria> categorias = servicoCategoria.findAll();
-
-        SelectItem[] items = new SelectItem[(categorias.size())];
-        int i = 0;
-        for (Categoria c : categorias) {
-            items[i++] = new SelectItem(c, c.getDescricao());
-        }
-        return items;
-    }
-
     public List<Categoria> getCategorias() {
         return servicoCategoria.findAll();
     }
+    
+    public void removerFiltro()
+    {
+        idCategoriaSelecionada = null;
+        buscar();
+    }
 
     public void filtrarPorCategoria() {
+        // TODO fazer uma consulta descente aqui tbm..
         List<Produto> produtos_ = new ArrayList<Produto>();
         if (produto == null || produtos.isEmpty()) {
             buscar();
@@ -127,41 +116,28 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     public void salvar() {
         try {
+            if (produto != null) {
 
-            System.out.println("cats" + produto.getCategorias().toString());
-
-//            produto.setCategorias(new ArrayList<Categoria>());
-//            
-//            for (Object si : categorias_) {
-//                System.out.println(si);
-//                System.out.println(si.getClass());;
-//                Categoria c = servicoCategoria.find(si.getId());
-//                System.out.println(c.toString());
-////                produto.getCategorias().add(c);
-//            } List<Categoria> categorias_ = produto.getCategorias();
-//            produto.setCategorias(new ArrayList<Categoria>());
-//            
-//            for (Object si : categorias_) {
-//                System.out.println(si);
-//                System.out.println(si.getClass());
-////                Categoria c = servicoCategoria.find(si.getId());
-////                System.out.println(c.toString());
-////                produto.getCategorias().add(c);
-//            }
-            
-            if (produto != null && produto.getId() == null) {
-                produto.setDataCadastro(new Date());
-                produto.setImagens(new ArrayList<String>());
-                servico.create(produto);
-            } else {
-                servico.edit(produto);
+                if (produto.getDataCadastro() == null) {
+                    produto.setDataCadastro(new Date());
+                }
+                
+                if(produto.getDataVencimentoOferta().before(new Date()))
+                {
+                    showMessage(new FacesMessage("Atenção", "Data de vencimento da oferta é inferior ou igual a data atual."));
+                }
+                
+                if (produto.getId() == null) {
+                    servico.create(produto);
+                } else {
+                    servico.edit(produto);
+                }
             }
-            showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " salvo com sucesso."));
+            showMensagemSalvar(produto.getNome());
 
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() 
-                    + ". Causa: " + e.getMessage()));
+            showMensagemErroSalvar(produto.getNome(), e.getLocalizedMessage());
         }
     }
 
@@ -172,28 +148,15 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     public void excluir() {
         try {
             servico.delete(produto);
-            showMessage(new FacesMessage("Salvo!", "Produto " + produto.getNome() + " excluído com sucesso."));
+            showMensagemExcluir(produto.getNome());
             produto = new Produto();
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getMessage()));
+            showMensagemErroExcluir(produto.getNome(), e.getLocalizedMessage());
         }
     }
 
     public void buscar() {
-//        // TODO To fazendo gambiarra aqui, arrumar algum dia. by Xosler (XGH HAHAH). (ou nao)
-//        List<Produto> produtosEncontrados = servico.findAll();
-//        produtos = new ArrayList<Produto>();
-//        if (!filtro.equals("")) {
-//            for (Produto p : produtosEncontrados) {
-//                if (p.getNome().toLowerCase().contains(filtro.toLowerCase())
-//                        || p.getDescricao().toLowerCase().contains(filtro.toLowerCase())) {
-//                    produtos.add(p);
-//                }
-//            }
-//        } else {
-//            produtos = produtosEncontrados;
-//        }
         produtos = servico.findByText(filtro);
     }
 

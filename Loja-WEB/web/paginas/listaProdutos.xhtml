@@ -12,15 +12,17 @@
             <p:growl id="mensagens" showDetail="true" sticky="false" />
 
             <p:inputText value="#{managedProduto.filtro}"/>
-            <p:commandButton value="Buscar" action="#{managedProduto.buscar}" update=":lista" />
+            <p:commandButton value="Buscar" action="#{managedProduto.buscar}" oncomplete="Loja.configuraFiltros();" update=":lista" />
 
             <p:commandButton value="Novo" action="#{managedProduto.novo}" oncomplete="document.location = 'cadastrarProduto.xhtml'" />
 
             <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px; width: 100%">
-                <p:commandLink value="Remover Filtro" styleClass="primary  _button" />
+                <p:commandLink value="Remover Filtro" action="#{managedProduto.removerFiltro}" 
+                               styleClass="primary pill  _button" oncomplete="Loja.configuraFiltros();"
+                               update=":lista" />
                 <p:spacer width="3px" />
                 <c:forEach items="#{managedProduto.categorias}" var="c">
-                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update=":lista"
+                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update="tabelaProdutos"
                                    oncomplete="Loja.configuraFiltros();" action="#{managedProduto.filtrarPorCategoria}">
                         <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
                     </p:commandLink>
@@ -29,7 +31,7 @@
                 
             </h:panelGroup>
 
-            <p:dataTable value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
+            <p:dataTable id="tabelaProdutos" value="#{managedProduto.produtos}" var="produto" style="margin-top: 30px;">
                 <p:column>
                     <f:facet name="header">
                     </f:facet>
