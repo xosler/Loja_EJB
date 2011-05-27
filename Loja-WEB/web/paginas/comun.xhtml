@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
+
         <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/loja.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
-<!--        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />-->
+        <!--        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />-->
         <script language="text/javascript" src="./../resources/js/loja.js" type="text/javascript" />
-<!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
+        <!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
 
         <title>SR-Malhas</title>
 
@@ -40,7 +41,17 @@
         <div>
             <div id="left">
                 <nav>
+                    <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                        </h:panelGrid>
 
+                    </h:form>
                 </nav>
             </div>
             <div id="content" class="left_content">

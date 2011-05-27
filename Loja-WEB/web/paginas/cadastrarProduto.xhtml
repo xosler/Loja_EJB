@@ -17,7 +17,7 @@
                 <h:outputText value="Preço"/> 
                 <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
                 <h:outputText value="Quantidade em estoque"/> 
-                <p:spinner value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo-spinner" />
+                <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" min="1" max="9999999" styleClass="campo" />
                 <h:outputText value="Data vencimento oferta"/> 
                 <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" styleClass="campo-data" />
                 <h:outputText value="Categorias" />
