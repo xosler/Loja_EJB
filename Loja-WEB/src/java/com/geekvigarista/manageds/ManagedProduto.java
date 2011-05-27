@@ -108,17 +108,6 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             return;
         }
 
-//        for(Produto p : produtos)
-//        {
-//            for(Categoria c : p.getCategorias())
-//            {
-//                if(c.getId().equals(idCategoriaSelecionada)) //repare que nao carreguei a categoria do banco :)
-//                {
-//                    produtos_.add(p);
-//                }
-//            }
-//        }
-        //modo 2 = menos iterações :D
         Categoria c = new Categoria();
         for (Categoria cc : getCategorias()) {
             if (cc.getId().equals(idCategoriaSelecionada)) {
@@ -141,16 +130,24 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
             System.out.println("cats" + produto.getCategorias().toString());
 
-            List<Categoria> categorias_ = produto.getCategorias();
-            produto.setCategorias(new ArrayList<Categoria>());
-            
-            for (Object si : categorias_) {
-                System.out.println(si);
-                System.out.println(si.getClass());
+//            produto.setCategorias(new ArrayList<Categoria>());
+//            
+//            for (Object si : categorias_) {
+//                System.out.println(si);
+//                System.out.println(si.getClass());;
 //                Categoria c = servicoCategoria.find(si.getId());
 //                System.out.println(c.toString());
-//                produto.getCategorias().add(c);
-            }
+////                produto.getCategorias().add(c);
+//            } List<Categoria> categorias_ = produto.getCategorias();
+//            produto.setCategorias(new ArrayList<Categoria>());
+//            
+//            for (Object si : categorias_) {
+//                System.out.println(si);
+//                System.out.println(si.getClass());
+////                Categoria c = servicoCategoria.find(si.getId());
+////                System.out.println(c.toString());
+////                produto.getCategorias().add(c);
+//            }
             
             if (produto != null && produto.getId() == null) {
                 produto.setDataCadastro(new Date());
@@ -163,7 +160,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() + ". Causa: " + e.getCause()));
+            showMessage(new FacesMessage("Erro!", "Falha ao salvar produto " + produto.getNome() 
+                    + ". Causa: " + e.getMessage()));
         }
     }
 
@@ -178,24 +176,25 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             produto = new Produto();
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getCause()));
+            showMessage(new FacesMessage("Erro!", "Falha ao excluir produto " + produto.getNome() + ". Causa: " + e.getMessage()));
         }
     }
 
     public void buscar() {
-        // TODO To fazendo gambiarra aqui, arrumar algum dia. by Xosler (XGH HAHAH). (ou nao)
-        List<Produto> produtosEncontrados = servico.findAll();
-        produtos = new ArrayList<Produto>();
-        if (!filtro.equals("")) {
-            for (Produto p : produtosEncontrados) {
-                if (p.getNome().toLowerCase().contains(filtro.toLowerCase())
-                        || p.getDescricao().toLowerCase().contains(filtro.toLowerCase())) {
-                    produtos.add(p);
-                }
-            }
-        } else {
-            produtos = produtosEncontrados;
-        }
+//        // TODO To fazendo gambiarra aqui, arrumar algum dia. by Xosler (XGH HAHAH). (ou nao)
+//        List<Produto> produtosEncontrados = servico.findAll();
+//        produtos = new ArrayList<Produto>();
+//        if (!filtro.equals("")) {
+//            for (Produto p : produtosEncontrados) {
+//                if (p.getNome().toLowerCase().contains(filtro.toLowerCase())
+//                        || p.getDescricao().toLowerCase().contains(filtro.toLowerCase())) {
+//                    produtos.add(p);
+//                }
+//            }
+//        } else {
+//            produtos = produtosEncontrados;
+//        }
+        produtos = servico.findByText(filtro);
     }
 
     public void load() {

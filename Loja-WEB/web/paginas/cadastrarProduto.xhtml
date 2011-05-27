@@ -8,7 +8,7 @@
 
     <ui:define name="content">
         <h:form id="cadastro">
-            <p:growl id="mensagens" showDetail="true" sticky="false"  />
+            <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true" />
             <h:panelGrid columns="2">
                 <h:outputText value="Nome"/> 
                 <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
@@ -26,6 +26,7 @@
                     <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
                               showEffect="explode" hideEffect="explode" height="150"
                               modal="true" onCloseUpdate=":cadastro">
+                        
                         <h:panelGrid columns="2" id="dialogCategoria">
                             <h:outputText value="Nome" />
                             <p:inputText value="#{managedCategoria.categoria.descricao}" />
