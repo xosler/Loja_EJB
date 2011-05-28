@@ -7,6 +7,8 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.services.CategoriaServiceLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,10 +27,28 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
     
     private Categoria categoria = new Categoria();
     private Long idSelecionado = null;
+    private String filtro = "";
+    private List<Categoria> categorias = new ArrayList<Categoria>();
     
     public ManagedCategoria() {
     }
 
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
+    
     public Long getIdSelecionado() {
         return idSelecionado;
     }
@@ -43,6 +63,14 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public CategoriaServiceLocal getServico() {
+        return servico;
+    }
+
+    public void setServico(CategoriaServiceLocal servico) {
+        this.servico = servico;
     }
     
     public void salvar()
@@ -81,9 +109,9 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
         }
     }
     
-    public Categoria load()
+    public void load()
     {
-        return servico.find(idSelecionado);
+        categoria = servico.find(idSelecionado);
     }
     
     public void selecionarExcluir()
@@ -92,6 +120,24 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
         {
             load();
             excluir();
+        }
+    }
+    
+    public void selecionarExcluirBuscar()
+    {
+        selecionarExcluir();
+        buscar();
+    }
+    
+    public void buscar()
+    {
+        if(filtro == null || filtro.trim().isEmpty())
+        {
+            categorias = servico.findAll();
+        }
+        else
+        {
+            categorias = servico.findByDescricao(filtro);
         }
     }
         
