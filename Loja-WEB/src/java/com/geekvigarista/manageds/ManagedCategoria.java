@@ -6,8 +6,8 @@ package com.geekvigarista.manageds;
 
 import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.services.CategoriaServiceLocal;
+import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -17,15 +17,24 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedCategoria extends ManagedCadastro {
+public class ManagedCategoria extends ManagedCadastro implements Serializable {
 
    
     @EJB
     private CategoriaServiceLocal servico;
     
     private Categoria categoria = new Categoria();
+    private Long idSelecionado = null;
     
     public ManagedCategoria() {
+    }
+
+    public Long getIdSelecionado() {
+        return idSelecionado;
+    }
+
+    public void setIdSelecionado(Long idSelecionado) {
+        this.idSelecionado = idSelecionado;
     }
 
     public Categoria getCategoria() {
@@ -57,9 +66,33 @@ public class ManagedCategoria extends ManagedCadastro {
        categoria = new Categoria();
     }
     
-    public Categoria load(Long id)
+    public void excluir()
     {
-        return servico.find(id);
+        if(categoria != null && categoria.getId() != null)
+        {
+            try {
+                servico.delete(categoria);
+                showMensagemExcluir(categoria.getDescricao());
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                showMensagemErroExcluir(categoria.getDescricao(), e.getMessage());
+            }
+        }
+    }
+    
+    public Categoria load()
+    {
+        return servico.find(idSelecionado);
+    }
+    
+    public void selecionarExcluir()
+    {
+        if(idSelecionado != null)
+        {
+            load();
+            excluir();
+        }
     }
         
 }

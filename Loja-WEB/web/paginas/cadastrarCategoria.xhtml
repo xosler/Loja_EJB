@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comun.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="content">
+        <h:form id="cadastroCategoriaCompleto">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="Descrição: " />
+                <p:inputText value="#{managedCategoria.categoria.descricao}" />
+
+            </h:panelGrid>
+            
+            <p:commandButton title="Salvar categoria." action="#{managedCategoria.salvar}" 
+                             update=":cadastroCategoriaCompleto" value="Salvar" image="ui-icon-disk" />
+            <p:commandButton title="Excluir categoria." action="#{managedCategoria.excluir}" 
+                             update=":cadastroCategoriaCompleto" value="Excluir" image="ui-icon-trash" />
+            <p:commandButton title="Cadastrar uma nova categoria." action="#{managedCategoria.novo}" 
+                             update=":cadastroCategoriaCompleto" value="Novo" image="ui-icon-new" />
+            
+        </h:form>
+    </ui:define>
+
+</ui:composition>

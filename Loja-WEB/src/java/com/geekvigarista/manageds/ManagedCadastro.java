@@ -4,6 +4,7 @@
  */
 package com.geekvigarista.manageds;
 
+import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,7 +16,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @RequestScoped
-public class ManagedCadastro {
+public class ManagedCadastro implements Serializable {
 
     protected void showMessage(FacesMessage mensagem) {
         FacesContext context = FacesContext.getCurrentInstance();

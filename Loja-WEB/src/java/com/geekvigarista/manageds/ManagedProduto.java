@@ -34,19 +34,19 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private Long idSelecionado = null;
     private Long idCategoriaSelecionada = null;
     private List<Categoria> categorias = new ArrayList<Categoria>();
+    
     @EJB
     private ProdutoServiceLocal servico;
     @EJB
     private CategoriaServiceLocal servicoCategoria;
+    
     private static final int BUFFER_SIZE = 6124;
-    private String folderToUpload;
 
     public Long getIdCategoriaSelecionada() {
         return idCategoriaSelecionada;
     }
 
     public void setIdCategoriaSelecionada(Long idCategoriaSelecionada) {
-        System.out.println(idCategoriaSelecionada);
         this.idCategoriaSelecionada = idCategoriaSelecionada;
     }
 
