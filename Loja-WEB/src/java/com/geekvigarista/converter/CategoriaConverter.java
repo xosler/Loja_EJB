@@ -6,8 +6,6 @@ package com.geekvigarista.converter;
 
 import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.services.CategoriaServiceLocal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
