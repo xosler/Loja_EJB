@@ -7,19 +7,22 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+    <ui:define name="titulo">Produtos</ui:define>
+    <ui:define name="subtitulo"></ui:define>
     <ui:define name="content">
-        <h:form id="lista">
+        <h:form id="lista" onsubmit="Loja.configuraFiltros();">
             <p:growl id="mensagens" showDetail="true" sticky="false" />
 
-            <p:inputText value="#{managedProduto.filtro}"/>
-            <p:commandButton value="Buscar" action="#{managedProduto.buscar}" oncomplete="Loja.configuraFiltros();" update=":lista" />
-
-            <p:commandButton value="Novo" action="#{managedProduto.novo}" oncomplete="document.location = 'cadastrarProduto.xhtml'" />
+            <h:panelGroup style="width: 100%">
+                <h:panelGrid columns="3" style="">
+                    <h:outputText value="Pesquisar" />
+                    <p:inputText value="#{managedProduto.filtro}"/>
+                    <p:commandButton value="Buscar" action="#{managedProduto.buscar}" oncomplete="Loja.configuraFiltros();" update=":lista" />
+                </h:panelGrid>
+            </h:panelGroup>
 
             <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px; width: 100%">
-                <p:commandLink value="Remover Filtro" action="#{managedProduto.removerFiltro}" 
-                               styleClass="primary pill  _button" oncomplete="Loja.configuraFiltros();"
-                               update=":lista" />
+                <h:outputText value="Filtro por categoria: " />
                 <p:spacer width="3px" />
                 <c:forEach items="#{managedProduto.categorias}" var="c">
                     <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update="tabelaProdutos"
@@ -27,8 +30,10 @@
                         <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
                     </p:commandLink>
                 </c:forEach>
-
-
+                <p:spacer width="10px" />
+                <p:commandLink value="Remover Filtro" action="#{managedProduto.removerFiltro}" 
+                               styleClass="primary pill  _button" oncomplete="Loja.configuraFiltros();"
+                               update=":lista" />
             </h:panelGroup>
 
 
@@ -59,8 +64,8 @@
                                          action="#{managedProduto.load}">
                             <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
-                         <p:commandButton image="ui-icon ui-icon-trash" update="tabelaProdutos"
-                                          action="#{managedProduto.selecionarExcluirBuscar}">
+                        <p:commandButton image="ui-icon ui-icon-trash" update="tabelaProdutos"
+                                         action="#{managedProduto.selecionarExcluirBuscar}">
                             <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
                     </p:panel>    
