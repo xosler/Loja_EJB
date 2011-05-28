@@ -55,8 +55,12 @@
                                          action="#{managedCarrinho.adicionarAoCarrinho}">
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
-                        <p:commandButton image="ui-icon ui-icon-pencil" update=":carrinho" oncomplete="document.location = 'cadastrarProduto.xhtml'"
+                        <p:commandButton image="ui-icon ui-icon-pencil" oncomplete="document.location = 'cadastrarProduto.xhtml'"
                                          action="#{managedProduto.load}">
+                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
+                        </p:commandButton>
+                         <p:commandButton image="ui-icon ui-icon-trash" update="tabelaProdutos"
+                                          action="#{managedProduto.selecionarExcluirBuscar}">
                             <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
                     </p:panel>    

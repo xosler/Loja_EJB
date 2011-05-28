@@ -222,4 +222,17 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         }
 
     }
+    
+    public void selecionarExcluir()
+    {
+        load();
+        excluir();
+    }
+    
+    public void selecionarExcluirBuscar()
+    {
+        selecionarExcluir();
+//        filtrarPorCategoria(); TODO meio bugado isso aqui
+        buscar();
+    }
 }
