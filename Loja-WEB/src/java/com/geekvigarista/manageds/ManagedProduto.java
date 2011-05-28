@@ -185,13 +185,15 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         if (!pasta.exists()) {
             pasta.mkdirs();
         }
-
+         
+        String filenameOriginal = event.getFile().getFileName();
+        String ext = filenameOriginal.substring(filenameOriginal.lastIndexOf("."), filenameOriginal.length()); //lastIndexOf(".")
+        String nomeArquivo = new Date().getTime() + ext;
+        
+        
         File result = new File(extContext.getRealPath("//files//"
-                + event.getFile().getFileName()));
-
-
-//System.out.println(extContext.getRealPath("//WEB-INF//files//" +
-//      event.getFile().getFileName()));
+                + nomeArquivo));
+        
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(result);
 
@@ -212,7 +214,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
                     + " enviado com sucesso.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
 
-            produto.setImagens("/files/" + event.getFile().getFileName());
+            produto.setImagens("/files/" + nomeArquivo);
 
         } catch (IOException e) {
             e.printStackTrace();
