@@ -33,6 +33,22 @@ Loja.configuraInicio = function(){
     }
 }
 
+
+Loja.Paginas = {
+    CAD_CATEGORIA: "cadastrarCategoria",
+    CAD_PRODUTO: "cadastrarProduto",
+    LIS_CATEGORIA: "listaCategorias",
+    LIS_PRODUTO: "listaProdutos",
+    INDEX: "index"
+    
+};
+
+Loja.facesFilter = ".xhtml";
+
+Loja.gotopagina = function(pagina)
+{
+    window.location = pagina + Loja.facesFilter;
+}
 /**
  * Evento ready da pagina. 
  * As funcoes daqui são executadas quando a pagina estiver pronta.
