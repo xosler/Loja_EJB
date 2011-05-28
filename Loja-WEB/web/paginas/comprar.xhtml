@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="./comun.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="titulo">
+        Comprar
+    </ui:define>
+
+    <ui:define name="subtitulo">
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form>  
+
+            <p:wizard widgetVar="wiz"  backLabel="Voltar" nextLabel="Próximo passo"
+                      flowListener="#{managedCompra.onFlowProcess}">  
+
+                <p:tab id="dadosPessoais" title="Dados Pessoais">  
+                    <p:panel> aqui o fdp poe o nome, sobrenome, nome da mae, cpf, rg e cia</p:panel>
+                </p:tab>  
+
+                <p:tab id="endereco" title="Endereço">  
+                    aqui o fdp poe o endereço dele e tudo mais..
+                </p:tab> 
+
+                <p:tab id="cartao" title="Cartão">  
+                    aqui o fdp poe o cartão
+                </p:tab> 
+
+                <p:tab id="confirmacao" title="Confirmar">  
+                    aqui o fdp confirma que quer gastar dinheiro
+                </p:tab> 
+
+            </p:wizard>  
+
+        </h:form>  
+
+    </ui:define>
+
+</ui:composition>
