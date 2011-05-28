@@ -52,14 +52,26 @@
 
                 <h:outputText value="Imagem: " />
                 <h:panelGroup id="panelUpload">
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2" 
+                                 title="Você pode arrastar uma imagem do seu computador e soltar sobre o botão, ou clicar no botão e escolher uma. Para substituir a imagem atual, simplesmente escolha outra. Use preferencialmente imagens nas proporções 1x1 (quadrado).">
                         <p:fileUpload fileUploadListener="#{managedProduto.handleFileUpload}"  
                                       update="panelUpload"
                                       auto="true"
-                                      multiple="false"
+                                      label="Escolher imagem"
+                                      multiple="false" 
                                       allowTypes="png,gif,jpg" />
-                        <h:graphicImage width="150" height="150"
-                                        value="#{managedProduto.produto.imagem}" rendered="#{not empty managedProduto.produto.imagem}" />
+                        <h:panelGroup rendered="#{not empty managedProduto.produto.imagem}" >
+                            <p:lightBox>
+                                <h:outputLink value="#{managedProduto.produto.imagem}" title="Imagem" >
+                                    <p:graphicImage height="50px" title="Clique para ampliar."
+                                                    value="#{managedProduto.produto.imagem}"/>
+                                </h:outputLink>
+                                <f:facet name="inline">  
+                                    <p:graphicImage height="500px"
+                                                    value="#{managedProduto.produto.imagem}"/>
+                                </f:facet>  
+                            </p:lightBox>
+                        </h:panelGroup>
                     </h:panelGrid>
                 </h:panelGroup>
 
