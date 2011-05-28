@@ -24,4 +24,6 @@ public interface CategoriaServiceLocal {
     Categoria find(Object id);
 
     List<Categoria> findAll();
+    
+    List<Categoria> findByDescricao(String desc);
 }

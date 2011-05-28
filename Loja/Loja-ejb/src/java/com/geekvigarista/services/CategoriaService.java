@@ -44,4 +44,9 @@ public class CategoriaService implements CategoriaServiceLocal {
     public List<Categoria> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    public List<Categoria> findByDescricao(String desc) {
+        return dao.findByDescricao(desc);
+    }
 }

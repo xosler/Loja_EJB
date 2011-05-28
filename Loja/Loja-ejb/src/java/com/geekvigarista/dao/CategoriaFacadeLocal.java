@@ -28,5 +28,7 @@ public interface CategoriaFacadeLocal {
 
     List<Categoria> findRange(int[] range);
 
+    List<Categoria> findByDescricao(String descr);
+    
     int count();
 }
