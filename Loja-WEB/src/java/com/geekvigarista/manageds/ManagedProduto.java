@@ -126,11 +126,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         try {
             if (produto != null) {
 
-                if (produto.getDataCadastro() == null) {
-                    produto.setDataCadastro(new Date());
-                }
-
                 if (produto.getId() == null) {
+                    produto.setDataCadastro(new Date());
                     servico.create(produto);
                 } else {
                     servico.edit(produto);
