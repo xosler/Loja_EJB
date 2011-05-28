@@ -100,6 +100,7 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
         {
             try {
                 servico.delete(categoria);
+                novo();
                 showMensagemExcluir(categoria.getDescricao());
             } catch (Exception e)
             {

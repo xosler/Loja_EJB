@@ -38,7 +38,7 @@
         <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
                   draggable="false" closable="false">  
             <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />  
-        </p:dialog>  
+        </p:dialog> 
 
         <header id="top">
             <hgroup>
@@ -52,15 +52,14 @@
                 <nav>
 
                     <h:form id="carrinho">
-
-                        <p:growl id="mensagensCarrinho" showDetail="true" sticky="false" autoUpdate="true" showSummary="true" />
-
+                        <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
+                                 life="300" />
                         <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
                         <h:panelGrid columns="1">
                             <p:commandLink value="Início" oncomplete="document.location = 'index.xhtml';" />
                             <p:commandLink value="Buscar Produtos" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
                             <p:commandLink value="Novo Produto" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);" />
-                            
+
                             <p:commandLink value="Novo Categoria" action="#{managedCategoria.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_CATEGORIA);" />
                             <p:commandLink value="Lista de categorias" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_CATEGORIA);" />
                         </h:panelGrid>

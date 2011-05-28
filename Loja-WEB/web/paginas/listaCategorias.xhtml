@@ -32,7 +32,10 @@
             </h:panelGroup>
 
             <p:dataTable value="#{managedCategoria.categorias}" var="categoria" id="tabelaCategorias" 
-                         paginator="true" paginatorAlwaysVisible="false" emptyMessage="Nenhuma categoria encontrada.">
+                        paginatorAlwaysVisible="false"
+                        rows="10" paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="5,10,15,20,50" emptyMessage="Nenhuma categoria encontrada.">
                 <p:column>
                     <f:facet name="header">id</f:facet>
                     <h:outputText value="#{categoria.id}" />

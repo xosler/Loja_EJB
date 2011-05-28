@@ -149,7 +149,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         try {
             servico.delete(produto);
             showMensagemExcluir(produto.getNome());
-            produto = new Produto();
+            novo();
         } catch (Exception e) {
             e.printStackTrace();
             showMensagemErroExcluir(produto.getNome(), e.getLocalizedMessage());
