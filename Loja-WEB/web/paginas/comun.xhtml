@@ -17,7 +17,7 @@
         <script language="text/javascript" src="./../resources/js/loja.js" type="text/javascript" />
         <!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
 
-        
+
         <title>SR-Malhas</title>
 
         <meta http-equiv="content-type"
@@ -52,13 +52,17 @@
                 <nav>
 
                     <h:form id="carrinho">
-                        
+
                         <p:growl id="mensagensCarrinho" showDetail="true" sticky="false" autoUpdate="true" showSummary="true" />
-                        
+
                         <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
                         <h:panelGrid columns="1">
                             <p:commandLink value="Início" oncomplete="document.location = 'index.xhtml';" />
-                            <p:commandLink value="Busca" oncomplete="document.location = 'listaProdutos.xhtml';" />
+                            <p:commandLink value="Buscar Produtos" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                            <p:commandLink value="Novo Produto" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);" />
+                            
+                            <p:commandLink value="Novo Categoria" action="#{managedCategoria.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_CATEGORIA);" />
+                            <p:commandLink value="Lista de categorias" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_CATEGORIA);" />
                         </h:panelGrid>
 
                         <p:spacer height="20px" />
@@ -88,6 +92,13 @@
                 </nav>
             </div>
             <div id="content" class="left_content">
+                <header>
+                    <hgroup style="margin-left: 10px;">
+                        <h1> <ui:insert name="titulo">Titulo</ui:insert></h1>
+                        <h3> <ui:insert name="subtitulo">Sub-titulo</ui:insert></h3>
+                    </hgroup>
+                    <hr />
+                </header>
                 <section>
                     <article>
                         <ui:insert name="content">Content</ui:insert>
