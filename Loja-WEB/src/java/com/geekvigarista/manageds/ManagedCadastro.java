@@ -75,6 +75,6 @@ public class ManagedCadastro {
             msg = "Excluído com sucesso. ";
         }
         
-        showMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro", msg));
+        showMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", msg));
     }
 }
