@@ -60,7 +60,7 @@
                                          action="#{managedCarrinho.adicionarAoCarrinho}">
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
-                        <p:commandButton image="ui-icon ui-icon-pencil" oncomplete="document.location = 'cadastrarProduto.xhtml'"
+                        <p:commandButton image="ui-icon ui-icon-pencil" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);"
                                          action="#{managedProduto.load}">
                             <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
