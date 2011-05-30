@@ -39,8 +39,9 @@ Loja.Paginas = {
     CAD_PRODUTO: "cadastrarProduto",
     LIS_CATEGORIA: "listaCategorias",
     LIS_PRODUTO: "listaProdutos",
-    INDEX: "index"
-    
+    INDEX: "index",
+    COMPRAR: "comprar",
+    DET_PRODUTO: "detalhesProduto"
 };
 
 Loja.facesFilter = ".xhtml";

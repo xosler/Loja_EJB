@@ -68,8 +68,13 @@
 
                         <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
 
+                        <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
+                            <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
+                            <p:commandLink value="Venha escolher alguns aqui!" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                        </h:panelGroup>
+
                         <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
-                                    rows="12" effect="true"  
+                                    rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
                                     paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
 
                             <p:column>  
@@ -85,8 +90,9 @@
                                     </h:panelGrid>  
                                 </p:panel>  
                             </p:column>  
-
                         </p:dataGrid>  
+                        <h:outputText value="Total: R$ #{managedCarrinho.totalCarrinho}"
+                                      rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
                     </h:form>
                 </nav>
             </div>

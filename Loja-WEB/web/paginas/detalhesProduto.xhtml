@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comun.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="titulo">
+        <h:outputText value="#{managedProduto.produto.nome}" />
+    </ui:define>
+
+    <ui:define name="subtitulo">
+        <h:outputText value="Por apenas R$ #{managedProduto.produto.preco} !!" />
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="formDetalhesProduto">
+            <h:panelGrid columns="2">
+                <p:lightBox>  
+                    <h:outputLink title="#{managedProduto.produto.nome}"> 
+                        <p:graphicImage value="#{empty managedProduto.produto.imagem ? '/resources/images/sem-foto.gif' : managedProduto.produto.imagem }" height="250px" />
+                    </h:outputLink>
+                    <f:facet name="inline">  
+                        <p:graphicImage value="#{empty managedProduto.produto.imagem ? '/resources/images/sem-foto.gif' : managedProduto.produto.imagem }" height="550px" />
+                    </f:facet>  
+                </p:lightBox>
+
+                <h:panelGrid columns="1">
+                    <h:outputText value="#{managedProduto.produto.descricao}" />
+                    <hr />
+                    <h:outputText value="Promoção válida até #{managedProduto.produto.dataVencimentoOferta}" />
+                    <hr />
+                    <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho"
+                                     action="#{managedCarrinho.adicionarAoCarrinho}">
+                        <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
+                    </p:commandButton>
+                </h:panelGrid>
+
+
+            </h:panelGrid>
+
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>

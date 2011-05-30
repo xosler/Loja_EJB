@@ -70,4 +70,14 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
     
     public ManagedCarrinho() {
     }
+    
+    public Double getTotalCarrinho()
+    {
+        Double total = 0.0;
+        for(Produto p : carrinho.getProdutos())
+        {
+            total += p.getPreco();
+        }
+        return total;
+    }
 }
