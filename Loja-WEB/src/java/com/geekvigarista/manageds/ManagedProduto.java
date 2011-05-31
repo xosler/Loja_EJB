@@ -94,6 +94,11 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         buscar();
     }
 
+    /**
+     * isso era usado enquanto eu nao conseguia fazer as query funcionar certo
+     * @author carlos
+     * @deprecated
+     */
     public void filtrarPorCategoria() {
         // TODO fazer uma consulta descente aqui tbm..
         List<Produto> produtos_ = new ArrayList<Produto>();
@@ -157,11 +162,17 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     }
 
     public void buscar() {
-        produtos = servico.findByText(filtro);
+        if(idCategoriaSelecionada == null)
+            produtos = servico.findByTextCategoria(filtro, null);
+        else{
+            produtos = servico.findByTextCategoria(filtro, servicoCategoria.find(idCategoriaSelecionada));
+        }
     }
 
     public void load() {
+        System.out.println("AQUI");
         if (idSelecionado != null) {
+            System.out.println(idSelecionado + "-----------");
             produto = servico.find(idSelecionado);
         }
     }

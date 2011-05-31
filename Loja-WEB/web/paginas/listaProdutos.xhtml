@@ -26,7 +26,7 @@
                 <p:spacer width="3px" />
                 <c:forEach items="#{managedProduto.categorias}" var="c">
                     <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update="tabelaProdutos"
-                                   oncomplete="Loja.configuraFiltros();" action="#{managedProduto.filtrarPorCategoria}">
+                                   oncomplete="Loja.configuraFiltros();" action="#{managedProduto.buscar}">
                         <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
                     </p:commandLink>
                 </c:forEach>
