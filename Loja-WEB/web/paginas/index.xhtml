@@ -10,13 +10,12 @@
         <p:carousel value="#{managedProduto.listaProdutos}" var="prod"
                     autoPlayInterval="2500"  style="width: 99%"
                     rows="4" effect="easeInStrong" circular="true" >
-
-            <h:panelGrid columns="1" style="height: 300px; width: 100%" cellpadding="4  ">
-
-                <h:outputText value="Nome:  #{prod.nome}" />
-                <p:graphicImage value="#{empty prod.imagem ? '/resources/images/sem-foto.gif' : prod.imagem }" width="200px" height="200px" />         
-
-            </h:panelGrid>
+            <h:link outcome="detalhesProduto.xhtml?produto=#{prod.id}">
+                <h:panelGrid columns="1" style="height: 300px; width: 100%" cellpadding="4  ">
+                    <h:outputText value="Nome:  #{prod.nome}" />
+                    <p:graphicImage value="#{empty prod.imagem ? '/resources/images/sem-foto.gif' : prod.imagem }" width="200px" height="200px" />         
+                </h:panelGrid>
+            </h:link>
         </p:carousel>
     </ui:define>
 
