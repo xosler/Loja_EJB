@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -34,12 +35,10 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     private Long idSelecionado = null;
     private Long idCategoriaSelecionada = null;
     private List<Categoria> categorias = new ArrayList<Categoria>();
-    
     @EJB
     private ProdutoServiceLocal servico;
     @EJB
     private CategoriaServiceLocal servicoCategoria;
-    
     private static final int BUFFER_SIZE = 6124;
 
     public Long getIdCategoriaSelecionada() {
@@ -94,6 +93,11 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         buscar();
     }
 
+    @PostConstruct
+    public void init() {
+        
+    }
+    
     /**
      * isso era usado enquanto eu nao conseguia fazer as query funcionar certo
      * @author carlos
@@ -162,9 +166,9 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     }
 
     public void buscar() {
-        if(idCategoriaSelecionada == null)
+        if (idCategoriaSelecionada == null) {
             produtos = servico.findByTextCategoria(filtro, null);
-        else{
+        } else {
             produtos = servico.findByTextCategoria(filtro, servicoCategoria.find(idCategoriaSelecionada));
         }
     }
@@ -193,15 +197,15 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         if (!pasta.exists()) {
             pasta.mkdirs();
         }
-         
+
         String filenameOriginal = event.getFile().getFileName();
         String ext = filenameOriginal.substring(filenameOriginal.lastIndexOf("."), filenameOriginal.length()); //lastIndexOf(".")
         String nomeArquivo = new Date().getTime() + ext;
-        
-        
+
+
         File result = new File(extContext.getRealPath("//files//"
                 + nomeArquivo));
-        
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(result);
 
@@ -232,15 +236,13 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         }
 
     }
-    
-    public void selecionarExcluir()
-    {
+
+    public void selecionarExcluir() {
         load();
         excluir();
     }
-    
-    public void selecionarExcluirBuscar()
-    {
+
+    public void selecionarExcluirBuscar() {
         selecionarExcluir();
 //        filtrarPorCategoria(); TODO meio bugado isso aqui
         buscar();

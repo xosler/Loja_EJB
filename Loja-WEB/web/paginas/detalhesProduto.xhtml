@@ -17,6 +17,11 @@
 
     <ui:define name="content">
         <h:form id="formDetalhesProduto">
+            <f:metadata>
+                <f:viewParam name="produto" value="#{managedProduto.produto}">
+                    <f:converter converterId="produtoConverter" />
+                </f:viewParam>
+            </f:metadata>
             <h:panelGrid columns="2">
                 <p:lightBox>  
                     <h:outputLink title="#{managedProduto.produto.nome}"> 
@@ -32,16 +37,19 @@
                     <hr />
                     <h:outputText value="Promoção válida até #{managedProduto.produto.dataVencimentoOferta}" />
                     <hr />
+                    <iframe src="http://www.facebook.com/plugins/like.php?app_id=174966075894080&amp;href=#{request.requestURL}?produto=#{managedProduto.produto.id}&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=80" 
+                            scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
+                    </iframe>
                     <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho"
                                      action="#{managedCarrinho.adicionarAoCarrinho}">
                         <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
                     </p:commandButton>
-                </h:panelGrid>
+                   </h:panelGrid>
 
 
             </h:panelGrid>
-
-
+             <iframe src="http://www.facebook.com/plugins/comments.php?href=#{request.requestURL}?produto=#{managedProduto.produto.id}" 
+                                scrolling="no" frameborder="0" style="border:none; overflow:auto; width:100%; height: 100% " allowTransparency="true"></iframe> 
 
         </h:form>
     </ui:define>
