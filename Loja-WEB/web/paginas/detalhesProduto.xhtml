@@ -12,7 +12,7 @@
     </ui:define>
 
     <ui:define name="subtitulo">
-        <h:outputText value="Por apenas R$ #{managedProduto.produto.preco} !!" />
+        <h:outputText value="Por apenas " /> <h:outputText styleClass="preco" value="R$ #{managedProduto.produto.preco} !!!" />
     </ui:define>
 
     <ui:define name="content">
@@ -25,10 +25,10 @@
             <h:panelGrid columns="2">
                 <p:lightBox>  
                     <h:outputLink title="#{managedProduto.produto.nome}"> 
-                        <p:graphicImage value="#{empty managedProduto.produto.imagem ? '/resources/images/sem-foto.gif' : managedProduto.produto.imagem }" height="250px" />
+                        <p:graphicImage value="#{managedProduto.produto.imagem}" height="250px" />
                     </h:outputLink>
                     <f:facet name="inline">  
-                        <p:graphicImage value="#{empty managedProduto.produto.imagem ? '/resources/images/sem-foto.gif' : managedProduto.produto.imagem }" height="550px" />
+                        <p:graphicImage value="#{managedProduto.produto.imagem}" height="550px" />
                     </f:facet>  
                 </p:lightBox>
 
@@ -40,7 +40,7 @@
                     <iframe src="http://www.facebook.com/plugins/like.php?app_id=174966075894080&amp;href=#{request.requestURL}?produto=#{managedProduto.produto.id}&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=80" 
                             scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
                     </iframe>
-                    <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho"
+                    <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho" value="Adicionar ao carrinho"
                                      action="#{managedCarrinho.adicionarAoCarrinho}">
                         <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
                     </p:commandButton>

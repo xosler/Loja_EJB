@@ -77,9 +77,10 @@
                     </h:panelGrid>
                 </h:panelGroup>
 
-
             </h:panelGrid>
-
+            
+            <h:link style="font-size: 20px" rendered="#{not empty managedProduto.produto.id}" outcome="detalhesProduto.xhtml?produto=#{managedProduto.produto.id}">Link para o produto!</h:link>
+            <hr/>
             <p:commandButton title="Salvar produto." action="#{managedProduto.salvar}" 
                              update=":cadastro" value="Salvar" image="ui-icon-disk" />
             <p:commandButton title="Excluir produto." action="#{managedProduto.excluir}" 

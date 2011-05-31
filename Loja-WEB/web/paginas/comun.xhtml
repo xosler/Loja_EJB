@@ -31,7 +31,7 @@
         <meta name="robots" content="index, follow" />
     </h:head>
 
-    <h:body>
+    <h:body style="width: 98%; height: 100%; margin: auto;">
 
         <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide(); Loja.configuraInicio();"/>  
 
@@ -45,71 +45,70 @@
                 <h1>SR-Malhas</h1>
                 <h3>Loja de Roupas</h3>
             </hgroup>
-
         </header>
-        <div>
-            <div id="left">
-                <nav>
 
-                    <h:form id="carrinho">
-                        <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
-                                 life="300" />
-                        <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
-                        <h:panelGrid columns="1">
-                            <p:commandLink value="Início" oncomplete="document.location = 'index.xhtml';" />
-                            <p:commandLink value="Buscar Produtos" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
-                            <p:commandLink value="Novo Produto" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);" />
+        <div id="left">
+            <nav>
 
-                            <p:commandLink value="Novo Categoria" action="#{managedCategoria.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_CATEGORIA);" />
-                            <p:commandLink value="Lista de categorias" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_CATEGORIA);" />
-                        </h:panelGrid>
+                <h:form id="carrinho">
+                    <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
+                             life="300" />
+                    <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
+                    <h:panelGrid columns="1">
+                        <p:commandLink value="Início" oncomplete="document.location = 'index.xhtml';" />
+                        <p:commandLink value="Buscar Produtos" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                        <p:commandLink value="Novo Produto" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);" />
 
-                        <p:spacer height="20px" />
+                        <p:commandLink value="Novo Categoria" action="#{managedCategoria.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_CATEGORIA);" />
+                        <p:commandLink value="Lista de categorias" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_CATEGORIA);" />
+                    </h:panelGrid>
 
-                        <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
+                    <p:spacer height="20px" />
 
-                        <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
-                            <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
-                            <p:commandLink value="Venha escolher alguns aqui!" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
-                        </h:panelGroup>
+                    <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
 
-                        <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
-                                    rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
-                                    paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
+                    <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
+                        <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
+                        <p:commandLink value="Venha escolher alguns aqui!" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                    </h:panelGroup>
 
-                            <p:column>  
-                                <p:panel header="#{produto.nome}" style="text-align:center">  
-                                    <h:panelGrid columns="1" style="width:100%">  
+                    <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
+                                rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
+                                paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
 
-                                        <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" width="80px" height="80px" />         
+                        <p:column>  
+                            <p:panel header="#{produto.nome}" style="text-align:center">  
+                                <h:panelGrid columns="1" style="width:100%">  
 
-                                        <p:commandButton update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
-                                            <f:setPropertyActionListener value="#{produto.id}"   
-                                                                         target="#{managedCarrinho.idProdutoSelecionado}" />  
-                                        </p:commandButton>  
-                                    </h:panelGrid>  
-                                </p:panel>  
-                            </p:column>  
-                        </p:dataGrid>  
-                        <h:outputText value="Total: R$ #{managedCarrinho.totalCarrinho}"
-                                      rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
-                    </h:form>
-                </nav>
-            </div>
-            <div id="content" class="left_content">
-                <header>
-                    <hgroup style="margin-left: 10px;">
-                        <h1> <ui:insert name="titulo">Titulo</ui:insert></h1>
-                        <h3> <ui:insert name="subtitulo">Sub-titulo</ui:insert></h3>
-                    </hgroup>
-                    <hr />
-                </header>
-                <section>
-                    <article>
-                        <ui:insert name="content">Content</ui:insert>
-                    </article>
-                </section>
-            </div>
+                                    <p:graphicImage value="#{produto.imagem}" width="80px" height="80px" />         
+
+                                    <p:commandButton update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
+                                        <f:setPropertyActionListener value="#{produto.id}"   
+                                                                     target="#{managedCarrinho.idProdutoSelecionado}" />  
+                                    </p:commandButton>  
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:column>  
+                    </p:dataGrid>  
+                    <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
+                    <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
+                                  rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
+                </h:form>
+            </nav>
+        </div>
+        <div id="centro">
+            <header>
+                <hgroup style="margin-left: 10px;">
+                    <h1> <ui:insert name="titulo">Titulo</ui:insert></h1>
+                    <h3> <ui:insert name="subtitulo">Sub-titulo</ui:insert></h3>
+                </hgroup>
+                <hr />
+            </header>
+            <section>
+                <article>
+                    <ui:insert name="content">Content</ui:insert>
+                </article>
+            </section>
         </div>
         <div id="bottom">
             Desenvolvido por <a href="http://about.me/caarlos0">Carlos A Becker</a>, <a href="http://twitter.com/B4r0ns">Rodrigo Baron</a>, <a href="http://twitter.com/Xosler">Alexandre Schossler</a>. 

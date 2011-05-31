@@ -11,12 +11,21 @@ root {
     display: block;
 }
 
+body {
+    background-color: red; 
+}
+
 
 @font-face {
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: normal;
     src: local('Ubuntu'), url('./resources/Ubuntu-Regular.woff') format('woff');
+}
+
+#lista\:tabelaProdutos
+{
+    margin-top: 30px;
 }
 
 .campo {
@@ -45,7 +54,8 @@ root {
     background-color: #2D7DC5 !important;
 }
 
-#lista\:tabelaProdutos
-{
-    margin-top: 30px;
+.preco {
+    color: green;
+    font-weight: bold;
+    font-size: 15px;
 }
