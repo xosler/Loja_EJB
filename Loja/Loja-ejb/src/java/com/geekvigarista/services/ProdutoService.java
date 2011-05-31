@@ -6,6 +6,7 @@ package com.geekvigarista.services;
 
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.dao.ProdutoFacadeLocal;
+import com.geekvigarista.pojo.Categoria;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -46,7 +47,7 @@ public class ProdutoService implements ProdutoServiceLocal {
     }
 
     @Override
-    public List<Produto> findByText(String t) {
-        return dao.findByText(t);
+    public List<Produto> findByTextCategoria(String t, Categoria c) {
+        return dao.findByTextCategoria(t, c);
     }
 }

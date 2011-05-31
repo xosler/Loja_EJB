@@ -4,6 +4,7 @@
  */
 package com.geekvigarista.dao;
 
+import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.pojo.Produto;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,6 +30,6 @@ public interface ProdutoFacadeLocal {
 
     int count();
     
-    List<Produto> findByText(String t);
-
+    List<Produto> findByTextCategoria(String t, Categoria c);
+    
 }

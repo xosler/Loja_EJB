@@ -4,6 +4,7 @@
  */
 package com.geekvigarista.services;
 
+import com.geekvigarista.pojo.Categoria;
 import com.geekvigarista.pojo.Produto;
 import java.util.List;
 import javax.ejb.Local;
@@ -25,6 +26,6 @@ public interface ProdutoServiceLocal {
 
     List<Produto> findAll();
     
-    List<Produto> findByText(String t);
+    List<Produto> findByTextCategoria(String t, Categoria c);
     
 }
