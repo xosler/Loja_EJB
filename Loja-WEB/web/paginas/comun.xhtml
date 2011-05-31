@@ -79,12 +79,11 @@
                         <p:column>  
                             <p:panel header="#{produto.nome}" style="text-align:center">  
                                 <h:panelGrid columns="1" style="width:100%">  
-
-                                    <p:graphicImage value="#{produto.imagem}" width="80px" height="80px" />         
-
+                                    <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}">
+                                        <p:graphicImage value="#{produto.imagem}" width="80px" height="80px" />         
+                                    </h:link>
                                     <p:commandButton update=":carrinho" action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
-                                        <f:setPropertyActionListener value="#{produto.id}"   
-                                                                     target="#{managedCarrinho.idProdutoSelecionado}" />  
+                                        <f:setPropertyActionListener value="#{produto.id}" target="#{managedProduto.idSelecionado}" /> 
                                     </p:commandButton>  
                                 </h:panelGrid>  
                             </p:panel>  

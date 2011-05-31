@@ -48,10 +48,10 @@
                         <h:panelGrid columns="1" style="width: 100%">
                             <p:lightBox>  
                                 <h:outputLink title="#{produto.nome}"> 
-                                    <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" height="150px" />
+                                    <p:graphicImage value="#{produto.imagem}" height="150px" />
                                 </h:outputLink>
                                 <f:facet name="inline">  
-                                    <p:graphicImage value="#{empty produto.imagem ? '/resources/images/sem-foto.gif' : produto.imagem }" height="500px" />
+                                    <p:graphicImage value="#{produto.imagem}" height="500px" />
                                 </f:facet>  
                             </p:lightBox>  
                             <h:outputText value="#{produto.descricao}" />
