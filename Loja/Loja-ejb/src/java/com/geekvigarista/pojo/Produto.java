@@ -5,6 +5,8 @@
 package com.geekvigarista.pojo;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -97,6 +99,10 @@ public class Produto implements Serializable {
         this.descricao = descricao;
     }
 
+    public String getDescricaoLabel() {
+        return descricao != null ? descricao.replaceAll("\n", "<br />") : "";
+    }
+
     public String getNome() {
         return nome;
     }
@@ -104,8 +110,8 @@ public class Produto implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Double getPreco() {
+    
+    public Double getPreco(){
         return preco;
     }
 
