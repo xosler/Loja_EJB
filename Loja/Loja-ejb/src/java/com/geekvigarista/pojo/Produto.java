@@ -21,39 +21,29 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Produto implements Serializable {
-    
+
     @ManyToMany(mappedBy = "produtos")
     private List<Carrinho> carrinhos;
-    
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Double preco;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Date dataCadastro;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(nullable=true)
+    @Column(nullable = true)
     private Date dataVencimentoOferta;
-    
-    @Column(nullable=false)
+    @Column(nullable = false)
     private int quantidadeEmEstoque;
-    
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String nome;
-    
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String descricao;
-    
     @ManyToMany
     private List<Categoria> categorias;
-    
     private String imagem;
 
     public List<Categoria> getCategorias() {
@@ -65,6 +55,9 @@ public class Produto implements Serializable {
     }
 
     public String getImagem() {
+        if (imagem == null || imagem.trim().equals("")) {
+            return "/resources/images/sem-foto.gif";
+        }
         return imagem;
     }
 
@@ -79,7 +72,7 @@ public class Produto implements Serializable {
     public void setCarrinhos(List<Carrinho> carrinhos) {
         this.carrinhos = carrinhos;
     }
-    
+
     public Date getDataCadastro() {
         return dataCadastro;
     }
@@ -128,7 +121,6 @@ public class Produto implements Serializable {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
-    
     public Long getId() {
         return id;
     }
