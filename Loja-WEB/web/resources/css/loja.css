@@ -57,5 +57,11 @@ body {
 .preco {
     color: green;
     font-weight: bold;
+    font-size: 20px;
+}
+
+.data {
+    color: red;
+    font-weight: bold;
     font-size: 15px;
 }

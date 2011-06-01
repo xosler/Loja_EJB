@@ -54,8 +54,11 @@
                                     <p:graphicImage value="#{produto.imagem}" height="500px" />
                                 </f:facet>  
                             </p:lightBox>  
-                            <h:outputText value="#{produto.descricao}" />
+                            <h:outputText value="#{produto.descricaoLabel}" escape="false" />
+                            <h:outputText value="#{produto.preco}" styleClass="preco preco_lista" />
                         </h:panelGrid>
+                        <p:commandButton image="ui-icon ui-icon-search" 
+                                         oncomplete="window.location = 'detalhesProduto.xhtml?produto=#{produto.id}'" />
                         <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho"
                                          action="#{managedCarrinho.adicionarAoCarrinho}">
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />

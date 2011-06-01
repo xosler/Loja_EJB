@@ -33,11 +33,11 @@
                 </p:lightBox>
 
                 <h:panelGrid columns="1">
-                    <h:outputText value="#{managedProduto.produto.descricao}" />
+                    <h:outputText value="#{managedProduto.produto.descricaoLabel}" escape="false" />
                     <hr />
                     <h:panelGroup>
                         <h:outputText value="Promoção válida até "/> 
-                        <h:outputText value="#{managedProduto.produto.dataVencimentoOferta}">
+                        <h:outputText value="#{managedProduto.produto.dataVencimentoOferta}" styleClass="data">
                                       <f:convertDateTime pattern="dd/MM/yyyy" />  
                         </h:outputText>
                     </h:panelGroup>
