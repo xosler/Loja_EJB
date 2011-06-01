@@ -13,7 +13,7 @@
             <h:link outcome="detalhesProduto.xhtml?produto=#{prod.id}">
                 <h:panelGrid columns="1" style="height: 300px; width: 100%" cellpadding="4  ">
                     <h:outputText value="Nome:  #{prod.nome}" />
-                    <p:graphicImage value="#{empty prod.imagem}" width="200px" height="200px" />         
+                    <p:graphicImage value="#{prod.imagem}" width="200px" height="200px" />         
                 </h:panelGrid>
             </h:link>
         </p:carousel>
