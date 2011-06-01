@@ -3,7 +3,7 @@
     background-color: #EFEFEF;
     color: black;
     padding: 5px;
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 20px 0px;
     -webkit-border-radius: 0 0 20px 20px;
     -moz-border-radius: 0 0 20px 20px;
     -border-radius: 0 0 20px 20px;
@@ -40,7 +40,7 @@
     position: relative;
     background-color: white;
     padding: 5px;
-    margin-left: 220px;
+    margin-left: 230px;
     border: 1px solid #EEE;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
