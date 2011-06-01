@@ -247,4 +247,8 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 //        filtrarPorCategoria(); TODO meio bugado isso aqui
         buscar();
     }
+    
+    public void excluirImagemProduto(){
+        produto.setImagens("");
+    }
 }
