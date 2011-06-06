@@ -49,7 +49,6 @@
 
         <div id="left">
             <nav>
-
                 <h:form id="carrinho">
                     <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
                              life="300" />
@@ -84,7 +83,7 @@
                                     </h:link>
                                     <p:commandButton update=":carrinho" value="Remover" 
                                         action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
-                                        <f:setPropertyActionListener value="#{produto.id}" target="#{managedCarrinho.idProdutoSelecionado}" /> 
+                                      <f:setPropertyActionListener value="#{produto.id}" target="#{managedCarrinho.idProdutoSelecionado}" />
                                     </p:commandButton>  
                                 </h:panelGrid>  
                             </p:panel>  
