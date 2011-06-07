@@ -9,29 +9,36 @@ var Loja = {};
  */
 Loja.configuraFiltros = function()
 {
-    jQuery('.botao-filtro').click( 
-        function(j)
-        {
-            jQuery('.botao-filtro').removeClass('selecionado');
-            var e = jQuery(j.target); 
-            jQuery(e).addClass('selecionado'); 
-        });
+    if(jQuery('.botao-filtro').size() == 1)
+    {
+        jQuery('.botao-filtro').removeClass('middle');
+    }
+    else
+    {
+        jQuery('.botao-filtro').click( 
+            function(j)
+            {
+                jQuery('.botao-filtro').removeClass('selecionado');
+                var e = jQuery(j.target); 
+                jQuery(e).addClass('selecionado'); 
+            });
         
-    jQuery('.botao-filtro:first').removeClass('middle');   
-    jQuery('.botao-filtro:first').addClass('left');
-    jQuery('.botao-filtro:last').removeClass('middle');   
-    jQuery('.botao-filtro:last').addClass('right');
+        jQuery('.botao-filtro:first').removeClass('middle');   
+        jQuery('.botao-filtro:first').addClass('left');
+        jQuery('.botao-filtro:last').removeClass('middle');   
+        jQuery('.botao-filtro:last').addClass('right');
+    }
 }
 
 Loja.configuraInicio = function(){
-//    var alturaMenu = $('#left').height();
-//    var alturaContent = $('.left_content').height();
-//    if(alturaMenu > alturaContent){ 
-//        $('.left_content').height(alturaMenu+'px'); 
-//    }else{
-//        $('.left_content').height('100%'); 
-//    }
-}
+    //    var alturaMenu = $('#left').height();
+    //    var alturaContent = $('.left_content').height();
+    //    if(alturaMenu > alturaContent){ 
+    //        $('.left_content').height(alturaMenu+'px'); 
+    //    }else{
+    //        $('.left_content').height('100%'); 
+    //    }
+    }
 
 
 Loja.Paginas = {
@@ -55,7 +62,8 @@ Loja.zoaBackground = function(){
     jQuery('body').bind('mousemove', function(){ 
         $('body').css('background-color', 
             new Date().getSeconds() < 10 ? 'yellow' : new Date().getSeconds() > 10 && new Date().getSeconds() < 20 ? 'blue' : new Date().getSeconds() > 30 && new Date().getSeconds() < 40 ? 'red' : new Date().getSeconds() > 40 && new Date().getSeconds() < 50 ? 'green' : 'pink'
-        )});
+            )
+        });
 }
 
 /**
@@ -68,5 +76,5 @@ jQuery(document).ready(
     function(){
         Loja.configuraFiltros();
         Loja.configuraInicio();
-//        Loja.zoaBackground();
+    //        Loja.zoaBackground();
     });
