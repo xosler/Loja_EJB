@@ -174,9 +174,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     }
 
     public void load() {
-        System.out.println("AQUI");
         if (idSelecionado != null) {
-            System.out.println(idSelecionado + "-----------");
             produto = servico.find(idSelecionado);
         }
     }
@@ -244,7 +242,6 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     public void selecionarExcluirBuscar() {
         selecionarExcluir();
-//        filtrarPorCategoria(); TODO meio bugado isso aqui
         buscar();
     }
     
