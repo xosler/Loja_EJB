@@ -5,8 +5,6 @@
 package com.geekvigarista.pojo;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -16,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -110,8 +109,8 @@ public class Produto implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public Double getPreco(){
+
+    public Double getPreco() {
         return preco;
     }
 

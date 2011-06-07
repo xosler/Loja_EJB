@@ -6,6 +6,7 @@ package com.geekvigarista.dao;
 
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.pojo.Categoria;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,17 +44,21 @@ public class ProdutoFacade extends AbstractFacade<Produto> implements ProdutoFac
         t = t == null ? "" : t;
 
         if (c != null) {
+            query.where(
+                    qb.or(
+                    qb.like(produto.<String>get("nome"), "%" + t + "%"),
+                    qb.like(produto.<String>get("descricao"), "%" + t + "%")),
+                    qb.and(
+                    qb.equal(produto.<Categoria>get("categorias"), c),
+                    qb.lessThan(produto.<Date>get("dataVencimentoOferta"), new Date()) /* remover produtos vencidos da listagem!! */));
+        } else {
             query.where(qb.or(
                     qb.like(produto.<String>get("nome"), "%" + t + "%"),
                     qb.like(produto.<String>get("descricao"), "%" + t + "%")),
-                    qb.and(qb.equal(produto.<Categoria>get("categorias"), c)));
-        } else {
-             query.where(qb.or(
-                    qb.like(produto.<String>get("nome"), "%" + t + "%"),
-                    qb.like(produto.<String>get("descricao"), "%" + t + "%")));
+                    qb.and(qb.lessThan(produto.<Date>get("dataVencimentoOferta"), new Date()) /* remover produtos vencidos da listagem!! */));
         }
-        
-        
+
+
         List<Produto> result = em.createQuery(query).getResultList();
 
         return result;
