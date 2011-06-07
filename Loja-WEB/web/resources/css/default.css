@@ -14,6 +14,8 @@ h1 {
     margin: 0px;
     padding: 0px;
     color: #363636;
+    font-size: 30px;
+    font-family: 'Indie Flower', arial, serif;
 }
 
 a:link, a:visited {
@@ -26,4 +28,8 @@ a:link:hover, a:visited:hover  {
  color: #363636;
   font-weight : bold;
   text-decoration : underline;
+}
+
+#top h1 {
+    font-size: 40px;
 }
