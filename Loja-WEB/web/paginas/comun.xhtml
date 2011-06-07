@@ -15,9 +15,7 @@
         <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
         <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css' />
-        <!--        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />-->
         <script language="text/javascript" src="./../resources/js/loja.js" type="text/javascript" />
-        <!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
 
         <title>SR-Malhas</title>
 
@@ -34,7 +32,7 @@
 
     <h:body style="width: 98%; height: 100%; margin: auto;">
 
-        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide(); Loja.configuraInicio();"/>  
+        <p:ajaxStatus onstart="statusDialog.show();" oncomplete="statusDialog.hide(); Loja.configuraInicio();"/>  
 
         <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
                   draggable="false" closable="false">  
