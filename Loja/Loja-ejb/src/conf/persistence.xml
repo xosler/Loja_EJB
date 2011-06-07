@@ -4,14 +4,13 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>DataSourceLoja</jta-data-source>
     <class>com.geekvigarista.pojo.Carrinho</class>
-    <class>com.geekvigarista.pojo.Cartao</class>
     <class>com.geekvigarista.pojo.Compra</class>
     <class>com.geekvigarista.pojo.Produto</class>
     <class>com.geekvigarista.pojo.Categoria</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
-      <property name="eclipselink.logging.level" value="FINE"/> 
+      <property name="eclipselink.logging.level" value="FINE"/>
       <property name="show-sql" value="true"/>
     </properties>
   </persistence-unit>
