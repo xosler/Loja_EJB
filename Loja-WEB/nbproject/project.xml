@@ -20,9 +20,6 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.primefaces-3.0.M1.jar}</file>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.primefaces-3.0.M2-SNAPSHOT.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="100">

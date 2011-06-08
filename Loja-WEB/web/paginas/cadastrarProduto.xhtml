@@ -10,7 +10,7 @@
     <ui:define name="subtitulo"></ui:define>
     
     <ui:define name="content">
-        <h:form id="cadastro">
+        <h:panelGroup id="cadastro">
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome"/> 
@@ -34,17 +34,19 @@
                 <h:panelGroup>
                     <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
                               showEffect="explode" hideEffect="explode" height="150"
-                              modal="true" onCloseUpdate=":cadastro">
+                              modal="true">
                         <h:panelGrid columns="2" id="dialogCategoria">
                             <h:outputText value="Nome" />
                             <p:inputText value="#{managedCategoria.categoria.descricao}" />
                         </h:panelGrid>
                         <p:spacer height="10px" />
-                        <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" update="dialogCategoria" image="ui-icon-disk" />
-                        <p:commandButton value="Novo" action="#{managedCategoria.novo}" update="dialogCategoria" image="ui-icon-new" />
+                        <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" 
+                                         update="dialogCategoria, manyMenuCategorias" image="ui-icon-disk" />
+                        <p:commandButton value="Novo" action="#{managedCategoria.novo}" 
+                                         update="dialogCategoria" image="ui-icon-new" />
                     </p:dialog>
 
-                    <p:selectManyMenu value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
+                    <p:selectManyMenu id="manyMenuCategorias" value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
                         <f:converter converterId="categoriaConverter" />
                         <f:selectItems value="#{managedProduto.categorias}" 
                                        var="item" itemLabel="#{item.descricao}" itemValue="#{item}"/>
@@ -84,12 +86,12 @@
             <h:link style="font-size: 20px" rendered="#{not empty managedProduto.produto.id}" outcome="detalhesProduto.xhtml?produto=#{managedProduto.produto.id}">Link para o produto!</h:link>
             <hr/>
             <p:commandButton title="Salvar produto." action="#{managedProduto.salvar}" 
-                             update=":cadastro" value="Salvar" image="ui-icon-disk" />
+                             update="@form" value="Salvar" image="ui-icon-disk" />
             <p:commandButton title="Excluir produto." action="#{managedProduto.excluir}" 
-                             update=":cadastro" value="Excluir" image="ui-icon-trash" />
+                             update="@form" value="Excluir" image="ui-icon-trash" />
             <p:commandButton title="Cadastrar um novo produto." action="#{managedProduto.novo}" 
-                             update=":cadastro" value="Novo" image="ui-icon-new" />
-        </h:form>
+                             update="@form" value="Novo" image="ui-icon-new" />
+        </h:panelGroup>
     </ui:define>
 
 </ui:composition>

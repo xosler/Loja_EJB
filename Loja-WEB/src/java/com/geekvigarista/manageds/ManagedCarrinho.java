@@ -42,6 +42,10 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
 
     public void adicionarAoCarrinho()
     {
+        System.out.println("aqui");
+        
+        System.out.println(idProdutoSelecionado);
+        
         if(idProdutoSelecionado == null)
         {
             showMessage(new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", "Selecione um produto!"));
@@ -51,7 +55,7 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
         Produto p = servicoProduto.find(idProdutoSelecionado);
         carrinho.getProdutos().add(p);
         showMessage(new FacesMessage("Adicionado.", "Produto Adicionado ao carrinho com sucesso!"));
-        idProdutoSelecionado = null;
+//        idProdutoSelecionado = null;
     }
     
      public void removerDoCarrinho()

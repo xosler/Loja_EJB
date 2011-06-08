@@ -10,14 +10,13 @@
     <ui:define name="titulo">Produtos</ui:define>
     <ui:define name="subtitulo"></ui:define>
     <ui:define name="content">
-        <h:form id="lista" onsubmit="Loja.configuraFiltros();">
-            <p:growl id="mensagens" showDetail="true" sticky="false" />
 
             <h:panelGroup style="width: 100%">
                 <h:panelGrid columns="3" style="">
                     <h:outputText value="Pesquisar" />
                     <p:inputText value="#{managedProduto.filtro}"/>
-                    <p:commandButton value="Buscar" action="#{managedProduto.buscar}" oncomplete="Loja.configuraFiltros();" update=":lista" />
+                    <p:commandButton value="Buscar" action="#{managedProduto.buscar}" 
+                                     oncomplete="Loja.configuraFiltros();" update="tabelaProdutos" />
                 </h:panelGrid>
             </h:panelGroup>
 
@@ -25,7 +24,8 @@
                 <h:outputText value="Filtro por categoria: " />
                 <p:spacer width="3px" />
                 <c:forEach items="#{managedProduto.categorias}" var="c">
-                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" update="tabelaProdutos"
+                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" 
+                                   update="tabelaProdutos"
                                    oncomplete="Loja.configuraFiltros();" action="#{managedProduto.buscar}">
                         <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
                     </p:commandLink>
@@ -33,7 +33,7 @@
                 <p:spacer width="10px" />
                 <p:commandLink value="Remover Filtro" action="#{managedProduto.removerFiltro}" 
                                styleClass="primary pill  _button" oncomplete="Loja.configuraFiltros();"
-                               update=":lista" />
+                               update="tabelaProdutos" />
             </h:panelGroup>
 
 
@@ -59,26 +59,28 @@
                         </h:panelGrid>
                         <p:commandButton image="ui-icon ui-icon-search" title="Ver detalhes do produto."
                                          oncomplete="window.location = 'detalhesProduto.xhtml?produto=#{produto.id}'" />
-                        <p:commandButton image="ui-icon ui-icon-plus" update=":carrinho" title="Adicionar produto ao carrinho."
+                        <p:commandButton image="ui-icon ui-icon-plus" update="carrinho" title="Adicionar produto ao carrinho."
                                          action="#{managedCarrinho.adicionarAoCarrinho}">
-                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" 
+                                                         value="#{produto.id}"  />
                         </p:commandButton>
-                        <p:commandButton image="ui-icon ui-icon-pencil" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);"
+                        <p:commandButton image="ui-icon ui-icon-pencil" 
+                                         oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);"
                                          title="Editar produto."
                                          action="#{managedProduto.load}">
-                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
+                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" 
+                                                         value="#{produto.id}"  />
                         </p:commandButton>
                         <p:commandButton image="ui-icon ui-icon-trash" update="tabelaProdutos" title="Excluir produto."
                                          action="#{managedProduto.selecionarExcluirBuscar}">
-                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" value="#{produto.id}"  />
+                            <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" 
+                                                         value="#{produto.id}"  />
                         </p:commandButton>
                     </p:panel>    
                 </p:column>
 
 
             </p:dataGrid>
-
-        </h:form>
     </ui:define>
 
 </ui:composition>

@@ -15,7 +15,6 @@
         <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
         <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css' />
-        <!--        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />-->
         <script language="text/javascript" src="./../resources/js/loja.js" type="text/javascript" />
         <!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
 
@@ -33,28 +32,27 @@
     </h:head>
 
     <h:body style="width: 98%; height: 100%; margin: auto;">
+        <h:form id="formLojaComum" prependId="false">
+            <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
+                     life="300" />
+            <p:ajaxStatus onstart="statusDialog.show();" onerror="alert('erro na requisicao');" oncomplete="statusDialog.hide(); Loja.configuraInicio();"/>  
 
-        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide(); Loja.configuraInicio();"/>  
+            <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
+                      draggable="false" closable="false">  
+                <progress><p:graphicImage value="./../resources/images/ajaxloadingbar.gif" /> </progress>
+            </p:dialog> 
 
-        <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
-                  draggable="false" closable="false">  
-            <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />  
-        </p:dialog> 
+            <header id="top">
+                <hgroup>
+                    <h1>SR-Malhas</h1>
+                    <h3>Loja de Roupas</h3>
+                </hgroup>
+            </header>
 
-        <header id="top">
-            <hgroup>
-                <h1>SR-Malhas</h1>
-                <h3>Loja de Roupas</h3>
-            </hgroup>
-        </header>
-
-        <div id="left">
-            <nav>
-                <h:form id="carrinho">
-                    <p:growl id="mensagens" showDetail="true" sticky="false" autoUpdate="true" showSummary="true"
-                             life="300" />
+            <div id="left">
+                <nav>
                     <h:outputText escape="false" value="&lt;h1&gt;Menu&lt;/h1&gt; &lt;hr /&gt;" />
-                    <h:panelGrid columns="1">
+                    <h:panelGrid columns="1" id="menuLateral">
                         <p:commandLink value="Início" oncomplete="document.location = 'index.xhtml';" />
                         <p:commandLink value="Buscar Produtos" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
                         <p:commandLink value="Novo Produto" action="#{managedProduto.novo}" oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);" />
@@ -66,55 +64,56 @@
                     <p:spacer height="20px" />
 
                     <h:outputText escape="false" value="&lt;h1&gt;Carrinho&lt;/h1&gt; &lt;hr /&gt;" />
+                    <h:panelGroup id="carrinho">
+                        <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
+                            <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
+                            <p:commandLink value="Venha escolher alguns aqui!" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                        </h:panelGroup>
 
-                    <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
-                        <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
-                        <p:commandLink value="Venha escolher alguns aqui!" action="#{managedProduto.buscar}" oncomplete="Loja.gotopagina(Loja.Paginas.LIS_PRODUTO);" />
+                        <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
+                                    rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
+                                    paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
+
+                            <p:column>  
+                                <p:panel header="#{produto.nome}" style="text-align:center">  
+                                    <h:panelGrid columns="1" style="width:100%">  
+                                        <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}">
+                                            <p:graphicImage value="#{produto.imagem}" width="80px" height="80px" />         
+                                        </h:link>
+                                        <p:commandButton value="Remover" 
+                                                         action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
+                                            <f:setPropertyActionListener value="#{produto.id}" target="#{managedCarrinho.idProdutoSelecionado}" />
+                                        </p:commandButton>  
+                                    </h:panelGrid>  
+                                </p:panel>  
+                            </p:column>  
+                        </p:dataGrid>  
+                        <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
+                        <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
+                                      rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
                     </h:panelGroup>
-
-                    <p:dataGrid var="produto" value="#{managedCarrinho.carrinho.produtos}" columns="1"  
-                                rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
-                                paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
-
-                        <p:column>  
-                            <p:panel header="#{produto.nome}" style="text-align:center">  
-                                <h:panelGrid columns="1" style="width:100%">  
-                                    <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}">
-                                        <p:graphicImage value="#{produto.imagem}" width="80px" height="80px" />         
-                                    </h:link>
-                                    <p:commandButton update=":carrinho" value="Remover" 
-                                        action="#{managedCarrinho.removerDoCarrinho}" image="ui-icon ui-icon-trash" >  
-                                      <f:setPropertyActionListener value="#{produto.id}" target="#{managedCarrinho.idProdutoSelecionado}" />
-                                    </p:commandButton>  
-                                </h:panelGrid>  
-                            </p:panel>  
-                        </p:column>  
-                    </p:dataGrid>  
-                    <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
-                    <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
-                                  rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
-                </h:form>
-            </nav>
-        </div>
-        <div id="centro">
-            <header>
-                <hgroup style="margin-left: 10px;">
-                    <h1> <ui:insert name="titulo">Titulo</ui:insert></h1>
-                    <h3> <ui:insert name="subtitulo">Sub-titulo</ui:insert></h3>
-                </hgroup>
-                <hr />
-            </header>
-            <section>
-                <article>
-                    <ui:insert name="content">Content</ui:insert>
-                </article>
-            </section>
-        </div>
-        <div id="bottom">
-            Desenvolvido por <a href="http://about.me/caarlos0">Carlos A Becker</a>, <a href="http://twitter.com/B4r0ns">Rodrigo Baron</a>, <a href="http://twitter.com/Xosler">Alexandre Schossler</a>. 
-            <br />
-            Copyright 2010, <a href="http://www.geekvigarista.com">http://www.geekvigarista.com</a>
-        </div>
+                </nav>
+            </div>
+            <div id="centro">
+                <header>
+                    <hgroup style="margin-left: 10px;">
+                        <h1> <ui:insert name="titulo">Titulo</ui:insert></h1>
+                        <h3> <ui:insert name="subtitulo">Sub-titulo</ui:insert></h3>
+                    </hgroup>
+                    <hr />
+                </header>
+                <section>
+                    <article>
+                        <ui:insert name="content">Content</ui:insert>
+                    </article>
+                </section>
+            </div>
+            <div id="bottom">
+                Desenvolvido por <a href="http://about.me/caarlos0">Carlos A Becker</a>, <a href="http://twitter.com/B4r0ns">Rodrigo Baron</a>, <a href="http://twitter.com/Xosler">Alexandre Schossler</a>. 
+                <br />
+                Copyright 2010, <a href="http://www.geekvigarista.com">http://www.geekvigarista.com</a>
+            </div>
+        </h:form>
     </h:body>
 
 </html>
