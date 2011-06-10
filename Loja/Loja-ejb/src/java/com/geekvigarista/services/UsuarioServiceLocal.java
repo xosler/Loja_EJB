@@ -14,7 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface UsuarioServiceLocal {
-    
+
     void create(Usuario u);
 
     void delete(Usuario u);
@@ -24,5 +24,6 @@ public interface UsuarioServiceLocal {
     Usuario find(Long id);
 
     List<Usuario> findAll();
-  
+
+    Usuario login(String user, String password);
 }

@@ -71,6 +71,8 @@ public class UsuarioService implements UsuarioServiceLocal {
         return dao.findAll();
     }
 
-   
-    
+    @Override
+    public Usuario login(String user, String password) {
+        return dao.login( user,  password);
+    }
 }

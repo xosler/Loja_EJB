@@ -6,7 +6,6 @@ package com.geekvigarista.dao;
 
 import com.geekvigarista.pojo.Produto;
 import com.geekvigarista.pojo.Categoria;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
