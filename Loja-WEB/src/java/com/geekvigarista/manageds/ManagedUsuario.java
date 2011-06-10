@@ -25,7 +25,7 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     
     // injetando o managedLogin aqui!
     @ManagedProperty(value="#{managedLogin}")
-    ManagedLogin managedLogin;
+    private ManagedLogin managedLogin;
 
     // CONSTRUTOR
     public ManagedUsuario() {

@@ -118,4 +118,24 @@ a:link:hover, a:visited:hover  {
 
 .rodape {
     text-align: center;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.rodape:hover {
+    background-color: #f0f0f0;
+    text-shadow: 0 0 10px #3b3838;
+}
+
+.centro {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.esquerda {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }

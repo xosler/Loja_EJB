@@ -12,24 +12,25 @@
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome:" />
-                <p:inputText value="#{managedUsuario.usuario.nome}" />
+                <p:inputText value="#{managedUsuario.usuario.nome}" validatorMessage="Nome inválido" />
 
                 <h:outputText value="Email:" />
-                <p:inputText value="#{managedUsuario.usuario.email}" />
+                <p:inputText value="#{managedUsuario.usuario.email}" validatorMessage="Email inválido" />
 
                 <h:outputText value="Endereço:" />
-                <p:inputText value="#{managedUsuario.usuario.endereco}" />
+                <p:inputText value="#{managedUsuario.usuario.endereco}" validatorMessage="Endereço inválido"/>
 
                 <h:outputText value="Telefone:" />
-                <p:inputText value="#{managedUsuario.usuario.telefone}" />
+                <p:inputText value="#{managedUsuario.usuario.telefone}" validatorMessage="Telefone inválido"/>
 
                 <h:outputText value="Usuário:" />
-                <p:inputText value="#{managedUsuario.usuario.userid}" />
+                <p:inputText value="#{managedUsuario.usuario.userid}" validatorMessage="Username inválido ou já está sendo usado!"/>
 
                 <h:outputText value="Senha:" />
                 <p:password value="#{managedUsuario.usuario.password}" 
                             goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"
-                            promptLabel="Por favor, insira uma senha" />
+                            promptLabel="Por favor, insira uma senha"
+                            validatorMessage="Senha inválida. Mínimo de 6 caracteres!"/>
 
                 <h:outputText value="Confirmação de senha:" />
                 <p:password value="#{managedUsuario.usuario.confirmacaoSenha}"
