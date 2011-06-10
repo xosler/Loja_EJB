@@ -26,6 +26,6 @@ public interface ProdutoServiceLocal {
 
     List<Produto> findAll();
     
-    List<Produto> findByTextCategoria(String t, Categoria c);
+    List<Produto> findByTextCategoria(String t, Categoria c, boolean removerVencidos);
     
 }

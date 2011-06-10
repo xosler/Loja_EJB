@@ -30,6 +30,6 @@ public interface ProdutoFacadeLocal {
 
     int count();
     
-    List<Produto> findByTextCategoria(String t, Categoria c);
+    List<Produto> findByTextCategoria(String t, Categoria c,  boolean removerVencidos);
     
 }

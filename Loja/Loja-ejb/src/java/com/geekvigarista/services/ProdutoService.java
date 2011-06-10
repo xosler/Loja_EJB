@@ -47,7 +47,7 @@ public class ProdutoService implements ProdutoServiceLocal {
     }
 
     @Override
-    public List<Produto> findByTextCategoria(String t, Categoria c) {
-        return dao.findByTextCategoria(t, c);
+    public List<Produto> findByTextCategoria(String t, Categoria c, boolean removerVencidos) {
+        return dao.findByTextCategoria(t, c, removerVencidos);
     }
 }
