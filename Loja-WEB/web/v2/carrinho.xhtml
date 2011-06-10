@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <h:panelGroup id="carrinho">
+                <h1>Meu carrinho</h1>
+                <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
+                    <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
+                </h:panelGroup>
+
+                <p:dataList var="produto" value="#{managedCarrinho.carrinho.produtos}" 
+                            rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
+                            paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
+
+                    <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}" title="Ver detalhes do produto!">    
+                        <h:outputText value="#{produto.nome}" />
+                        <h:outputText value=" + R$ #{produto.preco}" style="color: #ccc" />
+                    </h:link>
+
+                </p:dataList>  
+                <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
+                <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
+                              rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
+            </h:panelGroup>
+    </h:body>
+</html>
+

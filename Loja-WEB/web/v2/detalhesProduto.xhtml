@@ -56,12 +56,20 @@
                                 scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
                         </iframe>
                     </h:panelGrid>
-                    <p:commandButton image="ui-icon ui-icon-plus" 
-                                     value="Adicionar ao carrinho"
-                                     update="formLojaComum:carrinho"
-                                     action="#{managedCarrinho.adicionarAoCarrinho}" >
-                        <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
-                    </p:commandButton>
+                    <h:panelGrid columns="2">
+                        <p:commandButton image="ui-icon ui-icon-plus" 
+                                         value="Adicionar ao carrinho"
+                                         update="carrinho"
+                                         action="#{managedCarrinho.adicionarAoCarrinho}" >
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
+                        </p:commandButton>
+                        <p:commandButton image="ui-icon ui-icon-less"
+                                         value="Remover item do carrinho"
+                                         update="carrinho"
+                                         action="#{managedCarrinho.removerDoCarrinho}" >
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
+                        </p:commandButton>
+                    </h:panelGrid>
                 </h:panelGrid>
 
 

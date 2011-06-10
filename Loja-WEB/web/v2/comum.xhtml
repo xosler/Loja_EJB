@@ -39,26 +39,36 @@
                   draggable="false" closable="false">  
             <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />
         </p:dialog>    
-        <p:layout fullPage="true">
+
+        <p:dialog header="Login" widgetVar="loginBox" modal="true"
+                  showEffect="fade" hideEffect="fade">
+            <ui:include src="login.xhtml" />
+        </p:dialog>
+
+        <p:layout fullPage="true" >
             <p:layoutUnit position="top" height="70">
                 <hgroup>
-                    <h1>SR-Malhas</h1>
-                    <h3>Loja de Roupas</h3>
+                    <h1 id="titulo">SR-Malhas</h1>
+                    <h:form style="right: 10px; position: absolute; top: 20px;">
+                        <h:outputLink rendered="#{empty managedLogin.logado}" value="Login" onclick="loginBox.show(); return false;">Login</h:outputLink>
+                        <h:panelGroup rendered="#{not empty managedLogin.logado}" >
+                            <h:outputText value="Bem vindo #{managedLogin.logado.nome}" />
+                            <h:commandLink id="asd" value="Sair" action="#{managedLogin.logout}" />
+                        </h:panelGroup>
+                    </h:form>
                 </hgroup>
             </p:layoutUnit>
 
             <p:layoutUnit position="left" width="220" scrollable="true" resizable="true">
+                <!--carrinho-->
 
-
-
+                <ui:include src="carrinho.xhtml" />
 
 
             </p:layoutUnit>
 
             <p:layoutUnit position="center" scrollable="true">
-
                 <ui:insert name="content">Content</ui:insert>
-
             </p:layoutUnit>
 
 

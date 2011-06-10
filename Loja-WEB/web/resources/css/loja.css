@@ -35,6 +35,23 @@ a:link:hover, a:visited:hover  {
     text-decoration : underline;
 }
 
+#titulo {
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 0 0 5px #363636;
+    color: #EEE;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+#titulo:hover {
+    text-shadow: 0 0 9px #000;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+}
+
 #lista\:tabelaProdutos
 {
     margin-top: 30px;
