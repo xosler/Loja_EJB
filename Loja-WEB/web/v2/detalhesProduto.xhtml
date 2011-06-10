@@ -33,10 +33,11 @@
                     <h:outputText value="#{managedProduto.produto.descricaoLabel}" escape="false" />
                     <hr />
                     <h:panelGroup>
-                        <h:outputText value="Promoção válida até "/> 
+                        <h:outputText value="Promoção válida até o dia "/> 
                         <h:outputText value="#{managedProduto.produto.dataVencimentoOferta}" styleClass="data">
                             <f:convertDateTime pattern="dd/MM/yyyy" />  
                         </h:outputText>
+                        <h:outputText value=" ou enquanto durar o estoque!" />
                     </h:panelGroup>
                     <hr />
 

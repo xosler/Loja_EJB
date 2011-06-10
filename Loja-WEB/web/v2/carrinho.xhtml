@@ -4,15 +4,15 @@
     <h:head>
     </h:head>
     <h:body>
-        <h:panelGroup id="carrinho">
+        <div id="divcarrinho">
+            <h:panelGroup id="carrinho">
                 <h1>Meu carrinho</h1>
                 <h:panelGroup rendered="#{empty managedCarrinho.carrinho.produtos}"  >
                     <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
                 </h:panelGroup>
 
-                <p:dataList var="produto" value="#{managedCarrinho.carrinho.produtos}" 
-                            rows="12" effect="true" rendered="#{not empty managedCarrinho.carrinho.produtos}"  
-                            paginatorTemplate="{PreviousPageLink}{NextPageLink}">  
+                <p:dataList id="listCarrinho" var="produto" value="#{managedCarrinho.carrinho.produtos}" 
+                            rendered="#{not empty managedCarrinho.carrinho.produtos}"  >  
 
                     <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}" title="Ver detalhes do produto!">    
                         <h:outputText value="#{produto.nome}" />
@@ -24,6 +24,7 @@
                 <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
                               rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
             </h:panelGroup>
+        </div>
     </h:body>
 </html>
 

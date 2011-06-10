@@ -6,8 +6,9 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="content">
-        <h:form>
-
+        <h:form style="margin-left: 20px; margin-top: 20px">
+            <p:growl autoUpdate="true" />
+            <h1>Cadastre-se</h1>
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome:" />
@@ -36,7 +37,7 @@
                             promptLabel="Por favor, insira uma senha" />
 
             </h:panelGrid>
-            <p:commandButton value="Salvar" action="#{managedUsuario.cadastrar}" />
+            <p:commandButton value="Salvar" action="#{managedUsuario.cadastrar}" ajax="false" />
 
         </h:form>
     </ui:define>

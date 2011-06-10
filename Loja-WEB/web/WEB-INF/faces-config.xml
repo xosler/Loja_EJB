@@ -20,5 +20,34 @@
             <from-outcome>cadastro</from-outcome>
             <to-view-id>/v2/cadastro.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/v2/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/v2/comprar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>deslogado</from-outcome>
+            <to-view-id>/v2/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/v2/carrinho.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>comprar</from-outcome>
+            <to-view-id>/v2/comprar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/v2/cadastro.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/v2/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>erro</from-outcome>
+            <to-view-id>/v2/cadastro.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>

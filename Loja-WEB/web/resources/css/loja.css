@@ -21,6 +21,19 @@ h1 {
     padding: 0px;
     color: #363636;
     font-size: 30px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+h1:hover {
+    text-shadow: 0 0 9px #1E90FF;
+}
+
+a {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 a:link, a:visited {
@@ -33,6 +46,13 @@ a:link:hover, a:visited:hover  {
     color: #363636;
     font-weight : bold;
     text-decoration : underline;
+    text-shadow: 0 0 3px lightgreen;
+}
+
+#layoutLoja {
+    -webkit-transition: all 1.5s ease-in-out;
+    -moz-transition: all 1.5s ease-in-out;
+    -o-transition: all 1.5s ease-in-out;
 }
 
 #titulo {
@@ -51,6 +71,7 @@ a:link:hover, a:visited:hover  {
     -moz-transform: rotate(-5deg);
     -o-transform: rotate(-5deg);
 }
+
 
 #lista\:tabelaProdutos
 {

@@ -6,7 +6,9 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -16,17 +18,30 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ManagedUsuario extends ManagedCadastro implements Serializable {
 
-    
     @EJB
     private UsuarioServiceLocal service;
     private Usuario usuario = new Usuario();
     private Long idSelecionado;
+    
+    // injetando o managedLogin aqui!
+    @ManagedProperty(value="#{managedLogin}")
+    ManagedLogin managedLogin;
 
     // CONSTRUTOR
     public ManagedUsuario() {
     }
 
     // GETTERS E SETTERS
+    
+    public ManagedLogin getManagedLogin() {
+        return managedLogin;
+    }
+    
+    // se nao tiver pelo o menos o setter, nao funciona.
+    public void setManagedLogin(ManagedLogin managedLogin) {
+        this.managedLogin = managedLogin;
+    }
+    
     public Long getIdSelecionado() {
         return idSelecionado;
     }
@@ -82,14 +97,19 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
         }
     }
 
-    public void cadastrar() {
+    public String cadastrar() {
         usuario.setGrupo("users");
         if (!usuario.getPassword().equals(usuario.getConfirmacaoSenha())) {
             showMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas não conferem!", "As senhas não conferem!"));
-            return;
+            return "erro";
         }
-        
-        salvar();
-        
+        try {
+            salvar();
+            managedLogin.setLogado(usuario);
+            return "sucesso";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "erro";
+        }
     }
 }

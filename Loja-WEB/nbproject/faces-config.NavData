@@ -2,16 +2,18 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="v2/cadastroCategoria.xhtml" x="350" y="262" zoom="true"/>
-        <Node id="v2/index.xhtml" x="271" y="157" zoom="true"/>
+        <Node id="v2/index.xhtml" x="403" y="105" zoom="true"/>
+        <Node id="v2/cadastroCategoria.xhtml" x="810" y="177" zoom="true"/>
         <Node id="v2/comum.xhtml" x="822" y="68" zoom="true"/>
-        <Node id="v2/listaCategoria.xhtml" x="685" y="262" zoom="true"/>
-        <Node id="v2/cadastroProduto.xhtml" x="11" y="254" zoom="false"/>
-        <Node id="v2/erroLogin.xhtml" x="11" y="166" zoom="true"/>
-        <Node id="v2/listaProduto.xhtml" x="763" y="177" zoom="true"/>
-        <Node id="v2/cadastro.xhtml" x="398" y="49" zoom="true"/>
-        <Node id="v2/detalhesProduto.xhtml" x="774" y="120" zoom="true"/>
-        <Node id="v2/login.xhtml" x="120" y="42" zoom="true"/>
+        <Node id="v2/listaCategoria.xhtml" x="819" y="342" zoom="true"/>
+        <Node id="v2/erroLogin.xhtml" x="-105" y="229" zoom="true"/>
+        <Node id="v2/cadastroProduto.xhtml" x="814" y="239" zoom="false"/>
+        <Node id="v2/carrinho.xhtml" x="73" y="453" zoom="true"/>
+        <Node id="v2/listaProduto.xhtml" x="821" y="287" zoom="true"/>
+        <Node id="v2/detalhesProduto.xhtml" x="366" y="320" zoom="true"/>
+        <Node id="v2/cadastro.xhtml" x="166" y="-68" zoom="true"/>
+        <Node id="v2/comprar.xhtml" x="76" y="317" zoom="true"/>
+        <Node id="v2/login.xhtml" x="113" y="67" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
