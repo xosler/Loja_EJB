@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>SR-Malhas</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            
+            <h:panelGrid columns="2" rendered="#{empty managedLogin.logado}">
+                
+                <h:outputText value="Login:" />
+                <p:inputText value="#{managedLogin.user}" />
+                
+                <h:outputText value="Senha:" />
+                <p:password feedback="false" value="#{managedLogin.password}" />
+                
+                <p:commandButton value="Login" action="#{managedLogin.login}" ajax="false" />
+                <h:commandLink value="Não sou cadastrado." action="cadastro" />
+            </h:panelGrid>
+            <h:panelGroup rendered="#{not empty managedLogin.logado}">
+                <h:outputText value="Você já está logado. (" />
+                <h:commandLink value="Logout"  action="#{managedLogin.logout}" />
+                <h:outputText value=" )" />
+            </h:panelGroup>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+

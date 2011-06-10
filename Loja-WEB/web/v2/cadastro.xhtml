@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comum.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="content">
+        <h:form>
+
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Nome:" />
+                <p:inputText value="#{managedUsuario.usuario.nome}" />
+
+                <h:outputText value="Email:" />
+                <p:inputText value="#{managedUsuario.usuario.email}" />
+
+                <h:outputText value="Endereço:" />
+                <p:inputText value="#{managedUsuario.usuario.endereco}" />
+
+                <h:outputText value="Telefone:" />
+                <p:inputText value="#{managedUsuario.usuario.telefone}" />
+
+                <h:outputText value="Usuário:" />
+                <p:inputText value="#{managedUsuario.usuario.userid}" />
+
+                <h:outputText value="Senha:" />
+                <p:password value="#{managedUsuario.usuario.password}" 
+                            goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"
+                            promptLabel="Por favor, insira uma senha" />
+
+                <h:outputText value="Confirmação de senha:" />
+                <p:password value="#{managedUsuario.usuario.confirmacaoSenha}"
+                            goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"
+                            promptLabel="Por favor, insira uma senha" />
+
+            </h:panelGrid>
+            <p:commandButton value="Salvar" action="#{managedUsuario.cadastrar}" />
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
