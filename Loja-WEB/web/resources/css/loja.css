@@ -4,6 +4,7 @@ root {
 
 *{
     font-family: 'Ubuntu', arial, serif;
+    font-size: 12px;
 }
 
 body {
@@ -19,6 +20,7 @@ h1 {
     margin: 0px;
     padding: 0px;
     color: #363636;
+    font-size: 30px;
 }
 
 a:link, a:visited {
@@ -77,6 +79,5 @@ a:link:hover, a:visited:hover  {
 }
 
 .rodape {
-    font-size: 12px;
     text-align: center;
 }

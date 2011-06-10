@@ -40,6 +40,15 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     @EJB
     private CategoriaServiceLocal servicoCategoria;
     private static final int BUFFER_SIZE = 6124;
+    private boolean removerVencidos = false;
+
+    public boolean isRemoverVencidos() {
+        return removerVencidos;
+    }
+
+    public void setRemoverVencidos(boolean removerVencidos) {
+        this.removerVencidos = removerVencidos;
+    }
 
     public Long getIdCategoriaSelecionada() {
         return idCategoriaSelecionada;
@@ -164,15 +173,42 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             showMensagemErroExcluir(produto.getNome(), e.getLocalizedMessage());
         }
     }
-
+    
+    public void buscarTela()
+    {
+        buscarGen(removerVencidos);
+    }
+    
+    /**
+     * busca somente os produtos que ainda não venceram!
+     * @author Carlos
+     */
     public void buscar() {
+        buscarGen(true);
+    }
+    
+    /**
+     * busca todos, incluindo os vencidos (para edições e tals)
+     * @author Carlos
+     */
+    public void buscarTodos(){
+        buscarGen(false);
+    }
+    
+    /**
+     * busca gerica.
+     * @param removerVencidos true: somente os que ainda nao venceram; false: todos
+     * @see buscarTodos(), buscar()
+     * @author Carlos
+     */
+    public void buscarGen(boolean removerVencidos){
         if (idCategoriaSelecionada == null) {
-            produtos = servico.findByTextCategoria(filtro, null);
+            produtos = servico.findByTextCategoria(filtro, null, removerVencidos);
         } else {
-            produtos = servico.findByTextCategoria(filtro, servicoCategoria.find(idCategoriaSelecionada));
+            produtos = servico.findByTextCategoria(filtro, servicoCategoria.find(idCategoriaSelecionada), removerVencidos);
         }
     }
-
+    
     public void load() {
         if (idSelecionado != null) {
             produto = servico.find(idSelecionado);
@@ -242,7 +278,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
 
     public void selecionarExcluirBuscar() {
         selecionarExcluir();
-        buscar();
+        buscarTela();
     }
     
     public void excluirImagemProduto(){
