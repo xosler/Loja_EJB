@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/loja.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css' />
+        <script language="text/javascript" src="./../resources/js/loja.js" type="text/javascript" />
+        <!--        <script language="text/javascript" src="./../resources/js/jquery-1.6.1.min.js" type="text/javascript" /> jqueryUI da pau com ele.-->
+
+        <title>SR-Malhas</title>
+
+        <meta http-equiv="content-type"
+              content="application/xhtml+xml; charset=utf-8"></meta>
+        <meta http-equiv="content-language" content="pt-br"></meta>
+        <meta name="author"
+              content="Carlos Alexandro Becker, Alexandre Schossler, Rodrigo Baron" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="reply-to" content="" />
+        <meta name="robots" content="index, follow" />
+    </h:head>
+
+    <h:body>
+        <p:ajaxStatus onstart="statusDialog.show();"
+                      oncomplete="statusDialog.hide(); Loja.configuraInicio();"/>  
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
+                  draggable="false" closable="false">  
+            <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />
+        </p:dialog>    
+        <p:layout fullPage="true">
+            <p:layoutUnit position="top" height="70">
+                <hgroup>
+                    <h1>SR-Malhas</h1>
+                    <h3>Loja de Roupas</h3>
+                </hgroup>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="left" width="220" scrollable="true" resizable="true">
+
+
+
+
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" scrollable="true">
+
+                <ui:insert name="content">Content</ui:insert>
+
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="bottom" height="45" styleClass="rodape">
+                Desenvolvido por <a href="http://about.me/caarlos0">Carlos A Becker</a>, 
+                <a href="http://twitter.com/B4r0ns">Rodrigo Baron</a>, 
+                <a href="http://twitter.com/Xosler">Alexandre Schossler</a>. 
+                <br />
+                Copyright 2010, <a href="http://www.geekvigarista.com">http://www.geekvigarista.com</a>
+            </p:layoutUnit>
+        </p:layout>
+
+
+    </h:body>
+
+</html>

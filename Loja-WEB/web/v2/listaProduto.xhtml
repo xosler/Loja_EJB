@@ -7,11 +7,9 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-    <ui:define name="titulo">Produtos</ui:define>
-    <ui:define name="subtitulo"></ui:define>
     <ui:define name="content">
-
-            <h:panelGroup style="width: 100%">
+        
+        <h:panelGroup style="width: 100%">
                 <h:panelGrid columns="3" style="">
                     <h:outputText value="Pesquisar" />
                     <p:inputText value="#{managedProduto.filtro}"/>
@@ -78,8 +76,6 @@
                         </p:commandButton>
                     </p:panel>    
                 </p:column>
-
-
             </p:dataGrid>
     </ui:define>
 

@@ -1,28 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./comun.xhtml"
+                template="./comum.xhtml"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:define name="titulo">
-        Categorias
-    </ui:define>
-
-    <ui:define name="subtitulo">
-        admin
-    </ui:define>
-
     <ui:define name="content">
         <h:form id="listaCategorias">
-            <p:growl id="mensagens" showDetail="true" sticky="false" />
-
             <h:panelGroup style="width: 100%">
                 <h:panelGrid columns="6" style="">
                     <h:outputText value="Pesquisar" />
                     <p:inputText value="#{managedCategoria.filtro}"/>
-                    <p:commandButton value="Buscar" action="#{managedCategoria.buscar}" update=":listaCategorias" />
+                    <p:commandButton value="Buscar" action="#{managedCategoria.buscar}" update="@form" />
                     <p:spacer width="30px" />
                     <h:outputText value="Outras ações: " />
                     <p:commandButton action="#{managedCategoria.novo}" image="ui-icon-document" title="Nova categoria"
@@ -32,10 +22,10 @@
             </h:panelGroup>
 
             <p:dataTable value="#{managedCategoria.categorias}" var="categoria" id="tabelaCategorias" 
-                        paginatorAlwaysVisible="false"
-                        rows="10" paginator="true"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                        rowsPerPageTemplate="5,10,15,20,50" emptyMessage="Nenhuma categoria encontrada.">
+                         paginatorAlwaysVisible="false"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="5,10,15,20,50" emptyMessage="Nenhuma categoria encontrada.">
                 <p:column>
                     <f:facet name="header">id</f:facet>
                     <h:outputText value="#{categoria.id}" />
@@ -53,14 +43,13 @@
                         <f:setPropertyActionListener target="#{managedCategoria.idSelecionado}" 
                                                      value="#{categoria.id}" />
                     </p:commandButton>
-                    <p:commandButton action="#{managedCategoria.selecionarExcluir}" image="ui-icon-trash"
-                                     update=":listaCategorias" title="Excluir" >
+                    <p:commandButton action="#{managedCategoria.selecionarExcluirBuscar}" image="ui-icon-trash"
+                                     update="@form" title="Excluir" >
                         <f:setPropertyActionListener target="#{managedCategoria.idSelecionado}" 
                                                      value="#{categoria.id}" />
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
-
         </h:form>
     </ui:define>
 

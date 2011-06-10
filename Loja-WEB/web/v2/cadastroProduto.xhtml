@@ -1,16 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./comun.xhtml"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="./comum.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:define name="titulo">Cadastro de Produtos</ui:define>
-    <ui:define name="subtitulo"></ui:define>
-    
     <ui:define name="content">
-        <h:panelGroup id="cadastro">
+        <h:form id="cadastro">
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome"/> 
@@ -46,7 +43,8 @@
                                          update="dialogCategoria" image="ui-icon-new" />
                     </p:dialog>
 
-                    <p:selectManyMenu id="manyMenuCategorias" value="#{managedProduto.produto.categorias}" label="Categorias" styleClass="campo-many-menu" >
+                    <p:selectManyMenu id="manyMenuCategorias" value="#{managedProduto.produto.categorias}" 
+                                      label="Categorias" styleClass="campo-many-menu" >
                         <f:converter converterId="categoriaConverter" />
                         <f:selectItems value="#{managedProduto.categorias}" 
                                        var="item" itemLabel="#{item.descricao}" itemValue="#{item}"/>
@@ -65,7 +63,7 @@
                                       multiple="false" 
                                       allowTypes="png,gif,jpg" />
                         <p:commandButton image="ui-icon ui-icon-trash" value="Excluir imagem"
-                                             action="#{managedProduto.excluirImagemProduto}" update="panelUpload"/>
+                                         action="#{managedProduto.excluirImagemProduto}" update="panelUpload"/>
                         <h:panelGroup rendered="#{not empty managedProduto.produto.imagem}" >
                             <p:lightBox id="preimagem">
                                 <h:outputLink value="#{managedProduto.produto.imagem}" title="Imagem" >
@@ -82,7 +80,7 @@
                 </h:panelGroup>
 
             </h:panelGrid>
-            
+
             <h:link style="font-size: 20px" rendered="#{not empty managedProduto.produto.id}" outcome="detalhesProduto.xhtml?produto=#{managedProduto.produto.id}">Link para o produto!</h:link>
             <hr/>
             <p:commandButton title="Salvar produto." action="#{managedProduto.salvar}" 
@@ -91,7 +89,8 @@
                              update="@form" value="Excluir" image="ui-icon-trash" />
             <p:commandButton title="Cadastrar um novo produto." action="#{managedProduto.novo}" 
                              update="@form" value="Novo" image="ui-icon-new" />
-        </h:panelGroup>
+        </h:form>
+
     </ui:define>
 
 </ui:composition>

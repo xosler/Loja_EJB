@@ -11,14 +11,3 @@
 <root>
 
 </root>
-
-<sun-application> 
-  <security-role-mapping> 
-    <role-name>admin-role</role-name> 
-    <principal-name>admins</principal-name> 
-  </security-role-mapping> 
-  <security-role-mapping> 
-    <role-name>ANYONE</role-name> 
-    <group-name>agroup</group-name> 
-  </security-role-mapping> 
-</sun-application>

@@ -22,9 +22,14 @@ public class CategoriaConverter implements Converter {
 
     private CategoriaServiceLocal servico;
 
-    public CategoriaConverter() throws NamingException {
-        InitialContext ic = new InitialContext();
-        servico = (CategoriaServiceLocal) ic.lookup("java:global/Loja/Loja-ejb/CategoriaService");
+    public CategoriaConverter() {
+        try {
+            InitialContext ic = new InitialContext();
+
+            servico = (CategoriaServiceLocal) ic.lookup("java:global/Loja/Loja-ejb/CategoriaService");
+        } catch (Exception e) {
+            System.out.println("Nao consegui criar o converter");
+        }
     }
 
     @Override
