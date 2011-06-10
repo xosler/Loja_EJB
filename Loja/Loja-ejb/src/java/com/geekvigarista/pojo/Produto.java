@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,22 +31,33 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(nullable = false)
+    @NotNull
     private Double preco;
+    
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = false)
+    @NotNull
     private Date dataCadastro;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = true)
     private Date dataVencimentoOferta;
+    
     @Column(nullable = false)
+    @NotNull
     private int quantidadeEmEstoque;
     @Column(nullable = false)
     private String nome;
+    
     @Column(nullable = false)
+    @NotNull
     private String descricao;
     @ManyToMany
     private List<Categoria> categorias;
+    
     private String imagem;
 
     public List<Categoria> getCategorias() {

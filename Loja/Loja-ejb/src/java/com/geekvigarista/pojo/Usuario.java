@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,19 +25,35 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotNull
+    @Size(min = 5)
     @Column(nullable = false, unique = true)
     private String userid;
+    
     @Column(nullable = false)
+    @NotNull
+    @Size(min = 6)
     private String password;
+    
     @Column(nullable = false)
+    @NotNull
+    @Size(min = 10)
     private String nome;
+    
     @Column(nullable = false, unique = true)
+    @NotNull
+    @Size(min = 8)
     private String email;
+    
     @Column(nullable = false)
     private String endereco;
+    
     private String telefone;
+    
     @Transient
     private String confirmacaoSenha;
+    
     @Transient
     private String grupo;
 

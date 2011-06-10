@@ -27,16 +27,20 @@ public class Carrinho implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date data;
+    private Date dataCriacao;
     @ManyToMany
     private List<Produto> produtos = new ArrayList<Produto>();
 
+    public Carrinho() {
+        this.dataCriacao = new Date();
+    }
+
     public Date getData() {
-        return data;
+        return dataCriacao;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.dataCriacao = data;
     }
 
     public List<Produto> getProdutos() {
@@ -67,7 +71,7 @@ public class Carrinho implements Serializable {
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
+        if (this.dataCriacao != other.dataCriacao && (this.dataCriacao == null || !this.dataCriacao.equals(other.dataCriacao))) {
             return false;
         }
         if (this.produtos != other.produtos && (this.produtos == null || !this.produtos.equals(other.produtos))) {
@@ -80,7 +84,7 @@ public class Carrinho implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 59 * hash + (this.data != null ? this.data.hashCode() : 0);
+        hash = 59 * hash + (this.dataCriacao != null ? this.dataCriacao.hashCode() : 0);
         hash = 59 * hash + (this.produtos != null ? this.produtos.hashCode() : 0);
         return hash;
     }

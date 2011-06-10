@@ -24,9 +24,12 @@ public class Compra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     private Double valorTotal;
+    
     @OneToOne
     private Carrinho carrinho;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCompra;
 
