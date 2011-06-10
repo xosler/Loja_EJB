@@ -24,12 +24,11 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false, unique=true)
+    @Column(nullable = false, unique = true)
     private String descricao;
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos;
 
-    
     public Long getId() {
         return id;
     }
@@ -55,22 +54,33 @@ public class Categoria implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Categoria)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Categoria other = (Categoria) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categoria other = (Categoria) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.descricao == null) ? (other.descricao != null) : !this.descricao.equals(other.descricao)) {
+            return false;
+        }
+        if (this.produtos != other.produtos && (this.produtos == null || !this.produtos.equals(other.produtos))) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 19 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
+        hash = 19 * hash + (this.produtos != null ? this.produtos.hashCode() : 0);
+        return hash;
     }
 
     @Override

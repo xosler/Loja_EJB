@@ -19,16 +19,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Compra implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     private Double valorTotal;
-    
     @OneToOne
     private Carrinho carrinho;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCompra;
 
@@ -56,7 +54,6 @@ public class Compra implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -66,27 +63,41 @@ public class Compra implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Compra)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Compra other = (Compra) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Compra other = (Compra) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.valorTotal != other.valorTotal && (this.valorTotal == null || !this.valorTotal.equals(other.valorTotal))) {
+            return false;
+        }
+        if (this.carrinho != other.carrinho && (this.carrinho == null || !this.carrinho.equals(other.carrinho))) {
+            return false;
+        }
+        if (this.dataCompra != other.dataCompra && (this.dataCompra == null || !this.dataCompra.equals(other.dataCompra))) {
             return false;
         }
         return true;
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 67 * hash + (this.valorTotal != null ? this.valorTotal.hashCode() : 0);
+        hash = 67 * hash + (this.carrinho != null ? this.carrinho.hashCode() : 0);
+        hash = 67 * hash + (this.dataCompra != null ? this.dataCompra.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "com.geekvigarista.pojo.Compra[ id=" + id + " ]";
     }
-    
 }

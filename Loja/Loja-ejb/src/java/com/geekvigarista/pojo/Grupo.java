@@ -14,13 +14,13 @@ import javax.persistence.Id;
  *
  * @author carlos
  */
-@Entity(name="grouptable")
+@Entity(name = "grouptable")
 public class Grupo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     private String userid;
     private String groupid;
 
@@ -39,7 +39,7 @@ public class Grupo implements Serializable {
     public void setUserid(String userid) {
         this.userid = userid;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -49,27 +49,37 @@ public class Grupo implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Grupo)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Grupo other = (Grupo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Grupo other = (Grupo) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.userid == null) ? (other.userid != null) : !this.userid.equals(other.userid)) {
+            return false;
+        }
+        if ((this.groupid == null) ? (other.groupid != null) : !this.groupid.equals(other.groupid)) {
             return false;
         }
         return true;
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 47 * hash + (this.userid != null ? this.userid.hashCode() : 0);
+        hash = 47 * hash + (this.groupid != null ? this.groupid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return "com.geekvigarista.pojo.Grupo[ id=" + id + " ]";
     }
-    
 }

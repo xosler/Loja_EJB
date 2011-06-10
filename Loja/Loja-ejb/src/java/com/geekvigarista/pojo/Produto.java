@@ -135,22 +135,61 @@ public class Produto implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Produto)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Produto other = (Produto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produto other = (Produto) obj;
+        if (this.carrinhos != other.carrinhos && (this.carrinhos == null || !this.carrinhos.equals(other.carrinhos))) {
+            return false;
+        }
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.preco != other.preco && (this.preco == null || !this.preco.equals(other.preco))) {
+            return false;
+        }
+        if (this.dataCadastro != other.dataCadastro && (this.dataCadastro == null || !this.dataCadastro.equals(other.dataCadastro))) {
+            return false;
+        }
+        if (this.dataVencimentoOferta != other.dataVencimentoOferta && (this.dataVencimentoOferta == null || !this.dataVencimentoOferta.equals(other.dataVencimentoOferta))) {
+            return false;
+        }
+        if (this.quantidadeEmEstoque != other.quantidadeEmEstoque) {
+            return false;
+        }
+        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
+            return false;
+        }
+        if ((this.descricao == null) ? (other.descricao != null) : !this.descricao.equals(other.descricao)) {
+            return false;
+        }
+        if (this.categorias != other.categorias && (this.categorias == null || !this.categorias.equals(other.categorias))) {
+            return false;
+        }
+        if ((this.imagem == null) ? (other.imagem != null) : !this.imagem.equals(other.imagem)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 73 * hash + (this.carrinhos != null ? this.carrinhos.hashCode() : 0);
+        hash = 73 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 73 * hash + (this.preco != null ? this.preco.hashCode() : 0);
+        hash = 73 * hash + (this.dataCadastro != null ? this.dataCadastro.hashCode() : 0);
+        hash = 73 * hash + (this.dataVencimentoOferta != null ? this.dataVencimentoOferta.hashCode() : 0);
+        hash = 73 * hash + this.quantidadeEmEstoque;
+        hash = 73 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+        hash = 73 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
+        hash = 73 * hash + (this.categorias != null ? this.categorias.hashCode() : 0);
+        hash = 73 * hash + (this.imagem != null ? this.imagem.hashCode() : 0);
+        return hash;
     }
 
     @Override

@@ -5,6 +5,7 @@
 package com.geekvigarista.pojo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,22 +16,26 @@ import javax.persistence.Transient;
  *
  * @author carlos
  */
-@Entity(name="usertable")
+@Entity(name = "usertable")
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    @Column(nullable = false, unique = true)
     private String userid;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String endereco;
     private String telefone;
     @Transient
     private String confirmacaoSenha;
-    
     @Transient
     private String grupo;
 
@@ -41,7 +46,7 @@ public class Usuario implements Serializable {
     public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
-    
+
     public String getConfirmacaoSenha() {
         return confirmacaoSenha;
     }
@@ -97,7 +102,7 @@ public class Usuario implements Serializable {
     public void setUserid(String userid) {
         this.userid = userid;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -108,18 +113,49 @@ public class Usuario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 97 * hash + (this.userid != null ? this.userid.hashCode() : 0);
+        hash = 97 * hash + (this.password != null ? this.password.hashCode() : 0);
+        hash = 97 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+        hash = 97 * hash + (this.email != null ? this.email.hashCode() : 0);
+        hash = 97 * hash + (this.endereco != null ? this.endereco.hashCode() : 0);
+        hash = 97 * hash + (this.telefone != null ? this.telefone.hashCode() : 0);
+        hash = 97 * hash + (this.grupo != null ? this.grupo.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Usuario)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Usuario other = (Usuario) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.userid == null) ? (other.userid != null) : !this.userid.equals(other.userid)) {
+            return false;
+        }
+        if ((this.password == null) ? (other.password != null) : !this.password.equals(other.password)) {
+            return false;
+        }
+        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
+            return false;
+        }
+        if ((this.email == null) ? (other.email != null) : !this.email.equals(other.email)) {
+            return false;
+        }
+        if ((this.endereco == null) ? (other.endereco != null) : !this.endereco.equals(other.endereco)) {
+            return false;
+        }
+        if ((this.telefone == null) ? (other.telefone != null) : !this.telefone.equals(other.telefone)) {
+            return false;
+        }
+        if ((this.grupo == null) ? (other.grupo != null) : !this.grupo.equals(other.grupo)) {
             return false;
         }
         return true;
@@ -129,5 +165,4 @@ public class Usuario implements Serializable {
     public String toString() {
         return "com.geekvigarista.pojo.Usuario[ id=" + id + " ]";
     }
-    
 }
