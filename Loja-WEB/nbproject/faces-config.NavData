@@ -2,20 +2,20 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="v2/index.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="v2/cadastroCategoria.xhtml" x="1568" y="425" zoom="true"/>
-        <Node id="v2/comum.xhtml" x="686" y="28" zoom="true"/>
-        <Node id="v2/editarCarrinho.xhtml" x="499" y="822" zoom="true"/>
-        <Node id="v2/permissao.xhtml" x="1959" y="221" zoom="true"/>
-        <Node id="v2/cadastro.xhtml" x="30" y="221" zoom="true"/>
-        <Node id="v2/listaCategoria.xhtml" x="1568" y="706" zoom="true"/>
-        <Node id="v2/cadastroProduto.xhtml" x="815" y="753" zoom="true"/>
-        <Node id="v2/busca.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="v2/carrinho.xhtml" x="944" y="20" zoom="true"/>
-        <Node id="v2/listaProduto.xhtml" x="479" y="326" zoom="true"/>
-        <Node id="v2/comprar.xhtml" x="1612" y="94" zoom="true"/>
-        <Node id="v2/detalhesProduto.xhtml" x="259" y="108" zoom="true"/>
-        <Node id="v2/login.xhtml" x="1095" y="230" zoom="true"/>
+        <Node id="v2/index.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="v2/cadastroCategoria.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="v2/comum.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="v2/editarCarrinho.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="v2/permissao.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="v2/cadastro.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="v2/listaCategoria.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="v2/cadastroProduto.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="v2/busca.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="v2/carrinho.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="v2/listaProduto.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="v2/comprar.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="v2/detalhesProduto.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="v2/login.xhtml" x="150" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
