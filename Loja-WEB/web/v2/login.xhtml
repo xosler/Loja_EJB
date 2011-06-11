@@ -1,27 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.prime.com.tr/ui"
       xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <link href="./../resources/css/loja.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css' />
+    </h:head>
+
     <h:body>
         <h:form>
-            <p:growl />
-            <h:panelGrid columns="2" rendered="#{empty managedLogin.logado}">
+            <h:panelGroup styleClass="panelCentro">
+                <p:growl />
+                <h1>login</h1>
+                <h:panelGrid columns="2" rendered="#{empty managedLogin.logado}" >
 
-                <h:outputText value="Login:" />
-                <p:inputText value="#{managedLogin.user}" />
+                    <h:outputText value="Login:" />
+                    <p:inputText value="#{managedLogin.user}" />
 
-                <h:outputText value="Senha:" />
-                <p:password feedback="false" value="#{managedLogin.password}" />
+                    <h:outputText value="Senha:" />
+                    <p:password feedback="false" value="#{managedLogin.password}" />
 
-                <p:commandButton value="Login" action="#{managedLogin.login}" ajax="false" />
-                <h:commandLink value="Não sou cadastrado." action="cadastro" />
-            </h:panelGrid>
-            <h:panelGroup rendered="#{not empty managedLogin.logado}">
-                <h:outputText value="Você já está logado. (" />
-                <h:commandLink value="Logout"  action="#{managedLogin.logout}" />
-                <h:outputText value=")" />
+                    <p:commandButton value="Login" action="#{managedLogin.login}" ajax="false" />
+                    <h:commandLink value="Não sou cadastrado." action="cadastro" />
+                </h:panelGrid>
+
+                <h:panelGroup rendered="#{not empty managedLogin.logado}">
+                    <br /><br /><br />
+                    <h:outputText value="Você já está logado. (" />
+                    <h:commandLink value="Logout"  action="#{managedLogin.logout}" />
+                    <h:outputText value=")" />
+                </h:panelGroup>
+
             </h:panelGroup>
-
-
         </h:form>
     </h:body>
 </html>

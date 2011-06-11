@@ -9,8 +9,6 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/loja.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
@@ -49,14 +47,12 @@
             <p:layoutUnit position="top" height="80">
                 <hgroup>
                     <h1 id="titulo">SR-Malhas</h1>
-                    <h:form style="right: 10px; position: absolute; top: 20px;">
-                        <h:outputLink rendered="#{empty managedLogin.logado}" value="Login" onclick="loginBox.show(); return false;">Login</h:outputLink>
-                        <h:panelGroup rendered="#{not empty managedLogin.logado}" >
-                            <h:outputText value="Bem vindo #{managedLogin.logado.nome}" />
-                            <p:spacer width="7px" /><h:outputText value="-" /><p:spacer width="7px" />
-                            <h:commandLink value="Sair" action="#{managedLogin.logout}" />
-                        </h:panelGroup>
-                    </h:form>
+                    <h:outputLink rendered="#{empty managedLogin.logado}" value="Login" onclick="loginBox.show(); return false;">Login</h:outputLink>
+                    <h:panelGroup rendered="#{not empty managedLogin.logado}" >
+                        <h:outputText value="Bem vindo #{managedLogin.logado.nome}" />
+                        <p:spacer width="7px" /><h:outputText value="-" /><p:spacer width="7px" />
+                        <h:commandLink value="Sair" action="#{managedLogin.logout}" />
+                    </h:panelGroup>
                 </hgroup>
             </p:layoutUnit>
 

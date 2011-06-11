@@ -67,7 +67,9 @@
                 </p:column>
 
                 <p:column headerText="Data Cadastro">
-                    <h:outputText value="#{produto.dataCadastro}" />
+                    <h:outputText value="#{produto.data}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />  
+                    </h:outputText>
                 </p:column>
 
                 <p:column headerText="Data vencimento">

@@ -8,7 +8,6 @@ root {
 }
 
 body {
-    background-color: #1E90FF;
     font-size: 12px;
     color: #000000;  
     margin: 10px;
@@ -168,4 +167,18 @@ a:link:hover, a:visited:hover  {
 
 .erro a {
     font-size: 20px;
+}
+
+.panelCentro {
+    text-align: center;
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 50px;
+    width: 300px;
+    border: 1px solid #000;
+    box-shadow: 0 0 20px #363636;
+    -webkit-border-radius: 20px;
+    padding: 20px;
+    height: 150px;
+    background-color: #FAFAFA;
 }
