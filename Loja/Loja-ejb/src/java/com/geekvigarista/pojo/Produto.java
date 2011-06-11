@@ -153,33 +153,33 @@ public class Produto implements Serializable {
             return false;
         }
         final Produto other = (Produto) obj;
-        if (this.carrinhos != other.carrinhos && (this.carrinhos == null || !this.carrinhos.equals(other.carrinhos))) {
-            return false;
-        }
+//        if (this.carrinhos != other.carrinhos && (this.carrinhos == null || !this.carrinhos.equals(other.carrinhos))) {
+//            return false;
+//        }
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if (this.preco != other.preco && (this.preco == null || !this.preco.equals(other.preco))) {
-            return false;
-        }
-        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
-            return false;
-        }
-        if (this.dataVencimentoOferta != other.dataVencimentoOferta && (this.dataVencimentoOferta == null || !this.dataVencimentoOferta.equals(other.dataVencimentoOferta))) {
-            return false;
-        }
-        if (this.quantidadeEmEstoque != other.quantidadeEmEstoque) {
-            return false;
-        }
-        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
-            return false;
-        }
-        if ((this.descricao == null) ? (other.descricao != null) : !this.descricao.equals(other.descricao)) {
-            return false;
-        }
-        if ((this.imagem == null) ? (other.imagem != null) : !this.imagem.equals(other.imagem)) {
-            return false;
-        }
+//        if (this.preco != other.preco && (this.preco == null || !this.preco.equals(other.preco))) {
+//            return false;
+//        }
+////        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
+////            return false;
+////        }
+//        if (this.dataVencimentoOferta != other.dataVencimentoOferta && (this.dataVencimentoOferta == null || !this.dataVencimentoOferta.equals(other.dataVencimentoOferta))) {
+//            return false;
+//        }
+////        if (this.quantidadeEmEstoque != other.quantidadeEmEstoque) {
+////            return false;
+////        }
+//        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
+//            return false;
+//        }
+//        if ((this.descricao == null) ? (other.descricao != null) : !this.descricao.equals(other.descricao)) {
+//            return false;
+//        }
+//        if ((this.imagem == null) ? (other.imagem != null) : !this.imagem.equals(other.imagem)) {
+//            return false;
+//        }
         return true;
     }
 
