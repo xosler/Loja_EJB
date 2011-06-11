@@ -89,6 +89,6 @@ public class ManagedLogin extends ManagedCadastro implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("managedProduto", null);        
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("managedCompra", null);        
         
-        return "sair";
+        return "logout";
     }
 }

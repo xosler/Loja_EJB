@@ -61,13 +61,13 @@
                     <h:panelGrid columns="2">
                         <p:commandButton image="ui-icon ui-icon-plus" 
                                          value="Adicionar ao carrinho"
-                                         update="carrinho"
+                                         update=":carrinho"
                                          action="#{managedCarrinho.adicionarAoCarrinho}" >
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
                         </p:commandButton>
-                        <p:commandButton image="ui-icon ui-icon-less"
+                        <p:commandButton image="ui-icon ui-icon-trash"
                                          value="Remover item do carrinho"
-                                         update="carrinho"
+                                         update=":carrinho"
                                          action="#{managedCarrinho.removerDoCarrinho}" >
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{managedProduto.produto.id}"  />
                         </p:commandButton>

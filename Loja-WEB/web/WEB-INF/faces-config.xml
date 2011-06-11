@@ -29,8 +29,16 @@
 <!--        validar essa ainda-->
         <from-view-id>/v2/comprar.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>deslogado</from-outcome>
+            <from-outcome>login</from-outcome>
             <to-view-id>/v2/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cadastro</from-outcome>
+            <to-view-id>/v2/cadastro.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarCarrinho</from-outcome>
+            <to-view-id>/v2/editarCarrinho.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -42,6 +50,10 @@
         <navigation-case>
             <from-outcome>detalhesProduto</from-outcome>
             <to-view-id>/v2/detalhesProduto.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editar</from-outcome>
+            <to-view-id>/v2/editarCarrinho.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -98,6 +110,10 @@
         <navigation-case>
             <from-outcome>listaCategorias</from-outcome>
             <to-view-id>/v2/listaCategoria.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editarCarrinho</from-outcome>
+            <to-view-id>/v2/editarCarrinho.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>

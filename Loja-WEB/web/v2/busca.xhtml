@@ -20,11 +20,6 @@
                                      oncomplete="Loja.configuraFiltros();" update="tabelaProdutos">
                         <f:setPropertyActionListener target="#{managedProduto.removerVencidos}" value="true" />
                     </p:commandButton>
-                    <p:commandButton value="Buscar Todos" action="#{managedProduto.buscarTodos}"
-                                     title="Buscará todos os produtos, inclusive os que não possuem mais unidades em estoque, e os que venceram."
-                                     oncomplete="Loja.configuraFiltros();" update="tabelaProdutos">
-                        <f:setPropertyActionListener target="#{managedProduto.removerVencidos}" value="false" />
-                    </p:commandButton>
                 </h:panelGrid>
             </h:panelGroup>
 
@@ -64,8 +59,6 @@
                             <h:outputText value="#{produto.descricaoLabel}" escape="false" />
                             <h:outputText value="#{produto.preco}" styleClass="preco preco_lista" />
                         </h:panelGrid>
-                        <p:commandButton value="Detalhes do produto" image="ui-icon ui-icon-search" title="Ver detalhes do produto."
-                                         oncomplete="window.location = 'detalhesProduto.xhtml?produto=#{produto.id}'" />
                         <p:commandButton value="Adicionar ao carrinho" image="ui-icon ui-icon-plus" update=":carrinho" title="Adicionar produto ao carrinho."
                                          action="#{managedCarrinho.adicionarAoCarrinho}">
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
@@ -76,6 +69,8 @@
                                          action="#{managedCarrinho.removerDoCarrinho}">
                             <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
                         </p:commandButton>
+                         <p:commandButton value="Detalhes do produto" image="ui-icon ui-icon-search" title="Ver detalhes do produto."
+                                         oncomplete="window.location = 'detalhesProduto.xhtml?produto=#{produto.id}'" />
                     </p:panel>    
                 </p:column>
 

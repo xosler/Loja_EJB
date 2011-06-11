@@ -3,14 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.prime.com.tr/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/loja.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/css3buttons.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css" />
@@ -40,17 +37,12 @@
             <p:graphicImage value="./../resources/images/ajaxloadingbar.gif" />
         </p:dialog>    
 
-        <p:dialog header="Login" widgetVar="loginBox" modal="true"
-                  showEffect="fade" hideEffect="fade">
-            <ui:include src="login.xhtml" />
-        </p:dialog>
-
         <p:layout fullPage="true" id="layoutLoja" >
             <p:layoutUnit position="top" height="80">
                 <hgroup>
                     <h1 id="titulo">SR-Malhas</h1>
                     <h:panelGroup style="right: 10px; position: absolute; top: 20px;">
-                        <h:outputLink rendered="#{empty managedLogin.logado}" value="Login" onclick="loginBox.show(); return false;">Login</h:outputLink>
+                        <h:outputLink rendered="#{empty managedLogin.logado}" value="login.xhtml">Login</h:outputLink>
                         <h:panelGroup rendered="#{not empty managedLogin.logado}" >
                             <h:outputText value="Bem vindo #{managedLogin.logado.nome}" />
                             <p:spacer width="7px" /><h:outputText value="-" /><p:spacer width="7px" />
@@ -67,6 +59,7 @@
                     <h:panelGroup rendered="#{managedLogin.admin}">
                         <h1>Administração</h1>
                         <ul>
+                            <li><h:outputLink value="index.xhtml">Início</h:outputLink></li>
                             <li><h:outputLink value="cadastroProduto.xhtml">Cadastrar Produtos</h:outputLink></li>
                             <li><h:outputLink value="listaProduto.xhtml">Listar Produtos</h:outputLink></li>
                             <li><h:outputLink value="cadastroCategoria.xhtml">Cadastrar Categorias</h:outputLink></li>
@@ -74,11 +67,16 @@
                             <li><h:outputLink value="cadastro.xhtml">Cadastrar Usuarios</h:outputLink></li>
                         </ul>
                     </h:panelGroup>
-                    <h:panelGroup rendered="#{not empty managedLogin.logado and !managedLogin.admin}">
+
+                    <h:panelGroup rendered="#{!managedLogin.admin}">
                         <h1>Menu</h1>
                         <ul>
+                            <li><h:outputLink value="index.xhtml">Início</h:outputLink></li>
                             <li><h:outputLink value="busca.xhtml">Buscar</h:outputLink></li>
-                            <li><h:outputLink value="cadastro.xhtml">Editar meus dados</h:outputLink></li>
+                            <li><h:outputLink value="cadastro.xhtml">
+                                    <h:outputText value="Cadastre-se" rendered="#{empty managedLogin.logado}" />
+                                    <h:outputText value="Alterar seus dados" rendered="#{not empty managedLogin.logado and !managedLogin.admin}" />
+                                </h:outputLink></li>
                         </ul>
                     </h:panelGroup>
                 </nav>

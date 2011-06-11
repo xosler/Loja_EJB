@@ -11,18 +11,23 @@
                     <h:outputText value="Você ainda não possui nenhum produto no seu carrinho." />
                 </h:panelGroup>
 
-                <p:dataList id="listCarrinho" var="produto" value="#{managedCarrinho.carrinho.produtos}" 
-                            rendered="#{not empty managedCarrinho.carrinho.produtos}"  >  
+                <h:panelGroup rendered="#{not empty managedCarrinho.carrinho.produtos}"  >
+                    <p:dataList id="listCarrinho" var="produto" value="#{managedCarrinho.carrinho.produtos}" 
+                                rendered="#{not empty managedCarrinho.carrinho.produtos}"  >  
 
-                    <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}" title="Ver detalhes do produto!">    
-                        <h:outputText value="#{produto.nome}" />
-                        <h:outputText value=" + R$ #{produto.preco}" style="color: #ccc" />
-                    </h:link>
+                        <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}" title="Ver detalhes do produto!">    
+                            <h:outputText value="#{produto.nome}" />
+                            <h:outputText value=" + R$ #{produto.preco}" style="color: #ccc" />
+                        </h:link>
 
-                </p:dataList>  
-                <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
-                <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
-                              rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
+                    </p:dataList>  
+                    <h:outputText value="Total: " rendered="#{not empty managedCarrinho.carrinho.produtos}" />
+                    <h:outputText styleClass="preco" value="R$ #{managedCarrinho.totalCarrinho}"
+                                  rendered="#{not empty managedCarrinho.carrinho.produtos}"/>
+                    <br />
+                    <h:outputLink value="editarCarrinho.xhtml">Editar produtos do carrinho</h:outputLink><br />
+                    <h:outputLink value="comprar.xhtml">Comprar</h:outputLink>
+                </h:panelGroup>
             </h:panelGroup>
         </div>
     </h:body>

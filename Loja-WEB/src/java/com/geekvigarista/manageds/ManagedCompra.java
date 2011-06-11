@@ -23,6 +23,15 @@ public class ManagedCompra implements Serializable{
     private CompraServiceLocal servico;
     
     private Compra compra = new Compra();
+    private String numeroCartao;
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
+    }
 
     public Compra getCompra() {
         return compra;

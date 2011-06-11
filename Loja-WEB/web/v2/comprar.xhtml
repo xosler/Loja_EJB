@@ -1,12 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comum.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+    <ui:define name="content">
+        <h:form>
+
+            <p:wizard widgetVar="wizardComprar"
+                      nextLabel="Próximo" backLabel="Anterior"
+                      effect="fade" showNavBar="true"
+                      style="font-size: 20px; margin-left: 10px; margin-top: 10px;"
+                      flowListener="#{managedCompra.onFlowProcess}">
+
+                <p:tab id="user" title="Dados do usuário.">  
+                    <h:panelGrid columns="2" rendered="#{not empty managedLogin.logado}">  
+                        <h:outputText value="#{managedLogin.logado.nome}: " />
+                        <h:outputText value="OK" style="color: greenyellow" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" rendered="#{empty managedLogin.logado}">  
+                        <h:outputText value="Você não pode continuar se cadastrar! " />
+                        <span></span>
+                        <h:commandLink value="Já sou cadastrado." action="login" />
+                        <h:commandLink value="Quero me cadastrar." action="cadastro" />
+                    </h:panelGrid>  
+                </p:tab>
+
+                <p:tab id="cartao" title="Dados do cartão de crédito." rendered="#{not empty managedLogin.logado}">
+                    <h:panelGrid columns="2" >  
+                        <h:outputText value="Número do cartão: " />
+                        <p:inputText value="#{managedCompra.numeroCartao}" />
+                    </h:panelGrid>  
+                </p:tab>
+
+                <p:tab  id="produtos" title="Produtos" rendered="#{not empty managedLogin.logado}">  
+                    <p:dataList id="listCarrinho" var="produto" value="#{managedCarrinho.carrinho.produtos}" 
+                                rendered="#{not empty managedCarrinho.carrinho.produtos}"  >  
+
+                        <h:link outcome="detalhesProduto.xhtml?produto=#{produto.id}" title="Ver detalhes do produto!">    
+                            <h:outputText value="#{produto.nome}" />
+                            <h:outputText value=" + R$ #{produto.preco}" style="color: #ccc" />
+                        </h:link>
+
+                    </p:dataList> 
+                    <h:outputText value="Você escolheu um total de #{managedCarrinho.carrinho.produtos.size()} itens, num total de #{managedCarrinho.totalCarrinho} reais." />
+                    <br />
+                    <h:outputText value="Caso tenha interesse de adicionar ou remover itens, pode usar a tabela abaixo:" />
+
+                </p:tab>
+
+            </p:wizard>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
