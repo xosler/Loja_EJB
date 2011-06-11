@@ -100,4 +100,11 @@
             <to-view-id>/v2/listaCategoria.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/v2/listaCategoria.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cadastrar</from-outcome>
+            <to-view-id>/v2/cadastroCategoria.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

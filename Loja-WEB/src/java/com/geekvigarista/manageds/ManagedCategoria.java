@@ -89,9 +89,10 @@ public class ManagedCategoria extends ManagedCadastro implements Serializable {
         }
     }
     
-    public void novo()
+    public String novo()
     {
        categoria = new Categoria();
+       return "cadastrar";
     }
     
     public void excluir()

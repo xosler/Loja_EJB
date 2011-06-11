@@ -7,7 +7,8 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
-        <h:form id="listaCategorias">
+        <ui:include src="permissao.xhtml" />
+        <h:form id="listaCategorias" rendered="#{managedLogin.admin}">
             <p:growl />
             <h:panelGroup style="width: 100%">
                 <h:panelGrid columns="6" style="">
@@ -16,8 +17,7 @@
                     <p:commandButton value="Buscar" action="#{managedCategoria.buscar}" update="@form" />
                     <p:spacer width="30px" />
                     <h:outputText value="Outras ações: " />
-                    <p:commandButton action="#{managedCategoria.novo}" image="ui-icon-document" title="Nova categoria"
-                                     oncomplete="Loja.gotopagina(Loja.Paginas.CAD_CATEGORIA)" >
+                    <p:commandButton action="#{managedCategoria.novo}" ajax="false" image="ui-icon-document" title="Nova categoria">
                     </p:commandButton>
                 </h:panelGrid>
             </h:panelGroup>

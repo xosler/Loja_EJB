@@ -8,7 +8,10 @@
     <ui:define name="content">
         <h:form style="margin-left: 20px; margin-top: 20px">
             <p:growl />
-            <h1>Cadastre-se</h1>
+            <h1>
+                <h:outputText value="Cadastra-se" rendered="#{empty managedLogin.logado}" />
+                <h:outputText value="Alterar seus dados" rendered="#{not empty managedLogin.logado and !managedLogin.admin}" />
+            </h1>
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome:" />

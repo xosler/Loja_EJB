@@ -7,7 +7,9 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
-        <h:form>
+        <ui:include src="permissao.xhtml" />
+        <h:form rendered="#{managedLogin.admin}">
+            <h1>Cadastrar Produtos</h1>
             <p:growl />
             <h:panelGrid columns="2">
 
@@ -34,20 +36,6 @@
 
                 <h:outputText value="Categorias" />
                 <h:panelGroup>
-                    <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
-                              id="dlgCategoriaId" appendToBody="true" 
-                              height="150" showEffect="fade" hideEffect="fade"
-                              modal="true">
-                        <h:panelGrid columns="2" id="dialogCategoria">
-                            <h:outputText value="Nome" />
-                            <p:inputText value="#{managedCategoria.categoria.descricao}" />
-                        </h:panelGrid>
-                        <p:spacer height="10px" />
-                        <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" 
-                                         update="manyMenuCategorias" image="ui-icon-disk" oncomplete="dlgCategoria.hide();" />
-                        <p:commandButton value="Novo" action="#{managedCategoria.novo}" 
-                                         update="dialogCategoria" image="ui-icon-new" />
-                    </p:dialog>
 
                     <p:selectManyMenu id="manyMenuCategorias" value="#{managedProduto.produto.categorias}" 
                                       label="Categorias" styleClass="campo-many-menu" validatorMessage="Categorias inválidas!" >
@@ -55,7 +43,7 @@
                         <f:selectItems value="#{managedProduto.categorias}" 
                                        var="item" itemLabel="#{item.descricao}" itemValue="#{item}"/>
                     </p:selectManyMenu>
-                    <p:commandLink value="Cadastro rápido de categoria!" oncomplete="javascript:dlgCategoria.show()" />
+                    <p:commandLink value="Cadastrar Categoria" action="cadastrarCategoria" ajax="false" />
                 </h:panelGroup>
 
                 <h:outputText value="Imagem: " />
@@ -69,7 +57,9 @@
                                       multiple="false" 
                                       allowTypes="png,gif,jpg" />
                         <p:commandButton image="ui-icon ui-icon-trash" value="Excluir imagem"
-                                         action="#{managedProduto.excluirImagemProduto}" update="panelUpload"/>
+                                         action="#{managedProduto.excluirImagemProduto}" 
+                                         update="panelUpload"/>
+                        
                         <h:panelGroup rendered="#{not empty managedProduto.produto.imagem}" >
                             <p:lightBox id="preimagem">
                                 <h:outputLink value="#{managedProduto.produto.imagem}" title="Imagem" >

@@ -145,3 +145,27 @@ a:link:hover, a:visited:hover  {
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
 }
+
+.erro {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    position: absolute;
+    text-shadow: 0 0 5px #7d7d7d;
+    text-decoration: none;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+}
+
+.erro h2 {
+    font-size: 30px;
+    color: red;
+}
+
+.erro a {
+    font-size: 20px;
+}

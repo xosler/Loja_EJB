@@ -2,6 +2,7 @@ package com.geekvigarista.manageds;
 
 import com.geekvigarista.pojo.Compra;
 import com.geekvigarista.services.CompraServiceLocal;
+import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +15,7 @@ import org.primefaces.event.FlowEvent;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedCompra {
+public class ManagedCompra implements Serializable{
 
     private static Logger logger = Logger.getLogger(ManagedCompra.class.getName());
     

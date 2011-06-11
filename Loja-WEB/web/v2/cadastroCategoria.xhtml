@@ -6,7 +6,9 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="content">
-        <h:form id="cadastroCategoriaCompleto">
+        <ui:include src="permissao.xhtml" />
+        <h:form rendered="#{managedLogin.admin}">
+            <p:growl autoUpdate="true" />
             <h:panelGrid columns="1">
                 <h:outputText value="Descricaoo: "></h:outputText>
                 <p:inputText value="#{managedCategoria.categoria.descricao}"
