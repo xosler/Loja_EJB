@@ -32,7 +32,18 @@ public class Compra implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCompra;
+    
+    @OneToOne
+    private Usuario usuario;
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     public Carrinho getCarrinho() {
         return carrinho;
     }
