@@ -27,10 +27,15 @@
                 </h:panelGrid>
 
                 <h:panelGroup rendered="#{not empty managedLogin.logado}">
-                    <br /><br /><br />
-                    <h:outputText value="Você já está logado. (" />
-                    <h:commandLink value="Logout"  action="#{managedLogin.logout}" />
-                    <h:outputText value=")" />
+                    <br />
+                    <h:outputText value="Olá #{managedLogin.logado.nome}, tem certeza que deseja sair?" />
+                    <br />
+                    <h:commandLink value="Sair" action="#{managedLogin.logout}" style="font-size: 15px !important" />
+                    <p:spacer width="3px" />
+                    <h:outputText value=" - " />
+                    <p:spacer width="3px" />
+                    <h:commandLink value="Voltar ao início" action="sucesso"
+                                   style="font-size: 20px !important"/>
                 </h:panelGroup>
 
             </h:panelGroup>
