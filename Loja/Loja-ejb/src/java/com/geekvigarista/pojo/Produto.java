@@ -27,7 +27,9 @@ public class Produto implements Serializable {
 
     @ManyToMany(mappedBy = "produtos")
     private List<Carrinho> carrinhos;
+    
     private static final long serialVersionUID = 1L;
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,48 +37,34 @@ public class Produto implements Serializable {
     @Column(nullable = false)
     @NotNull
     private Double preco;
-    
-    
+   
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = false)
     @NotNull
-    private Date dataCadastro;
+    private Date data;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = true)
     private Date dataVencimentoOferta;
-    
+   
     @Column(nullable = false)
     @NotNull
     private int quantidadeEmEstoque;
+  
     @Column(nullable = false)
     private String nome;
-    
+  
     @Column(nullable = false)
     @NotNull
     private String descricao;
+    
     @ManyToMany
     private List<Categoria> categorias;
-    
+   
     private String imagem;
 
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    public String getImagem() {
-        if (imagem == null || imagem.trim().equals("")) {
-            return "/resources/images/sem-foto.gif";
-        }
-        return imagem;
-    }
-
-    public void setImagens(String imagem) {
-        this.imagem = imagem;
+    public Produto() {
+        this.data = new Date();
     }
 
     public List<Carrinho> getCarrinhos() {
@@ -87,12 +75,20 @@ public class Produto implements Serializable {
         this.carrinhos = carrinhos;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public Date getDataVencimentoOferta() {
@@ -111,8 +107,12 @@ public class Produto implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getDescricaoLabel() {
-        return descricao != null ? descricao.replaceAll("\n", "<br />") : "";
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -139,12 +139,19 @@ public class Produto implements Serializable {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
 
-    public Long getId() {
-        return id;
+    public String getImagem() {
+        if (imagem == null || imagem.trim().equals("")) {
+            return "/resources/images/sem-foto.gif";
+        }
+        return imagem;
+    }
+    
+    public void setImagem(String imagem) {
+       this.imagem = imagem;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getDescricaoLabel() {
+        return descricao != null ? descricao.replaceAll("\n", "<br />") : "";
     }
 
     @Override
@@ -165,7 +172,7 @@ public class Produto implements Serializable {
         if (this.preco != other.preco && (this.preco == null || !this.preco.equals(other.preco))) {
             return false;
         }
-        if (this.dataCadastro != other.dataCadastro && (this.dataCadastro == null || !this.dataCadastro.equals(other.dataCadastro))) {
+        if (this.data != other.data && (this.data == null || !this.data.equals(other.data))) {
             return false;
         }
         if (this.dataVencimentoOferta != other.dataVencimentoOferta && (this.dataVencimentoOferta == null || !this.dataVencimentoOferta.equals(other.dataVencimentoOferta))) {
@@ -195,7 +202,7 @@ public class Produto implements Serializable {
         hash = 73 * hash + (this.carrinhos != null ? this.carrinhos.hashCode() : 0);
         hash = 73 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 73 * hash + (this.preco != null ? this.preco.hashCode() : 0);
-        hash = 73 * hash + (this.dataCadastro != null ? this.dataCadastro.hashCode() : 0);
+        hash = 73 * hash + (this.data != null ? this.data.hashCode() : 0);
         hash = 73 * hash + (this.dataVencimentoOferta != null ? this.dataVencimentoOferta.hashCode() : 0);
         hash = 73 * hash + this.quantidadeEmEstoque;
         hash = 73 * hash + (this.nome != null ? this.nome.hashCode() : 0);

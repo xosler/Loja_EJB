@@ -18,28 +18,25 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UsuarioService implements UsuarioServiceLocal {
-    
-    
+
     @EJB
     private UsuarioFacadeLocal dao;
-    
     @EJB
     private GrupoFacadeLocal daoGrupo;
-    
+
     @Override
     public void create(Usuario u) {
-        
+
         /* logica pra salvar o grupo também
          * isso tem que ficar transparente pro usuario e pra camada de visao!
-        */
-        if(u.getUserid() != null && !u.getUserid().trim().equals("") 
-                && u.getGrupo() != null && !u.getGrupo().trim().equals(""))
-        {
+         */
+        if (u.getUserid() != null && !u.getUserid().trim().equals("")
+                && u.getGrupo() != null && !u.getGrupo().trim().equals("")) {
             Grupo g = new Grupo();
-            
+
             g.setUserid(u.getUserid());
             g.setGroupid(u.getGrupo());
-            
+
             daoGrupo.create(g);
             dao.create(u);
         }
@@ -54,7 +51,7 @@ public class UsuarioService implements UsuarioServiceLocal {
     @Override
     public void edit(Usuario u) {
         dao.edit(u);
-        if(u.getGrupo() != null && !u.getGrupo().equals("")){
+        if (u.getGrupo() != null && !u.getGrupo().equals("")) {
             daoGrupo.edit(daoGrupo.find(u.getUserid(), u.getGrupo()));
         }
     }
@@ -73,6 +70,10 @@ public class UsuarioService implements UsuarioServiceLocal {
 
     @Override
     public Usuario login(String user, String password) {
-        return dao.login( user,  password);
+        Usuario u = dao.login(user, password);
+        if (u != null) {
+            u.setGrupo(daoGrupo.find(u.getUserid(), null).getGroupid());
+        }
+        return u;
     }
 }
