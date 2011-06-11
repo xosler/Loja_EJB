@@ -27,40 +27,30 @@ public class Produto implements Serializable {
 
     @ManyToMany(mappedBy = "produtos")
     private List<Carrinho> carrinhos;
-    
     private static final long serialVersionUID = 1L;
-   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     @Column(nullable = false)
     @NotNull
     private Double preco;
-   
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = false)
     @NotNull
     private Date data;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(nullable = true)
     private Date dataVencimentoOferta;
-   
     @Column(nullable = false)
     @NotNull
     private int quantidadeEmEstoque;
-  
     @Column(nullable = false)
     private String nome;
-  
     @Column(nullable = false)
     @NotNull
     private String descricao;
-    
     @ManyToMany
     private List<Categoria> categorias;
-   
     private String imagem;
 
     public Produto() {
@@ -145,9 +135,9 @@ public class Produto implements Serializable {
         }
         return imagem;
     }
-    
+
     public void setImagem(String imagem) {
-       this.imagem = imagem;
+        this.imagem = imagem;
     }
 
     public String getDescricaoLabel() {
@@ -185,9 +175,6 @@ public class Produto implements Serializable {
             return false;
         }
         if ((this.descricao == null) ? (other.descricao != null) : !this.descricao.equals(other.descricao)) {
-            return false;
-        }
-        if (this.categorias != other.categorias && (this.categorias == null || !this.categorias.equals(other.categorias))) {
             return false;
         }
         if ((this.imagem == null) ? (other.imagem != null) : !this.imagem.equals(other.imagem)) {
