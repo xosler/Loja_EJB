@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comum.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="content">
+         <h:form>
+             <h1>Produtos</h1>
+            <p:growl />
+            <h:panelGroup style="width: 100%">
+                <h:panelGrid columns="4" style="">
+                    <h:outputText value="Pesquisar" />
+                    <p:inputText value="#{managedProduto.filtro}"/>
+                    <p:commandButton value="Buscar" action="#{managedProduto.buscar}"
+                                     title="Buscará somente os produtos que ainda estão a venda, ou seja, os que ainda possuem unidades em estoque, e os que ainda não venceram."
+                                     oncomplete="Loja.configuraFiltros();" update="tabelaProdutos">
+                        <f:setPropertyActionListener target="#{managedProduto.removerVencidos}" value="true" />
+                    </p:commandButton>
+                    <p:commandButton value="Buscar Todos" action="#{managedProduto.buscarTodos}"
+                                     title="Buscará todos os produtos, inclusive os que não possuem mais unidades em estoque, e os que venceram."
+                                     oncomplete="Loja.configuraFiltros();" update="tabelaProdutos">
+                        <f:setPropertyActionListener target="#{managedProduto.removerVencidos}" value="false" />
+                    </p:commandButton>
+                </h:panelGrid>
+            </h:panelGroup>
+
+            <h:panelGroup id="panelFiltros" style="float: right; padding-bottom: 5px; width: 100%">
+                <h:outputText value="Filtro por categoria: " />
+                <p:spacer width="3px" />
+                <c:forEach items="#{managedProduto.categorias}" var="c">
+                    <p:commandLink value="#{c.descricao}" styleClass="botao-filtro pill middle _button" 
+                                   update="tabelaProdutos"
+                                   oncomplete="Loja.configuraFiltros();" action="#{managedProduto.buscar}">
+                        <f:setPropertyActionListener target="#{managedProduto.idCategoriaSelecionada}" value="#{c.id}" />
+                    </p:commandLink>
+                </c:forEach>
+                <p:spacer width="10px" />
+                <p:commandLink value="Remover Filtro" action="#{managedProduto.removerFiltro}" 
+                               styleClass="primary pill  _button" oncomplete="Loja.configuraFiltros();"
+                               update="tabelaProdutos" />
+            </h:panelGroup>
+
+           <p:dataGrid id="tabelaProdutos" value="#{managedProduto.produtos}" var="produto" style="margin-top: 100px;"
+                        columns="3" paginatorAlwaysVisible="false"
+                        rows="10" paginator="true" effect="true"  
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="5,10,15,20,50"> 
+                <p:column>
+
+                    <p:panel header="#{produto.nome}" style="text-align: center; width: 100%; height: 100%">
+                        <h:panelGrid columns="1" style="width: 100%">
+                            <p:lightBox>  
+                                <h:outputLink title="#{produto.nome}"> 
+                                    <p:graphicImage value="#{produto.imagem}" height="150px" />
+                                </h:outputLink>
+                                <f:facet name="inline">  
+                                    <p:graphicImage value="#{produto.imagem}" height="500px" />
+                                </f:facet>  
+                            </p:lightBox>  
+                            <h:outputText value="#{produto.descricaoLabel}" escape="false" />
+                            <h:outputText value="#{produto.preco}" styleClass="preco preco_lista" />
+                        </h:panelGrid>
+                        <p:commandButton value="Detalhes do produto" image="ui-icon ui-icon-search" title="Ver detalhes do produto."
+                                         oncomplete="window.location = 'detalhesProduto.xhtml?produto=#{produto.id}'" />
+                        <p:commandButton value="Adicionar ao carrinho" image="ui-icon ui-icon-plus" update=":carrinho" title="Adicionar produto ao carrinho."
+                                         action="#{managedCarrinho.adicionarAoCarrinho}">
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
+                        </p:commandButton>
+                        <p:commandButton image="ui-icon ui-icon-less"
+                                         value="Remover item do carrinho"
+                                         update=":carrinho"
+                                         action="#{managedCarrinho.removerDoCarrinho}">
+                            <f:setPropertyActionListener target="#{managedCarrinho.idProdutoSelecionado}" value="#{produto.id}"  />
+                        </p:commandButton>
+                    </p:panel>    
+                </p:column>
+
+
+            </p:dataGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -9,7 +9,8 @@
         <h:form id="cadastroCategoriaCompleto">
             <h:panelGrid columns="1">
                 <h:outputText value="Descricaoo: "></h:outputText>
-                <p:inputText value="#{managedCategoria.categoria.descricao}"></p:inputText>
+                <p:inputText value="#{managedCategoria.categoria.descricao}"
+                             validatorMessage="Descrição inválida!"></p:inputText>
             </h:panelGrid>
 
             <p:commandButton title="Salvar categoria." action="#{managedCategoria.salvar}" 

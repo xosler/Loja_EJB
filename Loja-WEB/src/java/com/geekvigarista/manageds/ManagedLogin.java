@@ -8,7 +8,9 @@ import com.geekvigarista.pojo.Usuario;
 import com.geekvigarista.services.UsuarioServiceLocal;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -17,16 +19,26 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedLogin implements Serializable {
+public class ManagedLogin extends ManagedCadastro implements Serializable {
 
     private Usuario logado = null;
     private String user;
     private String password;
     @EJB
     private UsuarioServiceLocal service;
+    
+    public boolean isAdmin() {
+        if (logado != null) {
+            if (logado.getGrupo() != null && logado.getGrupo().equals("admins")) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public Usuario getLogado() {
-        return logado;  
+        return logado;
     }
 
     public void setLogado(Usuario logado) {
@@ -59,6 +71,7 @@ public class ManagedLogin implements Serializable {
             logado = u;
             return "sucesso";
         } else {
+            showMessage(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Falha no login!", "Usuário e/ou senha inválidos!"));
             return "erro";
         }
     }

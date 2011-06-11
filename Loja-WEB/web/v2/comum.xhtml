@@ -46,7 +46,7 @@
         </p:dialog>
 
         <p:layout fullPage="true" id="layoutLoja" >
-            <p:layoutUnit position="top" height="70">
+            <p:layoutUnit position="top" height="80">
                 <hgroup>
                     <h1 id="titulo">SR-Malhas</h1>
                     <h:form style="right: 10px; position: absolute; top: 20px;">
@@ -62,7 +62,26 @@
 
             <p:layoutUnit position="left" width="220" scrollable="true" resizable="true" styleClass="esquerda">
                 <!--carrinho-->
+                <nav>
 
+                    <h:panelGroup rendered="#{managedLogin.admin}">
+                        <h1>Administração</h1>
+                        <ul>
+                            <li><h:outputLink value="cadastroProduto.xhtml">Cadastrar Produtos</h:outputLink></li>
+                            <li><h:outputLink value="listaProduto.xhtml">Listar Produtos</h:outputLink></li>
+                            <li><h:outputLink value="cadastroCategoria.xhtml">Cadastrar Categorias</h:outputLink></li>
+                            <li><h:outputLink value="listaCategoria.xhtml">Listar Categorias</h:outputLink></li>
+                            <li><h:outputLink value="cadastro.xhtml">Cadastrar Usuarios</h:outputLink></li>
+                        </ul>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty managedLogin.logado and !managedLogin.admin}">
+                        <h1>Menu</h1>
+                        <ul>
+                            <li><h:outputLink value="busca.xhtml">Buscar</h:outputLink></li>
+                            <li><h:outputLink value="cadastro.xhtml">Editar meus dados</h:outputLink></li>
+                        </ul>
+                    </h:panelGroup>
+                </nav>
                 <ui:include src="carrinho.xhtml" />
 
 

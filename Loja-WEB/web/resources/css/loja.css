@@ -19,8 +19,10 @@ h1 {
     font-weight: bold;
     margin: 0px;
     padding: 0px;
+    text-align: center;
+    text-decoration: underline;
     color: #363636;
-    font-size: 30px;
+    font-size: 35px;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
@@ -46,7 +48,8 @@ a:link:hover, a:visited:hover  {
     color: #363636;
     font-weight : bold;
     text-decoration : underline;
-    text-shadow: 0 0 3px lightgreen;
+    text-shadow: 0 0 6px #1E90FF;
+    color: #000;
 }
 
 #layoutLoja {
@@ -57,19 +60,22 @@ a:link:hover, a:visited:hover  {
 
 #titulo {
     text-align: center;
-    font-size: 50px;
+    font-size: 55px;
     text-shadow: 0 0 5px #363636;
-    color: #EEE;
+    color: #7fb5e8;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
 }
 
-#titulo:hover {
+#titulo:hover{
     text-shadow: 0 0 9px #000;
-    -webkit-transform: rotate(-5deg);
-    -moz-transform: rotate(-5deg);
-    -o-transform: rotate(-5deg);
+    -webkit-transform: rotate(-3deg) scale(1.2);
+    -moz-transform: rotate(-3deg) scale(1.2);
+    -o-transform: rotate(-3deg) scale(1.2);
 }
 
 

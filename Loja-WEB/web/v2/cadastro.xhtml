@@ -7,7 +7,7 @@
 
     <ui:define name="content">
         <h:form style="margin-left: 20px; margin-top: 20px">
-            <p:growl autoUpdate="true" />
+            <p:growl />
             <h1>Cadastre-se</h1>
             <h:panelGrid columns="2">
 
@@ -29,13 +29,13 @@
                 <h:outputText value="Senha:" />
                 <p:password value="#{managedUsuario.usuario.password}" 
                             goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"
-                            promptLabel="Por favor, insira uma senha"
+                            promptLabel="Por favor, insira uma senha" minLength="6"
                             validatorMessage="Senha inválida. Mínimo de 6 caracteres!"/>
 
                 <h:outputText value="Confirmação de senha:" />
                 <p:password value="#{managedUsuario.usuario.confirmacaoSenha}"
                             goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"
-                            promptLabel="Por favor, insira uma senha" />
+                            promptLabel="Por favor, insira uma senha" minLength="6" />
 
             </h:panelGrid>
             <p:commandButton value="Salvar" action="#{managedUsuario.cadastrar}" ajax="false" />

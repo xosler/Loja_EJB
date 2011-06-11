@@ -145,7 +145,6 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
             if (produto != null) {
 
                 if (produto.getId() == null) {
-                    produto.setDataCadastro(new Date());
                     servico.create(produto);
                 } else {
                     servico.edit(produto);
@@ -260,7 +259,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
                     + " enviado com sucesso.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
 
-            produto.setImagens("/files/" + nomeArquivo);
+            produto.setImagem("/files/" + nomeArquivo);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -282,6 +281,6 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
     }
     
     public void excluirImagemProduto(){
-        produto.setImagens("");
+        produto.setImagem("");
     }
 }

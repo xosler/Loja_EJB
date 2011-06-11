@@ -7,30 +7,36 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
-        <h:form id="cadastro">
+        <h:form>
+            <p:growl />
             <h:panelGrid columns="2">
 
                 <h:outputText value="Nome"/> 
-                <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo" />
+                <p:inputText value="#{managedProduto.produto.nome}" label="Nome" styleClass="campo"
+                             validatorMessage="Nome inválido!"/>
 
                 <h:outputText value="Descrição"/> 
-                <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" />
+                <p:inputTextarea value="#{managedProduto.produto.descricao}" label="Descrição" styleClass="campo" 
+                                 validatorMessage="Descrição inválida!"/>
 
                 <h:outputText value="Preço"/> 
-                <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" />
+                <p:inputText value="#{managedProduto.produto.preco}" label="Preço" styleClass="campo" 
+                             validatorMessage="Preço inválido!"/>
 
                 <h:outputText value="Quantidade em estoque"/> 
                 <p:inputText value="#{managedProduto.produto.quantidadeEmEstoque}" label="Quantidade em estoque" 
-                             styleClass="campo" />
+                             styleClass="campo" validatorMessage="Quantidade em estoque inválida!" />
 
-                <h:outputText value="Data vencimento oferta"/> 
-                <p:calendar value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" 
-                            styleClass="campo-data" />
+                <h:outputText value="Data de vencimento da oferta"/> 
+                <p:calendar autocomplete="true" effect="fade"
+                            value="#{managedProduto.produto.dataVencimentoOferta}" label="Data vencimento oferta" 
+                            styleClass="campo-data" validatorMessage="Data de Vencimento da oferta inválida!" />
 
                 <h:outputText value="Categorias" />
                 <h:panelGroup>
                     <p:dialog header="Cadastrar categoria" widgetVar="dlgCategoria" 
-                              showEffect="explode" hideEffect="explode" height="150"
+                              id="dlgCategoriaId" appendToBody="true" 
+                              height="150" showEffect="fade" hideEffect="fade"
                               modal="true">
                         <h:panelGrid columns="2" id="dialogCategoria">
                             <h:outputText value="Nome" />
@@ -38,18 +44,18 @@
                         </h:panelGrid>
                         <p:spacer height="10px" />
                         <p:commandButton value="Salvar" action="#{managedCategoria.salvar}" 
-                                         update="dialogCategoria, manyMenuCategorias" image="ui-icon-disk" />
+                                         update="manyMenuCategorias" image="ui-icon-disk" oncomplete="dlgCategoria.hide();" />
                         <p:commandButton value="Novo" action="#{managedCategoria.novo}" 
                                          update="dialogCategoria" image="ui-icon-new" />
                     </p:dialog>
 
                     <p:selectManyMenu id="manyMenuCategorias" value="#{managedProduto.produto.categorias}" 
-                                      label="Categorias" styleClass="campo-many-menu" >
+                                      label="Categorias" styleClass="campo-many-menu" validatorMessage="Categorias inválidas!" >
                         <f:converter converterId="categoriaConverter" />
                         <f:selectItems value="#{managedProduto.categorias}" 
                                        var="item" itemLabel="#{item.descricao}" itemValue="#{item}"/>
                     </p:selectManyMenu>
-                    <p:commandLink value="Nova categoria" oncomplete="dlgCategoria.show();" />
+                    <p:commandLink value="Cadastro rápido de categoria!" oncomplete="javascript:dlgCategoria.show()" />
                 </h:panelGroup>
 
                 <h:outputText value="Imagem: " />
