@@ -26,16 +26,6 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
     // injetando outros manageds aqui!
     @ManagedProperty(value = "#{managedLogin}")
     private ManagedLogin managedLogin;
-    @ManagedProperty(value = "#{managedCompra}")
-    private ManagedCompra managedCompra;
-
-    public ManagedCompra getManagedCompra() {
-        return managedCompra;
-    }
-
-    public void setManagedCompra(ManagedCompra managedCompra) {
-        this.managedCompra = managedCompra;
-    }
 
     public ManagedLogin getManagedLogin() {
         return managedLogin;
@@ -94,21 +84,5 @@ public class ManagedCarrinho extends ManagedCadastro implements Serializable {
             total += p.getPreco();
         }
         return total;
-    }
-
-    public String iniciarCompra() {
-        if (managedLogin != null && managedLogin.getLogado() != null) {
-            if(managedCompra != null)
-            {
-                Compra c = new Compra();
-                c.setCarrinho(carrinho);
-                c.setValorTotal(getTotalCarrinho());
-                managedCompra.setCompra(c);
-                return "comprar";
-            }
-        } else {
-            return "deslogado";
-        }
-        return "erro";
     }
 }

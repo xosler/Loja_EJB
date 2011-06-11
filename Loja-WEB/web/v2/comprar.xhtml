@@ -51,6 +51,12 @@
                     <h:outputText value="Caso tenha interesse de adicionar ou remover itens, pode usar a tabela abaixo:" />
 
                 </p:tab>
+                <p:tab  id="concluir" title="Concluir compra" rendered="#{not empty managedLogin.logado}">
+                    bla bla bla bla
+                    
+                    <p:commandButton ajax="false" action="#{managedCompra.comprar}" value="Concluir essa merda" />
+                    
+                </p:tab>
 
             </p:wizard>
         </h:form>

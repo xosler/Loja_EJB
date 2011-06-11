@@ -13,7 +13,7 @@
         <Node id="v2/busca.xhtml" x="900" y="300" zoom="true"/>
         <Node id="v2/carrinho.xhtml" x="944" y="20" zoom="true"/>
         <Node id="v2/listaProduto.xhtml" x="479" y="326" zoom="true"/>
-        <Node id="v2/comprar.xhtml" x="1619" y="122" zoom="true"/>
+        <Node id="v2/comprar.xhtml" x="1612" y="94" zoom="true"/>
         <Node id="v2/detalhesProduto.xhtml" x="259" y="108" zoom="true"/>
         <Node id="v2/login.xhtml" x="1095" y="230" zoom="true"/>
     </Scope>

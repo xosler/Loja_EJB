@@ -40,6 +40,10 @@
             <from-outcome>editarCarrinho</from-outcome>
             <to-view-id>/v2/editarCarrinho.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>erro</from-outcome>
+            <to-view-id>/v2/comprar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/v2/carrinho.xhtml</from-view-id>
@@ -121,6 +125,13 @@
         <navigation-case>
             <from-outcome>cadastrar</from-outcome>
             <to-view-id>/v2/cadastroCategoria.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/v2/permissao.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/v2/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
