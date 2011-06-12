@@ -13,8 +13,8 @@
         <Node id="v2/busca.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="v2/carrinho.xhtml" x="150" y="150" zoom="true"/>
         <Node id="v2/listaProduto.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="v2/detalhesProduto.xhtml" x="386" y="148" zoom="true"/>
         <Node id="v2/comprar.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="v2/detalhesProduto.xhtml" x="400" y="150" zoom="true"/>
         <Node id="v2/login.xhtml" x="150" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

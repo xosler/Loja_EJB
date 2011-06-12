@@ -282,4 +282,9 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
         System.out.println("passie aqui");
         produto.setImagem("");
     }
+    
+    public String editar(){
+        load();
+        return "editar";
+    }
 }

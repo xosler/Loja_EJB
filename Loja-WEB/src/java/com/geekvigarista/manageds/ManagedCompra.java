@@ -143,7 +143,8 @@ public class ManagedCompra extends ManagedCadastro implements Serializable {
                 showMessage(new FacesMessage(
                         FacesMessage.SEVERITY_ERROR,
                         "Esgotado!",
-                        "O produto " + pro.getNome() + " não possui unidades suficientes em estoque. Tente diminuir a quantidade desse item."));
+                        ("O produto \"" + pro.getNome() + "\" não possui unidades suficientes em estoque. "
+                        + "Tente diminuir a quantidade desse item.")));
                 return "erro";
             }
 
@@ -189,11 +190,17 @@ public class ManagedCompra extends ManagedCadastro implements Serializable {
         // se nada explodiu até agora, limpo o lixo!
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("managedCarrinho", null);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("managedProduto", null);
-        compra = new Compra();
         System.gc();
 
         //TODO MENSAGEM SUCESSO!
-        logger.info("Fim do processo de compra!");
+        logger.info("Fim do processo de compra! ID: " + compra.getId() + ", user: " + compra.getUsuario().getId());
+        
+         showMessage(new FacesMessage(
+                        FacesMessage.SEVERITY_INFO,
+                        "Sucessp",
+                        ("Compra realizada com sucesso. Obrigado.")));
+        
+        compra = new Compra();
         return "sucesso";
     }
 

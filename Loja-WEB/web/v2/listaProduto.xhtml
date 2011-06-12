@@ -86,9 +86,8 @@
                                                      value="#{produto.id}"  />
                     </p:commandButton>
                     <p:commandButton image="ui-icon ui-icon-pencil" 
-                                     oncomplete="Loja.gotopagina(Loja.Paginas.CAD_PRODUTO);"
-                                     title="Editar produto."
-                                     action="#{managedProduto.load}">
+                                     title="Editar produto." ajax="false"
+                                     action="#{managedProduto.editar}">
                         <f:setPropertyActionListener target="#{managedProduto.idSelecionado}" 
                                                      value="#{produto.id}"  />
                     </p:commandButton>
