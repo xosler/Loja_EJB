@@ -186,16 +186,16 @@ public class Produto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 73 * hash + (this.carrinhos != null ? this.carrinhos.hashCode() : 0);
+//        hash = 73 * hash + (this.carrinhos != null ? this.carrinhos.hashCode() : 0);
         hash = 73 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 73 * hash + (this.preco != null ? this.preco.hashCode() : 0);
-        hash = 73 * hash + (this.data != null ? this.data.hashCode() : 0);
-        hash = 73 * hash + (this.dataVencimentoOferta != null ? this.dataVencimentoOferta.hashCode() : 0);
-        hash = 73 * hash + this.quantidadeEmEstoque;
-        hash = 73 * hash + (this.nome != null ? this.nome.hashCode() : 0);
-        hash = 73 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
-        hash = 73 * hash + (this.categorias != null ? this.categorias.hashCode() : 0);
-        hash = 73 * hash + (this.imagem != null ? this.imagem.hashCode() : 0);
+//        hash = 73 * hash + (this.preco != null ? this.preco.hashCode() : 0);
+//        hash = 73 * hash + (this.data != null ? this.data.hashCode() : 0);
+//        hash = 73 * hash + (this.dataVencimentoOferta != null ? this.dataVencimentoOferta.hashCode() : 0);
+//        hash = 73 * hash + this.quantidadeEmEstoque;
+//        hash = 73 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+//        hash = 73 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
+//        hash = 73 * hash + (this.categorias != null ? this.categorias.hashCode() : 0);
+//        hash = 73 * hash + (this.imagem != null ? this.imagem.hashCode() : 0);
         return hash;
     }
 

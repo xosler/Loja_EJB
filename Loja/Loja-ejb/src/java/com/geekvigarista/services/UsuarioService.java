@@ -76,4 +76,9 @@ public class UsuarioService implements UsuarioServiceLocal {
         }
         return u;
     }
+
+    @Override
+    public List<Usuario> find(String param) {
+        return dao.find(param);
+    }
 }

@@ -52,4 +52,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
         return null;
     }
+
+    public List<Usuario> find(String param) {
+        CriteriaBuilder qb = em.getCriteriaBuilder();
+        CriteriaQuery<Usuario> query = qb.createQuery(Usuario.class);
+        Root<Usuario> usuario = query.from(Usuario.class);
+
+        param = "%" + param + "%";
+
+        query.where(qb.or(qb.like(usuario.<String>get("userid"), param),
+                qb.like(usuario.<String>get("email"), param),
+                qb.like(usuario.<String>get("nome"), param),
+                qb.like(usuario.<String>get("telefone"), param),
+                qb.like(usuario.<String>get("endereco"), param)));
+        
+        return em.createQuery(query).getResultList();
+    }
 }

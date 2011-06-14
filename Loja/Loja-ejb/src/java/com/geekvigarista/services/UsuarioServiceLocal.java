@@ -26,4 +26,6 @@ public interface UsuarioServiceLocal {
     List<Usuario> findAll();
 
     Usuario login(String user, String password);
+
+    List<Usuario> find(String param);
 }
