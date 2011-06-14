@@ -7,10 +7,10 @@
 
     <ui:define name="content">
         <p:carousel value="#{managedProduto.listaProdutos}" var="prod"
-                    autoPlayInterval="2500" 
-                    rows="2" effect="easeInStrong" circular="true" >
+                    autoPlayInterval="2500" style="text-align: center; position: absolute; margin-left: 30%"
+                    rows="1" effect="easeInStrong" circular="true" >
             <h:link outcome="detalhesProduto.xhtml?produto=#{prod.id}">
-                <h:panelGrid columns="1" style="width: 100%" cellpadding="4  ">
+                <h:panelGrid columns="1" style="width: 400px" >
                     <h:outputText value="Nome:  #{prod.nome}" />
                     <p:graphicImage value="#{prod.imagem}" width="200px" height="200px" />         
                 </h:panelGrid>

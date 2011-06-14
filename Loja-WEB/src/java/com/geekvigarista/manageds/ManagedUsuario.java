@@ -158,7 +158,7 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
         }
         try {
             salvar();
-            if (managedLogin != null && managedLogin.logado != null) {
+            if (managedLogin != null && managedLogin.getLogado() != null) {
                 managedLogin.setLogado(usuario);
             }
             return "sucesso";
