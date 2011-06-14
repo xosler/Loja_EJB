@@ -27,6 +27,20 @@ h1 {
     -o-transition: all 0.5s ease-in-out;
 }
 
+h2 {
+    font-family: 'Ubuntu', arial, serif;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    text-decoration: underline;
+    color: #363636;
+    font-size: 23px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
 h1:hover {
     text-shadow: 0 0 9px #1E90FF;
 }

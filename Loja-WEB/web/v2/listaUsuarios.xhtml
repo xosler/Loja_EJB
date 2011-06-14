@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./comum.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <ui:include src="permissao.xhtml" />
+        <h:form rendered="#{managedLogin.admin}">
+            <h1>Lista Usuários</h1>
+            <p:growl />
+            <h:panelGroup style="width: 100%">
+                <h:panelGrid columns="6" style="">
+                    <h:outputText value="Pesquisar" />
+                    <p:inputText value="#{managedUsuario.filtro}"/>
+                    <p:commandButton value="Buscar" action="#{managedUsuario.buscar}" update="@form" />
+                    <p:spacer width="30px" />
+                    <h:outputText value="Outras ações: " />
+                    <p:commandButton action="#{managedUsuario.novo}" ajax="false" image="ui-icon-document" title="Novo Usuário">
+                    </p:commandButton>
+                </h:panelGrid>
+            </h:panelGroup>
+
+             <p:dataTable id="tabelaUsuarios" value="#{managedUsuario.usuarios}" var="usuario" style=""
+                         paginatorAlwaysVisible="false"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="5,10,15,20,50">
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{usuario.id}" />
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{usuario.nome}" />
+                </p:column>
+                <p:column headerText="Userid">
+                    <h:outputText value="#{usuario.userid}" />
+                </p:column>
+                <p:column headerText="Grupo">
+                    <h:outputText value="#{usuario.grupo}" />
+                </p:column>
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{usuario.endereco}" />
+                </p:column>
+                 <p:column headerText="Telefone">
+                     <h:outputText value="#{usuario.telefone}" />
+                </p:column>
+                
+                <p:column>
+                    <p:commandButton image="ui-icon ui-icon-pencil" ajax="false" title="Editar Usuário."
+                                     action="#{managedUsuario.editar}">
+                        <f:setPropertyActionListener target="#{managedUsuario.idSelecionado}" 
+                                                     value="#{usuario.id}"  />
+                    </p:commandButton>
+                    
+                    <p:commandButton image="ui-icon ui-icon-trash" update="tabelaUsuarios" title="Excluir Usuário."
+                                     action="#{managedUsuario.selecionarExcluirBuscar}">
+                        <f:setPropertyActionListener target="#{managedUsuario.idSelecionado}" 
+                                                     value="#{usuario.id}"  />
+                    </p:commandButton>
+
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>

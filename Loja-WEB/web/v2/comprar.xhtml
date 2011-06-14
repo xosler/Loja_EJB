@@ -17,15 +17,17 @@
                       flowListener="#{managedCompra.onFlowProcess}">
 
                 <p:tab id="user" title="Dados do usuário.">  
+                    <h1>Verificação de usuário....</h1>
                     <h:panelGrid columns="2" rendered="#{not empty managedLogin.logado}">  
-                        <h:outputText value="#{managedLogin.logado.nome}: " />
-                        <h:outputText value="OK" style="color: greenyellow" />
+                        <h:panelGroup><h2><h:outputText value="#{managedLogin.logado.nome}: " /></h2></h:panelGroup>
+                        <h:panelGroup><h2 style="color: greenyellow; text-shadow: 0 0 5px #000" ><h:outputText value="OK"/></h2></h:panelGroup>
                     </h:panelGrid>
                     <h:panelGrid columns="2" rendered="#{empty managedLogin.logado}">  
-                        <h:outputText value="Você não pode continuar se cadastrar! " />
+                        <h:panelGroup><h2><h:outputText value="Você não pode continuar se cadastrar! " /></h2></h:panelGroup>
                         <span></span>
-                        <h:commandLink value="Já sou cadastrado." action="login" />
-                        <h:commandLink value="Quero me cadastrar." action="cadastro" />
+                        <h:panelGroup><h2><h:commandLink value="Já sou cadastrado." action="login" /></h2></h:panelGroup>
+                        <h:panelGroup><h2><h:commandLink value="Quero me cadastrar." action="cadastro" /></h2></h:panelGroup>
+
                     </h:panelGrid>  
                 </p:tab>
 
@@ -47,15 +49,23 @@
 
                     </p:dataList> 
                     <h:outputText value="Você escolheu um total de #{managedCarrinho.carrinho.produtos.size()} itens, num total de #{managedCarrinho.totalCarrinho} reais." />
-                    <br />
-                    <h:outputText value="Caso tenha interesse de adicionar ou remover itens, pode usar a tabela abaixo:" />
-
+                    
                 </p:tab>
                 <p:tab  id="concluir" title="Concluir compra" rendered="#{not empty managedLogin.logado}">
-                    bla bla bla bla
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Ao clicar no botão concluir, você está concordando com os nossos termos.\n
+                                      Os seus produtos serão entregues no seu endereço de cadastro, então, verifique se estão OK." />
+                        <br />
+                        <h:outputText value="Endereço para entrega: #{managedCompra.compra.usuario.endereco}." />
+                        <h:outputText value="Valor total da compra: #{managedCompra.compra.valorTotal}." />
+                        <br />
+                        <p:commandButton ajax="false" action="#{managedCompra.comprar}" value="Confirmar compra." />
+                        
+                        
+                    </h:panelGrid>
+
                     
-                    <p:commandButton ajax="false" action="#{managedCompra.comprar}" value="Concluir essa merda" />
-                    
+
                 </p:tab>
 
             </p:wizard>

@@ -3,6 +3,9 @@ package com.geekvigarista.manageds;
 import com.geekvigarista.pojo.Usuario;
 import com.geekvigarista.services.UsuarioServiceLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,9 +25,10 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     private Usuario usuario = null;
     private Long idSelecionado;
     private boolean admin;
-    
+    private String filtro = "";
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
     // injetando o managedLogin aqui!
-    @ManagedProperty(value="#{managedLogin}")
+    @ManagedProperty(value = "#{managedLogin}")
     private ManagedLogin managedLogin;
 
     // CONSTRUTOR
@@ -32,7 +36,6 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     }
 
     // GETTERS E SETTERS
-
     public boolean isAdmin() {
         return admin;
     }
@@ -40,16 +43,16 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-    
+
     public ManagedLogin getManagedLogin() {
         return managedLogin;
     }
-    
+
     // se nao tiver pelo o menos o setter, nao funciona.
     public void setManagedLogin(ManagedLogin managedLogin) {
         this.managedLogin = managedLogin;
     }
-    
+
     public Long getIdSelecionado() {
         return idSelecionado;
     }
@@ -59,13 +62,29 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     }
 
     public Usuario getUsuario() {
-        if(managedLogin.getLogado() != null)
-        {
-            usuario = managedLogin.getLogado();
-        } else {
-            usuario = new Usuario();
-        }
+//        if (managedLogin.getLogado() != null) {
+//            usuario = managedLogin.getLogado();
+//        } else {
+//            usuario = new Usuario();
+//        }
+        
         return usuario;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public void setUsuario(Usuario usuario) {
@@ -74,14 +93,20 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
     }
 
     // LOGICAS
+    @PostConstruct
+    public void buscar() {
+        System.out.println("POST CONSTRUCT MANAGEDUSUARIO!!!!!!!!!!! ###################");
+        usuarios = null;
+        usuarios = service.find(filtro);
+    }
+
     /**
      * salva no banco, tanto criação quanto edicao
      */
     public void salvar() {
         try {
-            if(managedLogin.isAdmin())
-            {
-                if(isAdmin()){
+            if (managedLogin.isAdmin()) {
+                if (isAdmin()) {
                     usuario.setGrupo("admins");
                 } else {
                     usuario.setGrupo("users");
@@ -99,11 +124,16 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
         }
     }
 
-    public void novo() {
-        usuario = new Usuario();
+    public String novo() {
+        usuario = null;
+        System.out.println("user = " + usuario);
+        return "cadastro.xhtml?faces-redirect=true";
     }
 
     public void excluir() {
+        if (usuario == null) {
+            return;
+        }
         try {
             service.delete(usuario);
             showMensagemExcluir(usuario.getNome());
@@ -122,17 +152,35 @@ public class ManagedUsuario extends ManagedCadastro implements Serializable {
 
     public String cadastrar() {
         usuario.setGrupo("users");
-        if (!usuario.getPassword().equals(usuario.getConfirmacaoSenha())) {
+        if (usuario.getPassword() == null || !usuario.getPassword().equals(usuario.getConfirmacaoSenha())) {
             showMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas não conferem!", "As senhas não conferem!"));
             return "erro";
         }
         try {
             salvar();
-            managedLogin.setLogado(usuario);
+            if (managedLogin != null && managedLogin.logado != null) {
+                managedLogin.setLogado(usuario);
+            }
             return "sucesso";
         } catch (Exception e) {
             e.printStackTrace();
             return "erro";
+        }
+    }
+
+    public void selecionarExcluirBuscar() {
+        load();
+        excluir();
+        buscar();
+    }
+    
+    public String editar(){
+        load();
+        if(usuario!= null)
+        {
+            return "cadastro.xhtml?faces-redirect=true";
+        } else {
+            return null;
         }
     }
 }

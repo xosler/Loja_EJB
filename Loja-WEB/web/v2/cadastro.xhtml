@@ -11,6 +11,7 @@
             <h1>
                 <h:outputText value="Cadastre-se" rendered="#{empty managedLogin.logado}" />
                 <h:outputText value="Alterar seus dados" rendered="#{not empty managedLogin.logado and !managedLogin.admin}" />
+                <h:outputText value="Cadastrar ou alterar usuário" rendered="#{managedLogin.admin and managedLogin.logado != managedUsuario.usuario}" />
             </h1>
             <h:panelGrid columns="2">
 
@@ -29,6 +30,9 @@
                 <h:outputText value="Usuário:" />
                 <p:inputText value="#{managedUsuario.usuario.userid}" validatorMessage="Username inválido ou já está sendo usado!"/>
 
+                <h:outputText value="Administrador?" rendered="#{managedLogin.admin and managedLogin.logado != managedUsuario.usuario}" />
+                <p:selectBooleanCheckbox value="#{managedUsuario.admin}" rendered="#{managedLogin.admin and managedLogin.logado != managedUsuario.usuario}" />
+                
                 <h:outputText value="Senha:" />
                 <p:password value="#{managedUsuario.usuario.password}" 
                             goodLabel="Bom" weakLabel="Fraco" strongLabel="Ótimo"

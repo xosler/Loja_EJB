@@ -6,6 +6,7 @@
         <Node id="v2/cadastroCategoria.xhtml" x="400" y="300" zoom="true"/>
         <Node id="v2/comum.xhtml" x="400" y="600" zoom="true"/>
         <Node id="v2/editarCarrinho.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="v2/listaUsuarios.xhtml" x="400" y="150" zoom="true"/>
         <Node id="v2/permissao.xhtml" x="650" y="150" zoom="true"/>
         <Node id="v2/cadastro.xhtml" x="150" y="600" zoom="true"/>
         <Node id="v2/listaCategoria.xhtml" x="650" y="300" zoom="true"/>

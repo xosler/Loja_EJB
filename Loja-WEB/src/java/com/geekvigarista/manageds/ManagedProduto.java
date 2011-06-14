@@ -180,6 +180,7 @@ public class ManagedProduto extends ManagedCadastro implements Serializable {
      * busca somente os produtos que ainda não venceram!
      * @author Carlos
      */
+    @PostConstruct
     public void buscar() {
         buscarGen(true);
     }
